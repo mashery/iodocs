@@ -1,0 +1,19 @@
+!!! 5
+html
+    head
+        - if (apiInfo.name)
+            - var title = apiInfo.name + ' API Documentation'
+        -else
+            - var title = 'Live Documentation'
+        title=title
+        link(rel='stylesheet', href='/stylesheets/prettify.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+
+    body
+        !{body}
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js')
+        script(src='/javascripts/json2.js')
+        script(src='/javascripts/prettify.js')
+        script(src='/javascripts/utilities.js')
+        script(src='/javascripts/livedocs.js')
+        script(src='/javascripts/docs.js')

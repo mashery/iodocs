@@ -1,0 +1,157 @@
+{
+    "endpoints": [
+        {
+            "name": "Score Methods",
+            "methods": [
+                {
+                    "MethodName": "Klout Score",
+                    "Synopsis": "This method allows you to retrieve a Klout score in JSON.",
+                    "HTTPMethod": "GET",
+                    "URI": "/klout.:format",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "users",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+			    "Description": "One or more (comma-separated) Twitter usernames."
+                        },
+			{
+			    "Name": "format",
+			    "Required": "Y",
+			    "Default": "json",
+			    "Type": "enumerated",
+			    "Description": "Output format as JSON or XML.",
+			    "EnumeratedList": [
+				"json",
+				"xml"
+			    ]
+			}
+                    ]
+                }
+            ]
+        },
+	{
+            "name": "User Methods",
+            "methods": [
+                {
+                    "MethodName": "Show User",
+                    "Synopsis": "This method allows you to retrieve user objects in JSON.",
+                    "HTTPMethod": "GET",
+                    "URI": "/users/show.:format",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "users",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+			    "Description": "One or more (comma-separated) Twitter usernames."
+                        },
+			{
+			    "Name": "format",
+			    "Required": "Y",
+			    "Default": "json",
+			    "Type": "enumerated",
+			    "Description": "Output format as JSON or XML.",
+			    "EnumeratedList": [
+				"json",
+				"xml"
+			    ]
+			}
+
+
+
+                    ]
+                },
+                {
+                    "MethodName": "Topics",
+                    "Synopsis": "This method allows you to retrieve the top 3 topic objects for a given user in JSON.",
+                    "HTTPMethod": "GET",
+                    "URI": "/users/topics.:format",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "users",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+			    "Description": "One or more (comma-separated) Twitter usernames."
+                        },
+			{
+			    "Name": "format",
+			    "Required": "Y",
+			    "Default": "json",
+			    "Type": "enumerated",
+			    "Description": "Output format as JSON or XML.",
+			    "EnumeratedList": [
+				"json",
+				"xml"
+			    ]
+			}
+                    ]
+                }
+            ]
+	},
+        {
+            "name": "Relationship Methods",
+            "methods": [
+                {
+                    "MethodName": "Influenced By",
+                    "Synopsis": "This method allows you to retrieve up to 5 user score pairs for users that are influenced by the given influencer in JSON.",
+                    "HTTPMethod": "GET",
+                    "URI": "/soi/influenced_by.:format",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "users",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+			    "Description": "One or more (comma-separated) Twitter usernames."
+                        },
+			{
+			    "Name": "format",
+			    "Required": "Y",
+			    "Default": "json",
+			    "Type": "enumerated",
+			    "Description": "Output format as JSON or XML.",
+			    "EnumeratedList": [
+				"json",
+				"xml"
+			    ]
+			}
+                    ]
+                },
+                {
+                    "MethodName": "Influencer Of",
+                    "Synopsis": "This method allows you to retrieve up to 5 user score pairs for users that are influencers of the given user in JSON.",
+                    "HTTPMethod": "GET",
+                    "URI": "/soi/influencer_of.:format",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "users",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+			    "Description": "One or more (comma-separated) Twitter usernames."
+                        },
+			{
+			    "Name": "format",
+			    "Required": "Y",
+			    "Default": "json",
+			    "Type": "enumerated",
+			    "Description": "Output format as JSON or XML.",
+			    "EnumeratedList": [
+				"json",
+				"xml"
+			    ]
+			}
+                    ]
+                }
+            ]
+        }
+    ]
+}

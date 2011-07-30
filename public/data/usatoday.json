@@ -1,0 +1,159 @@
+{
+    "endpoints": [
+        {
+            "name": "Census",
+            "methods": [
+                {
+                    "MethodName": "Locations",
+                    "Synopsis": "Returns all available ethnicity, housing, population and race information for specified area. ",
+                    "HTTPMethod": "GET",
+                    "URI": "/census/locations",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "keypat",
+                            "Required": "N",
+                            "Default": "",
+			    "Type": "string",
+                            "Description": "State abbreviation default, or arbitrary placename if keyname=placename"
+                        },
+			{
+			    "Name": "keyname",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "string",
+			    "Description": "[placename, FIPS, GNIS]"
+			},
+			{
+			    "Name": "sumlevid",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "enumerated list",
+			    "Description": "1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+			}
+                    ]
+                },
+                {
+                    "MethodName": "Ethnicity",
+                    "Synopsis": "Returns an area's ethnic data. Information includes how much of the population identifies as Hispanic or non-Hispanic white, and the USA TODAY Diversity Index.",
+                    "HTTPMethod": "GET",
+                    "URI": "/census/ethnicity",
+                    "RequiresOAuth": "N",
+                     "parameters": [
+                        {
+                            "Name": "keypat",
+                            "Required": "N",
+                            "Default": "",
+			    "Type": "string",
+                            "Description": "State abbreviation default, or arbitrary placename if keyname=placename"
+                        },
+			{
+			    "Name": "keyname",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "string",
+			    "Description": "[placename, FIPS, GNIS]"
+			},
+			{
+			    "Name": "sumlevid",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "enumerated list",
+			    "Description": "1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+			}
+                    ]
+                },
+		{
+                    "MethodName": "Housing",
+                    "Synopsis": "Returns an area's housing data. Information includes the number of housing units, and the percentage of those that are vacant.",
+                    "HTTPMethod": "GET",
+                    "URI": "/census/housing",
+                    "RequiresOAuth": "N",
+                     "parameters": [
+                        {
+                            "Name": "keypat",
+                            "Required": "N",
+                            "Default": "",
+			    "Type": "string",
+                            "Description": "State abbreviation default, or arbitrary placename if keyname=placename"
+                        },
+			{
+			    "Name": "keyname",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "string",
+			    "Description": "[placename, FIPS, GNIS]"
+			},
+			{
+			    "Name": "sumlevid",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "enumerated list",
+			    "Description": "1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+			}
+                    ]
+                },
+		{
+                    "MethodName": "Population",
+                    "Synopsis": "Returns an area's population data. Information includes the total population of an area, average population per square mile, and the percent by which that population has changed since the last census.",
+                    "HTTPMethod": "GET",
+                    "URI": "/census/population",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "keypat",
+                            "Required": "N",
+                            "Default": "",
+			    "Type": "string",
+                            "Description": "State abbreviation default, or arbitrary placename if keyname=placename"
+                        },
+			{
+			    "Name": "keyname",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "string",
+			    "Description": "[placename, FIPS, GNIS]"
+			},
+			{
+			    "Name": "sumlevid",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "enumerated list",
+			    "Description": "1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+			}
+                    ]
+                },
+		{
+                    "MethodName": "Race",
+                    "Synopsis": "Returns an area's racial data. Information includes the percentage of an area's population that identifies as White, Black, American Indian, Asian, native Hawaiian/Pacific Islander, or mixed race. ",
+                    "HTTPMethod": "GET",
+                    "URI": "/census/race",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "keypat",
+                            "Required": "N",
+                            "Default": "",
+			    "Type": "string",
+                            "Description": "State abbreviation default, or arbitrary placename if keyname=placename"
+                        },
+			{
+			    "Name": "keyname",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "string",
+			    "Description": "[placename, FIPS, GNIS]"
+			},
+			{
+			    "Name": "sumlevid",
+			    "Required": "N",
+			    "Default": "",
+			    "Type": "enumerated list",
+			    "Description": "1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+			}
+                    ]
+                }
+            ]
+        }
+    ]
+}

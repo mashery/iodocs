@@ -1,0 +1,12 @@
+{
+    "title" : "I/O Docs - http://github.com/mashery/iodocs.git",
+    "port" : 3000,
+    "debug" : false,
+    "sessionSecret" : "12345",
+    "redisConfig" : {
+                "host" : "localhost",
+                "port" : 6379,
+                "password" : "",
+                "database" : "0"
+             }
+}

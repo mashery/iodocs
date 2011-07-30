@@ -1,0 +1,37 @@
+{
+  "name": "iodocs",
+  "version": "0.0.1",
+  "description": "Live API Documentation and Browsing",
+  "homepage": "http://mashery.com",
+  "keywords": [
+    "livedocs",
+    "iodocs",
+    "documentation",
+    "api"
+  ],
+  "author": "Mashery, Inc. <nmansilla@mashery.com>",
+  "contributors": [
+    "Kelly Miyashiro <kelly@mashery.com.com>",
+    "Neil Mansilla <neil@mashery.com>",
+    "Mike Squires <msquires@mashery.com>",
+    "Uriah Welcome <uriah@mashery.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mashery/iodocs.git"
+  },
+  "dependencies": {
+    "connect-redis": "1.0.6",
+    "express": "2.4.3",
+    "hashlib": "1.0.1",
+    "jade": "0.13",
+    "oauth": "0.9.3",
+    "querystring": "0.0.1",
+    "redis": "0.6.6"
+  },
+  "devDependencies": {},
+  "main": "index",
+  "engines": {
+    "node": ">= 0.4.0"
+  }
+}
