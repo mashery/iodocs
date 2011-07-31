@@ -1,17 +1,13 @@
 I/O Docs - Open Source in Node.js
 =================================
 Copyright 2011 Mashery, Inc.
-
+[http://www.mashery.com](http://www.mashery.com)
 [http://developer.mashery.com](http://developer.mashery.com)
 
 SYNOPSIS
 --------
-I/O Docs is a live interactive documentation system for RESTful
-web APIs. By defining APIs at the resource, method and parameter
-levels in a JSON schema, I/O Docs will generate a JavaScript
-client interface. API calls can be executed from this interface,
-which are then proxied through the I/O Docs server with payload
-data cleanly formatted (pretty-printed if JSON or XML).
+I/O Docs is a live interactive documentation system for RESTful web APIs. By defining APIs at the resource, method and parameter
+levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML).
 
 You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
 
