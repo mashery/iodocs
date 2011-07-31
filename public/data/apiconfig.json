@@ -1,11 +1,4 @@
 {
-    "usatoday": {
-        "name": "USA TODAY Census API",
-          "baseURL": "http://api.usatoday.com",
-          "publicPath": "/open",
-          "auth": "key",
-          "keyParam": "api_key"
-    },
     "klout": {
          "name": "Klout API",
          "baseURL": "http://api.klout.com",
@@ -20,4 +13,11 @@
         "auth": "key",
         "keyParam": "api_key"
     },
+    "usatoday": {
+        "name": "USA TODAY Census API",
+          "baseURL": "http://api.usatoday.com",
+          "publicPath": "/open",
+          "auth": "key",
+          "keyParam": "api_key"
+    }
 }
