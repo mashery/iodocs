@@ -1,5 +1,5 @@
 h1=apiInfo.name 
-- if (session.authed && apiInfo.auth.oauth && apiInfo.auth.oauth.type =='three-legged')
+- if (session.authed && apiInfo.oauth && apiInfo.oauth.type =='three-legged')
     - var authed ='authed'
 - else
     - var authed =''
@@ -9,14 +9,14 @@ form#credentials
     input(type='hidden', name='apiName', value=apiName)
     - if (apiInfo.auth) 
         section(class='credentials ' + authed)
-         - if (authed && apiInfo.auth.oauth)
+         - if (authed && apiInfo.oauth)
              span Authenticated with OAuth
              img(src='/images/accept.png')
          - else
              h2 API Credentials
                img(src='/images/key.png')
 
-             - if (apiInfo.auth.oauth)
+             - if (apiInfo.oauth)
                  input(type='hidden', name='oauth', value='authrequired')
 
              - if (apiInfo.auth.defaultKey)
@@ -32,10 +32,10 @@ form#credentials
                  label(for='key') API Key
                  input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
              div
-                 - if (apiInfo.auth.oauth || apiInfo.signature)
+                 - if (apiInfo.oauth || apiInfo.signature)
                      label(for='secret') Shared Secret
                      input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
-             - if (apiInfo.auth.oauth && apiInfo.auth.oauth.type !='two-legged')
+             - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
                  div
                     input(name='oauth', value='Authenticate with OAuth', type='submit', id='oauth-auth')
 
