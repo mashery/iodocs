@@ -68,6 +68,7 @@ Adding an API to the I/O Docs configuration is relatively simple.
       <pre>
       "lowercaseapi": {
           "name": "Lower Case API",
+          "protocol": "http",
           "baseURL": "http://api.lowercase.sample.com",
           "publicPath": "/v1",
           "auth": "key",
@@ -164,22 +165,23 @@ Line:
 <pre>
 1.    "twitter": {
 2.        "name": "Twitter API",
-3.        "baseURL": "http://api.twitter.com",
-4.        "publicPath": "/1",
-5.        "privatePath": "/1",
-6.        "booleanTrueVal": "true",
-7.        "booleanFalseVal": "false",
-8.        "auth": "oauth",
-9.        "oauth" : {
-10.           "type": "three-legged",
-11.           "requestURL": "https://api.twitter.com/oauth/request_token",
-12.           "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
-13.           "accessURL": "https://api.twitter.com/oauth/access_token",
-14.           "version": "1.0",
-15.           "crypt": "HMAC-SHA1",
-16.       }
-17.       "keyParam": "",
-18.    }
+3.        "protocol": "http",
+4.        "baseURL": "http://api.twitter.com",
+5.        "publicPath": "/1",
+6.        "privatePath": "/1",
+7.        "booleanTrueVal": "true",
+8.        "booleanFalseVal": "false",
+9.        "auth": "oauth",
+10.        "oauth" : {
+11.           "type": "three-legged",
+12.           "requestURL": "https://api.twitter.com/oauth/request_token",
+13.           "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
+14.           "accessURL": "https://api.twitter.com/oauth/access_token",
+15.           "version": "1.0",
+16.           "crypt": "HMAC-SHA1",
+17.       }
+18.       "keyParam": "",
+19.    }
 </pre>
 
 Line:
@@ -192,22 +194,25 @@ Line:
 2. "name" key value is a string that holds the name
     of the API that is used in the Jade template output.
 
-3. "baseURL" key value is the base URL that accepts
+3. "protocol" key value contains either *http* or *https*,
+    but you're welcome to try other protocols.
+
+4. "baseURL" key value is the base URL that accepts
     the API calls (must include protocol)
 
-4. "publicPath" key value is the path prefix prepended
+5. "publicPath" key value is the path prefix prepended
     to all method URIs for non-protected method resources.
     This value is most often the version in RESTful APIs.
 
     Ex: "/v1", "/1", etc.
 
-5. "privatePath" key value is the path prefix prepended
+6. "privatePath" key value is the path prefix prepended
     to all method URIs for OAuth protected method resources.
     This value is most often the version in RESTful APIs.
 
     Ex: "/v1", "/1", etc.
 
-6. "booleanTrueVal" key value is the default value for
+7. "booleanTrueVal" key value is the default value for
     true Boolean values that are sent in API requests.
     Some APIs are designed to accept a wide variety
     of true derivatives, but some are very strict about
@@ -216,7 +221,7 @@ Line:
     Ex: "true", "TRUE", "True", "t", "T", "1", etc.
     Default: "true"
 
-7. "booleanFalseVal" key value is the default value for
+8. "booleanFalseVal" key value is the default value for
     false Boolean values that are sent in API requests.
     Some APIs are designed to accept a wide variety
     of false derivatives, but some are very strict about
@@ -225,41 +230,41 @@ Line:
     Ex: "false", "FALSE", "False", "f", "F", "0", etc.
     Default: "false"
 
-8. "auth" key value is set to "oauth" when OAuth is the
+9. "auth" key value is set to "oauth" when OAuth is the
     authentication mechanism. Field is required.
 
-9. "oauth" key value is a JSON object that contains the
+10. "oauth" key value is a JSON object that contains the
     OAuth implementation details for this API. Field is
     required when "auth" value is "oauth".
 
-10. "type" key value is the OAuth is the authorization flow
+11. "type" key value is the OAuth is the authorization flow
      used for this API. Normal authorization flow is known
      as "three-legged" which is currently the only supported
      flow for I/O Docs.
 
-11. "requestURL" key value is the Request Token URL used in
+12. "requestURL" key value is the Request Token URL used in
     the OAuth dance.
 
-12. "signinURL" key value is the User Authorization URL used
+13. "signinURL" key value is the User Authorization URL used
     in the OAuth dance (where the user is redirected to provide
     their credentials)
 
-13. "accessURL" key value is the Access Token URL used in the
+14. "accessURL" key value is the Access Token URL used in the
     OAuth dance.
 
-14. "version" key value is the OAuth version. As of I/O Docs v1.1,
+15. "version" key value is the OAuth version. As of I/O Docs v1.1,
     "1.0" is the only supported version. Note: use "1.0" for both
     1.0 and 1.0A implementations.
 
-15. "crypt" key value is the OAuth signature method. As of I/O Docs
+16. "crypt" key value is the OAuth signature method. As of I/O Docs
     v1.1 "HMAC-SHA1" is the only supported signing method.
 
-16. Closing curly bracket for "oauth" JSON object.
+17. Closing curly bracket for "oauth" JSON object.
 
-17. "keyParam" key value is blank when OAuth is the authentication
+18. "keyParam" key value is blank when OAuth is the authentication
     method.
 
-18. Closing curly bracket for main object.
+19. Closing curly bracket for main object.
 
 
 API-LEVEL CONFIG DETAILS
