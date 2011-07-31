@@ -166,7 +166,7 @@ Line:
 1.    "twitter": {
 2.        "name": "Twitter API",
 3.        "protocol": "http",
-4.        "baseURL": "http://api.twitter.com",
+4.        "baseURL": "api.twitter.com",
 5.        "publicPath": "/1",
 6.        "privatePath": "/1",
 7.        "booleanTrueVal": "true",
@@ -189,7 +189,7 @@ Line:
 1. Handle of the API. It is used to pull up the client
     interface in the URL:
 
-    Ex: http://127.0.0.1:3000/lower
+    Ex: http://127.0.0.1:3000/twitter
 
 2. "name" key value is a string that holds the name
     of the API that is used in the Jade template output.
@@ -238,19 +238,18 @@ Line:
     required when "auth" value is "oauth".
 
 11. "type" key value is the OAuth is the authorization flow
-     used for this API. Normal authorization flow is known
-     as "three-legged" which is currently the only supported
-     flow for I/O Docs.
+     used for this API. Valid values are "three-legged" (normal
+     authorization flow) and "two-legged" (no authorization flow).
 
 12. "requestURL" key value is the Request Token URL used in
-    the OAuth dance.
+    the OAuth dance (used in *three-legged* scenario).
 
 13. "signinURL" key value is the User Authorization URL used
     in the OAuth dance (where the user is redirected to provide
-    their credentials)
+    their credentials -- used in *three-legged* scenario).
 
 14. "accessURL" key value is the Access Token URL used in the
-    OAuth dance.
+    OAuth dance (used in *three-legged* scenario).
 
 15. "version" key value is the OAuth version. As of I/O Docs v1.1,
     "1.0" is the only supported version. Note: use "1.0" for both

@@ -172,7 +172,7 @@ function oauth(req, res, next) {
                     db.expire(key + ':requestTokenSecret', 1209600000);
 
                     // res.header('Content-Type', 'application/json');
-                    res.send({ 'signin': apiConfig.oauth.signin + oauthToken });
+                    res.send({ 'signin': apiConfig.oauth.signinURL + oauthToken });
                 }
             });
         } else if (apiConfig.oauth.type == 'two-legged' && req.body.oauth == 'authrequired') {
