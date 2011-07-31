@@ -7,46 +7,17 @@
                "MethodName":"leagues",
                "Synopsis":"This collection method returns a list of league ids and names.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/leagues",
+               "URI":"/basic/api/leagues",
                "RequiresOAuth":"N",
-               "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"basic",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  }
-               ]
+               "parameters":[ ]
             },
             {
                "MethodName":"leagues/:id",
                "Synopsis":"Returns detailed information about a single league member, specified by the id parameter below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/leagues/:id",
+               "URI":"/basic/api/leagues/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -65,23 +36,9 @@
                "MethodName":"conferences",
                "Synopsis":"This collection method returns a list of league ids and names..",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/conferences",
+               "URI":"/basic/api/:parent_resource/:resource_id/conferences",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -105,23 +62,9 @@
                "MethodName":"conferences/:id",
                "Synopsis":"Returns detailed information about a single conference member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/conferences/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/conferences/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -158,23 +101,9 @@
                "MethodName":"divisions",
                "Synopsis":"This collection method returns a list of division ids and names, specified by the parent_resource and resource_id parameters belows.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/divisions",
+               "URI":"/basic/api/:parent_resource/:resource_id/divisions",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -199,23 +128,9 @@
                "MethodName":"divisions/:id",
                "Synopsis":"Returns detailed information about a single division member, specified by the parameters below..",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/divisions/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/divisions/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -253,23 +168,9 @@
                "MethodName":"teams",
                "Synopsis":"This collection method returns a list of team ids and names, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/teams",
+               "URI":"/basic/api/:parent_resource/:resource_id/teams",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -296,23 +197,9 @@
                "MethodName":"teams/:id",
                "Synopsis":"Returns detailed information about a single team member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/teams/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/teams/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -347,23 +234,9 @@
                "MethodName":"teams/:id/roster",
                "Synopsis":"Returns a player roster for a single team member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/teams/:id/roster",
+               "URI":"/basic/api/:parent_resource/:resource_id/teams/:id/roster",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -403,23 +276,9 @@
                "MethodName":"persons",
                "Synopsis":"This collection method returns a list of person ids and names, specified by the parent_resource and resource_id parameters belows.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/persons",
+               "URI":"/basic/api/:parent_resource/:resource_id/persons",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -446,23 +305,9 @@
                "MethodName":"persons/:id",
                "Synopsis":"Returns detailed information about a single team member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/persons/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/persons/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -502,23 +347,9 @@
                "MethodName":"geo",
                "Synopsis":"This collection method returns a list of locations and ids, specified by a lat and long or query.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/geo",
+               "URI":"/basic/api/geo",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"lat",
                      "Required":"N",
@@ -546,23 +377,9 @@
                "MethodName":"geo/:id",
                "Synopsis":"Returns detailed information about a single location member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/geo/:id",
+               "URI":"/basic/api/geo/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -576,23 +393,9 @@
                "MethodName":"geo/:id/teams",
                "Synopsis":"This collection action returns a list of teams and ids for a given location.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/geo/:id/teams",
+               "URI":"/basic/api/geo/:id/teams",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -606,23 +409,9 @@
                "MethodName":"geo/:id/content",
                "Synopsis":"This collection action returns a list of content items and ids for a given location.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/geo/:id/teams",
+               "URI":"/basic/api/geo/:id/teams",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -641,23 +430,9 @@
                "MethodName":"events",
                "Synopsis":"This collection method returns a list of event ids and names, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events",
+               "URI":"/basic/api/:parent_resource/:resource_id/events",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -685,23 +460,9 @@
                "MethodName":"events/:id",
                "Synopsis":"Returns detailed information about a single event member including scores, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -737,23 +498,9 @@
                "MethodName":"events/:id/boxscore",
                "Synopsis":"Returns a complete boxscore for a single event member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/:id/boxscore",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/:id/boxscore",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -789,23 +536,9 @@
                "MethodName":"events/:id/recap",
                "Synopsis":"Returns a complete recap for a single event member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/:id/recap",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/:id/recap",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -841,23 +574,9 @@
                "MethodName":"events/today",
                "Synopsis":"This collection action returns a list of event ids and names for events currently in progress, about to start, or just ended, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/today",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/today",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -885,23 +604,9 @@
                "MethodName":"events/next",
                "Synopsis":"This collection action returns a list of event ids and names for the next two weeks of scheduled events, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/next",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/next",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -929,23 +634,9 @@
                "MethodName":"events/last",
                "Synopsis":"This collection action returns a list of event ids and names for the last two weeks of scheduled events, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/last",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/last",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -973,23 +664,9 @@
                "MethodName":"events/:season_type",
                "Synopsis":"This collection action returns a list of event ids and names for an entire season, preseason, or postseason, specified by the parent_resource and resource_id parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/events/:season_type",
+               "URI":"/basic/api/:parent_resource/:resource_id/events/:season_type",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -1034,23 +711,9 @@
                "MethodName":"content",
                "Synopsis":"This collection method returns a list of all content ids and titles, specified by the parent_resource and resource_id parameters belows.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/content",
+               "URI":"/basic/api/:parent_resource/:resource_id/content",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -1079,23 +742,9 @@
                "MethodName":"content/:id",
                "Synopsis":"Returns detailed information about a single content item, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/content/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/content/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                    "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -1132,23 +781,9 @@
                "MethodName":"content/:filter",
                "Synopsis":"This collection action returns a subset of all content ids and titles, specified by the filter parameter below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/content/:filter",
+               "URI":"/basic/api/:parent_resource/:resource_id/content/:filter",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -1191,23 +826,9 @@
                "MethodName":"content/:id/related",
                "Synopsis":"This action returns a set of related information for a single content member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/content/:id/related",
+               "URI":"/basic/api/:parent_resource/:resource_id/content/:id/related",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -1248,23 +869,9 @@
                "MethodName":"images",
                "Synopsis":"This collection method returns a list of image ids and descriptions, specified by the parent_resource and resource_id parameters belows.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/images",
+               "URI":"/basic/api/:parent_resource/:resource_id/images",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -1291,23 +898,9 @@
                "MethodName":"images/:id",
                "Synopsis":"Returns detailed information about a single image member, specified by the parameters below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/images/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/images/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -1346,23 +939,9 @@
                "MethodName":"sources",
                "Synopsis":"This collection method returns a list of content source ids and names for all sources in the system, or a subset specified by a parent_resource.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/sources",
+               "URI":"/basic/api/:parent_resource/:resource_id/sources",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"N",
@@ -1391,23 +970,9 @@
                "MethodName":"sources/:id",
                "Synopsis":"Returns detailed information about a single content source member, specified by the id parameter below.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/sources/:id",
+               "URI":"/basic/api/:parent_resource/:resource_id/sources/:id",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"id",
                      "Required":"Y",
@@ -1448,23 +1013,9 @@
                "MethodName":"teams",
                "Synopsis":"This collection method returns a list of the 5 most trending team ids and names in the system, or for a specific parent_resource.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/teams",
+               "URI":"/basic/api/:parent_resource/:resource_id/teams",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"Y",
@@ -1490,23 +1041,9 @@
                "MethodName":"persons",
                "Synopsis":"This collection method returns a list of the 5 most trending person ids and names in the system, or for a specific parent_resource.",
                "HTTPMethod":"GET",
-               "URI":"/:tier/api/:parent_resource/:resource_id/persons",
+               "URI":"/basic/api/:parent_resource/:resource_id/persons",
                "RequiresOAuth":"N",
                "parameters":[
-                  {
-                     "Name":"tier",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"enumerated",
-                     "EnumeratedList":[
-                        "basic",
-                        "silver",
-                        "gold",
-                        "platinum",
-                        "unlimited"
-                     ],
-                     "Description":"API subscription tier"
-                  },
                   {
                      "Name":"parent_resource",
                      "Required":"N",

@@ -1,42 +1,23 @@
 {
-    "simplegeo": {
-        "name": "Simplegeo",
-        "baseURL": "api.simplegeo.com",
-        "publicPath": "",
-        "auth": {
-            "oauth": {
-                "type": "two-legged",
-                "version": "1.0",
-                "crypt": "HMAC-SHA1"
-            }
-        }
-    },
     "usatoday": {
-        "name": "USA TODAY",
-          "baseURL": "api.usatoday.com",
+        "name": "USA TODAY Census API",
+          "baseURL": "http://api.usatoday.com",
           "publicPath": "/open",
           "auth": "key",
           "keyParam": "api_key"
     },
     "klout": {
-         "name": "Klout",
-         "baseURL": "api.klout.com",
+         "name": "Klout API",
+         "baseURL": "http://api.klout.com",
          "publicPath": "/1",
          "auth": "key",
          "keyParam": "key"
     },
     "fanfeedr": {
-        "name": "FanFeedr",
-        "baseURL": "ffapi.fanfeedr.com",
+        "name": "FanFeedr Sports Basic API",
+        "baseURL": "http://ffapi.fanfeedr.com",
         "publicPath": "",
         "auth": "key",
         "keyParam": "api_key"
     },
-    "rotten": {
-        "name": "Tomatoes",
-        "baseURL": "api.rottentomatoes.com",
-        "publicPath": "/api/public/v1.0",
-        "auth": "key",
-        "keyParam": "apikey"
-    }
 }
