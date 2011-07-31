@@ -1,5 +1,5 @@
 {
-    "title" : "I/O Docs - http://github.com/mashery/iodocs.git",
+    "title" : "I/O Docs - http://github.com/mashery/iodocs",
     "port" : 3000,
     "debug" : false,
     "sessionSecret" : "12345",
