@@ -15,6 +15,14 @@
         "auth": "key",
         "keyParam": "api_key"
     },
+    "alibris": {
+        "name": "Alibris API",
+        "protocol": "http",
+        "baseURL": "api.alibris.com",
+        "publicPath": "/v1/public",
+        "auth": "key",
+        "keyParam": "apikey"
+    },
     "usatoday": {
         "name": "USA TODAY Census API",
          "protocol": "http",
