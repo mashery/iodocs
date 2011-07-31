@@ -1,0 +1,372 @@
+<pre>
+    _/_/_/    _/_/        _/_/_/                                  
+     _/    _/    _/      _/    _/    _/_/      _/_/_/    _/_/_/   
+    _/    _/    _/      _/    _/  _/    _/  _/        _/_/        
+   _/    _/    _/      _/    _/  _/    _/  _/            _/_/     
+_/_/_/    _/_/        _/_/_/      _/_/      _/_/_/  _/_/_/        
+</pre>
+
+I/O Docs - Open Source in Node.js
+=================================
+
+Copyright 2011 Mashery, Inc.
+
+[http://developer.mashery.com](http://developer.mashery.com)
+
+SYNOPSIS
+--------
+I/O Docs is a live interactive documentation system for RESTful
+web APIs. By defining APIs at the resource, method and parameter
+levels in a JSON schema, I/O Docs will generate a JavaScript
+client interface. API calls can be executed from this interface,
+which are then proxied through the I/O Docs server with payload
+data cleanly formatted (pretty-printed if JSON or XML).
+
+You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
+
+However, we recommend that you install I/O Docs with *npm*, the Node package manager. See instructions below.
+
+BUILD/RUNTIME DEPENDENCIES
+--------------------------
+1. Node.js - server-side JS engine
+2. npm - node package manager
+3. Redis - key+value storage engine
+
+Note: Node and some of the modules require compiler (like gcc). If you are on a Mac, you will need to install XCode. If you're on Linux, you'll need to install build-essentials, or something equivalent.
+
+INSTALLATION INSTRUCTIONS FOR NODE, NPM & REDIS
+-----------------------------------------------
+1. Node.js - [https://github.com/joyent/node/wiki/Installation](https://github.com/joyent/node/wiki/Installation)
+2. npm (Node package manager) - [https://github.com/isaacs/npm](https://github.com/isaacs/npm)
+3. Redis - [http://redis.io/download](http://redis.io/download)
+
+INSTALLATION INSTRUCTIONS FOR I/O DOCS
+--------------------------------------
+### Option 1 - Use *npm*
+From the command line type in: 
+<pre>  npm install iodocs
+</pre>
+
+### Option 2 - Download from GitHub and build using npm
+
+From the command line type in:
+<pre>  git clone http://github.com/mashery/iodocs.git
+  cd iodocs
+  npm rebuild
+</pre>
+
+### Node Module Dependencies
+These will be automatically installed when you use any of the above *npm* installation methods above.
+
+1. express - framework
+2. oauth - oauth library
+3. redis - connector to Redis 
+3. connect-redis - Redis session store
+4. hashlib - used for signatures
+5. querystring - used to parse query string
+6. jade - the view engine
+
+RUNNING I/O DOCS
+----------------
+1. You will need to copy *config.json.sample* to *config.json*. The defaults will work, but feel free to change them.
+2. node ./app.js
+3. Point your browser to: [http://localhost:3000](http://localhost:3000)
+
+QUICK API CONFIGURATION EXAMPLE
+-------------------------------
+Adding an API to the I/O Docs configuration is relatively simple.
+
+1. Append the new top-level service information to the
+   "./public/data/apiconfig.json" file.
+
+   Example:
+      <pre>
+      "lowercaseapi": {
+          "name": "Lower Case API",
+          "baseURL": "http://api.lowercase.sample.com",
+          "publicPath": "/v1",
+          "auth": "key",
+          "keyParam": "api_key_var_name"
+      }
+      </pre>
+
+2. Add the file "./public/data/lowercaseapi.json" to define the
+   API.
+
+   Example:
+   <pre>
+   {
+     "endpoints": [
+        {
+          "name": "Resource Group A",
+          "methods": [
+             {
+               "MethodName": "Method A1",
+               "Synopsis": "Grabs information from the A1 data set",
+               "HTTPMethod": "GET",
+               "URI": "/a1/grab",
+               "RequiresOAuth": "N",
+               "parameters": [
+                  {
+                     "Name": "param_1_name",
+                     "Required": "Y",
+                     "Default": "",
+                     "Type": "string",
+                     "Description": "Description of the first parameter."
+                  }
+               ]
+             }
+          ]
+        }
+      ]
+   }
+   </pre>
+
+TOP-LEVEL SERVICE CONFIG DETAILS - apiconfig.json
+-------------------------------------------------
+The *apiconfig.json* file contains high-level information about an API.
+
+### Example #1 - Explanation of each field in an example API config that uses basic key authentication:
+
+<pre>
+1.  "lower": {
+2.     "name": "My API",
+3.     "baseURL": "http://api.lowercase.sample.com",
+4.     "publicPath": "/v1",
+5.     "auth": "key",
+6.     "keyParam": "api_key_var_name"
+7.  }
+</pre>
+
+Line:
+
+1. Handle of the API. It is used to pull up the client 
+   interface in the URL:
+
+    Ex: http://127.0.0.1:3000/lower
+
+2. "name" key value is a string that holds the name
+    of the API that is used in the Jade template output.
+
+3. "baseURL" key value is the base URL that accepts
+    the API calls (must include protocol)
+
+4. "publicPath" key value is the path prefix prepended
+    to all method URIs. This value is most often the version
+    in RESTful APIs.
+
+    Ex: "/v1", "/1", etc.
+
+    In the Example #2 below, there is also "privatePath"
+    which is used for endpoints behind protected resources.
+
+5. "auth" key value is the auth method. Valid values can be:
+
+         "key" - simple API key in the URI
+         "oauth1" - OAuth 1.0/1.0a
+
+6. "keyParam" key value is name of the query parameter that
+    is added to an API request when the "auth" key value from
+    (5) is set to "key"
+
+7. Closing curly-bracket ;)
+
+
+---
+
+### Example #2 - Twitter API config that uses 3-legged OAuth
+
+<pre>
+1.    "twitter": {
+2.        "name": "Twitter API",
+3.        "baseURL": "http://api.twitter.com",
+4.        "publicPath": "/1",
+5.        "privatePath": "/1",
+6.        "booleanTrueVal": "true",
+7.        "booleanFalseVal": "false",
+8.        "auth": "oauth",
+9.        "oauth" : {
+10.           "type": "three-legged",
+11.           "requestURL": "https://api.twitter.com/oauth/request_token",
+12.           "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
+13.           "accessURL": "https://api.twitter.com/oauth/access_token",
+14.           "version": "1.0",
+15.           "crypt": "HMAC-SHA1",
+16.       }
+17.       "keyParam": "",
+18.    }
+</pre>
+
+Line:
+
+1. Handle of the API. It is used to pull up the client
+    interface in the URL:
+
+    Ex: http://127.0.0.1:3000/lower
+
+2. "name" key value is a string that holds the name
+    of the API that is used in the Jade template output.
+
+3. "baseURL" key value is the base URL that accepts
+    the API calls (must include protocol)
+
+4. "publicPath" key value is the path prefix prepended
+    to all method URIs for non-protected method resources.
+    This value is most often the version in RESTful APIs.
+
+    Ex: "/v1", "/1", etc.
+
+5. "privatePath" key value is the path prefix prepended
+    to all method URIs for OAuth protected method resources.
+    This value is most often the version in RESTful APIs.
+
+    Ex: "/v1", "/1", etc.
+
+6. "booleanTrueVal" key value is the default value for
+    true Boolean values that are sent in API requests.
+    Some APIs are designed to accept a wide variety
+    of true derivatives, but some are very strict about
+    this value.
+
+    Ex: "true", "TRUE", "True", "t", "T", "1", etc.
+    Default: "true"
+
+7. "booleanFalseVal" key value is the default value for
+    false Boolean values that are sent in API requests.
+    Some APIs are designed to accept a wide variety
+    of false derivatives, but some are very strict about
+    this value.
+
+    Ex: "false", "FALSE", "False", "f", "F", "0", etc.
+    Default: "false"
+
+8. "auth" key value is set to "oauth" when OAuth is the
+    authentication mechanism. Field is required.
+
+9. "oauth" key value is a JSON object that contains the
+    OAuth implementation details for this API. Field is
+    required when "auth" value is "oauth".
+
+10. "type" key value is the OAuth is the authorization flow
+     used for this API. Normal authorization flow is known
+     as "three-legged" which is currently the only supported
+     flow for I/O Docs.
+
+11. "requestURL" key value is the Request Token URL used in
+    the OAuth dance.
+
+12. "signinURL" key value is the User Authorization URL used
+    in the OAuth dance (where the user is redirected to provide
+    their credentials)
+
+13. "accessURL" key value is the Access Token URL used in the
+    OAuth dance.
+
+14. "version" key value is the OAuth version. As of I/O Docs v1.1,
+    "1.0" is the only supported version. Note: use "1.0" for both
+    1.0 and 1.0A implementations.
+
+15. "crypt" key value is the OAuth signature method. As of I/O Docs
+    v1.1 "HMAC-SHA1" is the only supported signing method.
+
+16. Closing curly bracket for "oauth" JSON object.
+
+17. "keyParam" key value is blank when OAuth is the authentication
+    method.
+
+18. Closing curly bracket for main object.
+
+
+API-LEVEL CONFIG DETAILS
+========================
+For every API that is configured in *apiconfig.json* a JSON config file must exist.
+You should look at the *./public/data/* directory for examples.  
+
+### Example #1 - Explanation of each field in an example API-level configuration
+
+<pre>
+1.  {
+2.      {
+3.         "name":"User Resources",
+4.         "methods":[
+5.            {
+6.              "MethodName":"users/show",
+7.               "Synopsis":"Returns extended user information",
+8.               "HTTPMethod":"GET",
+9.               "URI":"/users/show.json",
+10.              "RequiresOAuth":"N",
+11.              "parameters":[
+12.                  {
+13.                     "Name":"user_id",
+14.                     "Required":"Y",
+15.                     "Default":"",
+16.                     "Type":"string",
+17.                     "Description":"The ID of the user",
+18.                  },
+19.                  {
+20.                     "Name":"cereal",
+21.                     "Required":"Y",
+22.                     "Default":"fruitscoops",
+23.                     "Type":"enumerated",
+24.                     "EnumeratedList": [
+25.                         "fruitscoops",
+26.                         "sugarbombs",
+27.                         "frostedteeth"
+28.                        ],
+29.                     "Description":"The type of cereal desired"
+30.                  },
+31.                  {
+32.                     "Name":"skip_status",
+33.                     "Required":"N",
+34.                     "Default":"",
+35.                     "Type":"boolean",
+36.                     "Description":"If true, status not included"
+37.                  }
+38.               ]
+39.            ]
+40.        }
+41.  }
+</pre>
+
+Line:
+
+3. "name" key holds the value of the Resource name. Methods are grouped into Resources.
+
+4. "methods" key value is an array of JSON objects (each one being a method)
+
+6. "MethodName" key value is a string that is displayed via the view template.
+
+7. "Synopsis" key value is a short description of the method.
+
+8. "HTTPMethod" key value can be either GET, POST, DELETE or PUT (all caps)
+
+9. "URI" key value is the path to the method that is appended to the *baseURL* and the public/private path.
+
+10. "RequiresOAuth" key value is either Y or N. If Y, the *privatePath* is used from the top-level config. If N, the *publicPath* is used from the top-level config.
+
+11. "parameters" key value is an array of JSON objects (each one being a parameter)
+
+13. "Name" key value is a string that contains the name of the parameter.
+
+14. "Required" key value is either Y or N. If Y, the parameter will be output as bold.
+
+15. "Default" key value is a string, containing a default value that will be automatically populated onto the form.
+
+16. "Type" key value can be an arbitrary string that describes the variable type; however, the value is *boolean* or *enumerated* a drop-down (select) box will appear.
+
+17. "Description" key value is a string, containing the description of the parameter.
+
+23. "Type" key value is set to *enumerated* for this parameter.
+
+24. "EnumeratedList" key value is an array of enumerated values that will render a drop-down (select box) on the form.
+
+25. Each value in the list is a string.
+
+35. "Type" key value is *boolean* that will render a drop-down (select box) on the form for *true* and *false*.
+
+SUPPORT
+=======
+If you need any help with I/O Docs, you can reach out to us via the GitHub project page at:
+<code>[http://github.com/mashery/iodocs](http://github.com/mashery/iodocs)</code>
+
+
