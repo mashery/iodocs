@@ -30,5 +30,17 @@
          "publicPath": "/open",
          "auth": "key",
          "keyParam": "api_key"
+    },
+    "simplegeo": {
+        "name": "SimpleGeo",
+        "protocol": "http",
+        "baseURL": "api.simplegeo.com",
+        "publicPath": "",
+        "auth": "oauth",
+        "oauth": {
+             "type": "two-legged",
+             "version": "1.0",
+             "crypt": "HMAC-SHA1"
+        }
     }
 }
