@@ -1,14 +1,5 @@
-<pre>
-    _/_/_/    _/_/        _/_/_/                                  
-     _/    _/    _/      _/    _/    _/_/      _/_/_/    _/_/_/   
-    _/    _/    _/      _/    _/  _/    _/  _/        _/_/        
-   _/    _/    _/      _/    _/  _/    _/  _/            _/_/     
-_/_/_/    _/_/        _/_/_/      _/_/      _/_/_/  _/_/_/        
-</pre>
-
 I/O Docs - Open Source in Node.js
 =================================
-
 Copyright 2011 Mashery, Inc.
 
 [http://developer.mashery.com](http://developer.mashery.com)
