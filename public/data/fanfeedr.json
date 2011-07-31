@@ -9,7 +9,9 @@
                "HTTPMethod":"GET",
                "URI":"/basic/api/leagues",
                "RequiresOAuth":"N",
-               "parameters":[ ]
+               "parameters":[
+
+               ]
             },
             {
                "MethodName":"leagues/:id",
@@ -71,14 +73,14 @@
                      "Default":"",
                      "Type":"string",
                      "Description":"UUID of the desired conference"
-                  },				  
+                  },
                   {
                      "Name":"parent_resource",
                      "Required":"N",
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues"
                      ],
                      "Description":"Actual parent resource name"
@@ -144,7 +146,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences"
                      ],
@@ -213,7 +215,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -250,7 +252,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -321,7 +323,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -476,7 +478,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -514,7 +516,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -552,7 +554,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -758,7 +760,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -767,7 +769,7 @@
                         "geo"
                      ],
                      "Description":"Actual parent resource name"
-                  },                    
+                  },
                   {
                      "Name":"resource_id",
                      "Required":"N",
@@ -835,14 +837,14 @@
                      "Default":"",
                      "Type":"string",
                      "Description":"UUID of the content resource."
-                  },				  
+                  },
                   {
                      "Name":"parent_resource",
                      "Required":"N",
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -948,7 +950,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -986,7 +988,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",
@@ -1050,7 +1052,7 @@
                      "Default":"",
                      "Type":"enumerated",
                      "EnumeratedList":[
-					 	"",
+                        "",
                         "leagues",
                         "conferences",
                         "divisions",

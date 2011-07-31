@@ -86,7 +86,7 @@
 		  {
 		     "Name":"outputtype",
 		     "Required":"N",
-		     "Default":"xml",
+		     "Default":"json",
 		     "Type":"enumerated",
 		     "EnumeratedList": [
 			"xml",
@@ -113,7 +113,7 @@
 		  {
 		     "Name":"outputtype",
 		     "Required":"N",
-		     "Default":"xml",
+		     "Default":"json",
 		     "Type":"enumerated",
 		     "EnumeratedList": [
 			"xml",
@@ -140,7 +140,7 @@
 		  {
 		     "Name":"outputtype",
 		     "Required":"N",
-		     "Default":"xml",
+		     "Default":"json",
 		     "Type":"enumerated",
 		     "EnumeratedList": [
 			"xml",
