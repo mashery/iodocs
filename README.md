@@ -351,7 +351,5 @@ Line:
 
 SUPPORT
 =======
-If you need any help with I/O Docs, you can reach out to us via the GitHub project page at:
-<code>[http://github.com/mashery/iodocs](http://github.com/mashery/iodocs)</code>
-
-
+If you need any help with I/O Docs, you can reach out to us via the GitHub Issues page at:
+<code>[http://github.com/mashery/iodocs/issues](http://github.com/mashery/iodocs/issues)</code>
