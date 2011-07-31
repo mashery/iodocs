@@ -43,7 +43,7 @@ From the command line type in:
 From the command line type in:
 <pre>  git clone http://github.com/mashery/iodocs.git
   cd iodocs
-  npm rebuild
+  npm install
 </pre>
 
 ### Node Module Dependencies
