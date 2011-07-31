@@ -3,7 +3,7 @@
     "port" : 3000,
     "debug" : false,
     "sessionSecret" : "12345",
-    "redisConfig" : {
+    "redis" : {
                 "host" : "localhost",
                 "port" : 6379,
                 "password" : "",
