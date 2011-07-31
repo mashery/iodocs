@@ -33,18 +33,12 @@ INSTALLATION INSTRUCTIONS FOR NODE, NPM & REDIS
 
 INSTALLATION INSTRUCTIONS FOR I/O DOCS
 --------------------------------------
-### Option 1 - Use *npm*
-From the command line type in: 
-<pre>  npm install iodocs
-</pre>
-
-### Option 2 - Download from GitHub and build using npm
-
 From the command line type in:
 <pre>  git clone http://github.com/mashery/iodocs.git
   cd iodocs
   npm install
 </pre>
+
 
 ### Node Module Dependencies
 These will be automatically installed when you use any of the above *npm* installation methods above.
