@@ -226,12 +226,12 @@ function oauthSuccess(req, res, next) {
         };
 
         var oa = new OAuth(apiConfig.oauth.requestURL,
-                apiConfig.oauth.accessURL,
-                apiKey,
-                apiSecret,
-                apiConfig.oauth.version,
-                null,
-                apiConfig.oauth.crypt);
+                           apiConfig.oauth.accessURL,
+                           apiKey,
+                           apiSecret,
+                           apiConfig.oauth.version,
+                           null,
+                           apiConfig.oauth.crypt);
 
         if (config.debug) {
             console.log(util.inspect(oa));
@@ -374,12 +374,12 @@ function processRequest(req, res, next) {
 
             var body,
                 oa = new OAuth(null,
-                    null,
-                    apiKey || null,
-                    apiSecret || null,
-                    apiConfig.oauth.version || null,
-                    null,
-                    apiConfig.oauth.crypt);
+                               null,
+                               apiKey || null,
+                               apiSecret || null,
+                               apiConfig.oauth.version || null,
+                               null,
+                               apiConfig.oauth.crypt);
 
             var resource = options.protocol + '://' + options.host + options.path,
                 cb = function(error, data, response) {
