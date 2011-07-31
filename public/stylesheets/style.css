@@ -34,6 +34,12 @@ blockquote:before, blockquote:after, q:before, q:after {
   content: none;
 }
 
+#copyright {
+  font-size: 8pt;
+  text-align: right;
+  margin-top: 25px;
+}
+
 /* line 60, scss/style.scss */
 ins {
   background-color: #ff9;
