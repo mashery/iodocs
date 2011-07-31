@@ -1,23 +1,26 @@
 {
     "klout": {
-         "name": "Klout API",
-         "baseURL": "http://api.klout.com",
-         "publicPath": "/1",
-         "auth": "key",
-         "keyParam": "key"
+        "name": "Klout API",
+        "protocol": "http",
+        "baseURL": "api.klout.com",
+        "publicPath": "/1",
+        "auth": "key",
+        "keyParam": "key"
     },
     "fanfeedr": {
         "name": "FanFeedr Sports Basic API",
-        "baseURL": "http://ffapi.fanfeedr.com",
+        "protocol": "http",
+        "baseURL": "ffapi.fanfeedr.com",
         "publicPath": "",
         "auth": "key",
         "keyParam": "api_key"
     },
     "usatoday": {
         "name": "USA TODAY Census API",
-          "baseURL": "http://api.usatoday.com",
-          "publicPath": "/open",
-          "auth": "key",
-          "keyParam": "api_key"
+         "protocol": "http",
+         "baseURL": "api.usatoday.com",
+         "publicPath": "/open",
+         "auth": "key",
+         "keyParam": "api_key"
     }
 }
