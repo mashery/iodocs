@@ -41,13 +41,13 @@ From the command line type in:
 ### Node Module Dependencies
 These will be automatically installed when you use any of the above *npm* installation methods above.
 
-1. [http://expressjs.com/](express) - framework
-2. [https://github.com/unscene/node-oauth](oauth) - oauth library
-3. [https://github.com/mranney/node_redis](redis) - connector to Redis
-3. [https://github.com/visionmedia/connect-redis](connect-redis) - Redis session store
-4. [https://github.com/brainfucker/hashlib](hashlib) - used for signatures
-5. [https://github.com/visionmedia/node-querystring](querystring) - used to parse query string
-6. [http://jade-lang.com/](jade) - the view engine
+1. [express](http://expressjs.com/) - framework
+2. [oauth](https://github.com/unscene/node-oauth) - oauth library
+3. [redis](https://github.com/mranney/node_redis) - connector to Redis
+3. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
+4. [hashlib](https://github.com/brainfucker/hashlib) - used for signatures
+5. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
+6. [jade](http://jade-lang.com/) - the view engine
 
 RUNNING I/O DOCS
 ----------------
