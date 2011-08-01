@@ -37,11 +37,11 @@ var express     = require('express'),
 
 // Configuration
 try {
-    var configJSON = fs.readFileSync(__dirname + "/config.json")
-    var config = JSON.parse(configJSON.toString())
+    var configJSON = fs.readFileSync(__dirname + "/config.json");
+    var config = JSON.parse(configJSON.toString());
 } catch(e) {
-    sys.puts("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`")
-    process.exit(1)
+    sys.puts("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`");
+    process.exit(1);
 }
 
 //
