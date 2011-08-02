@@ -12,6 +12,7 @@ I/O Docs is a live interactive documentation system for RESTful web APIs. By def
 levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML).
 
 You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
+You can find a demo of it running here: [http://iodocs.demo.mashery.com](http://iodocs.demo.mashery.com)
 
 However, we recommend that you install I/O Docs with *npm*, the Node package manager. See instructions below.
 
