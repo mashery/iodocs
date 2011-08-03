@@ -411,7 +411,7 @@
                "MethodName":"geo/:id/content",
                "Synopsis":"This collection action returns a list of content items and ids for a given location.",
                "HTTPMethod":"GET",
-               "URI":"/basic/api/geo/:id/teams",
+               "URI":"/basic/api/geo/:id/content",
                "RequiresOAuth":"N",
                "parameters":[
                   {
@@ -697,7 +697,7 @@
                      "Type":"enumerated",
                      "EnumeratedList":[
                         "season",
-                        "presearch",
+                        "preseason",
                         "postseason"
                      ],
                      "Description":"Season type"
