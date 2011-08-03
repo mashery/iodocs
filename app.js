@@ -27,6 +27,7 @@
 var express     = require('express'),
     util        = require('util'),
     fs          = require('fs'),
+    sys         = require('sys'),
     OAuth       = require('oauth').OAuth,
     query       = require('querystring'),
     url         = require('url'),
@@ -613,6 +614,11 @@ app.get('/authSuccess/:api', oauthSuccess, function(req, res) {
     });
 });
 
+app.post('/upload', function(req, res) {
+  console.log(req.body.user);
+  res.redirect('back');
+});
+
 // API shortname, all lowercase
 app.get('/:api([^\.]+)', function(req, res) {
     res.render('api');
@@ -621,6 +627,6 @@ app.get('/:api([^\.]+)', function(req, res) {
 // Only listen on $ node app.js
 
 if (!module.parent) {
-    app.listen(config.port);
+    app.listen(config.port, '127.0.0.1');
     console.log("Express server listening on port %d", app.address().port);
 }
