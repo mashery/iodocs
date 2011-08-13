@@ -68,7 +68,7 @@ Adding an API to the I/O Docs configuration is relatively simple.
       "lowercaseapi": {
           "name": "Lower Case API",
           "protocol": "http",
-          "baseURL": "http://api.lowercase.sample.com",
+          "baseURL": "api.lowercase.sample.com",
           "publicPath": "/v1",
           "auth": "key",
           "keyParam": "api_key_var_name"
@@ -116,11 +116,12 @@ The *apiconfig.json* file contains high-level information about an API.
 <pre>
 1.  "lower": {
 2.     "name": "My API",
-3.     "baseURL": "http://api.lowercase.sample.com",
-4.     "publicPath": "/v1",
-5.     "auth": "key",
-6.     "keyParam": "api_key_var_name"
-7.  }
+3      "protocol": "http",
+4.     "baseURL": "api.lowercase.sample.com",
+5.     "publicPath": "/v1",
+6.     "auth": "key",
+7.     "keyParam": "api_key_var_name"
+8.  }
 </pre>
 
 Line:
@@ -133,28 +134,31 @@ Line:
 2. "name" key value is a string that holds the name
     of the API that is used in the Jade template output.
 
-3. "baseURL" key value is the base URL that accepts
-    the API calls (must include protocol)
+3. "protocol" key value is either *http* or *https*
 
-4. "publicPath" key value is the path prefix prepended
-    to all method URIs. This value is most often the version
+4. "baseURL" key value is the host name of
+    the API calls (should not include protocol)
+
+5. "publicPath" key value is the full path prefix prepended
+    to all method URIs. This value often includes the version
     in RESTful APIs.
 
-    Ex: "/v1", "/1", etc.
+    Ex: "/v1"
 
     In the Example #2 below, there is also "privatePath"
     which is used for endpoints behind protected resources.
 
-5. "auth" key value is the auth method. Valid values can be:
+6. "auth" key value is the auth method. Valid values can be:
 
          "key" - simple API key in the URI
          "oauth1" - OAuth 1.0/1.0a
+         "" - no authentication
 
-6. "keyParam" key value is name of the query parameter that
+7. "keyParam" key value is name of the query parameter that
     is added to an API request when the "auth" key value from
     (5) is set to "key"
 
-7. Closing curly-bracket ;)
+8. Closing curly-bracket ;)
 
 
 ---
@@ -197,11 +201,11 @@ Line:
     but you're welcome to try other protocols.
 
 4. "baseURL" key value is the base URL that accepts
-    the API calls (must include protocol)
+    the API calls (should not include protocol)
 
 5. "publicPath" key value is the path prefix prepended
     to all method URIs for non-protected method resources.
-    This value is most often the version in RESTful APIs.
+    This value often includes the version in RESTful APIs.
 
     Ex: "/v1", "/1", etc.
 
