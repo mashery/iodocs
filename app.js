@@ -299,13 +299,13 @@ function processRequest(req, res, next) {
     }
 
     var paramString = query.stringify(params),
-        privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + '?' + paramString;
+        privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
             headers: {},
             protocol: apiConfig.protocol,
             host: apiConfig.baseURL,
             method: httpMethod,
-            path: apiConfig.publicPath + methodURL + '?' + paramString
+            path: apiConfig.publicPath + methodURL + ((paramString.length > 0) ? '?' + paramString : "")
         };
 
     if (apiConfig.oauth) {
