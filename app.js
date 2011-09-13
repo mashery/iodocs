@@ -455,7 +455,7 @@ function processRequest(req, res, next) {
         console.log('Unsecured Call');
 
         // Add API Key to params, if any.
-        if (apiKey != '') {
+        if (apiKey != '' && apiKey != 'undefined' && apiKey != undefined) {
             options.path += '&' + apiConfig.keyParam + '=' + apiKey;
         }
 
