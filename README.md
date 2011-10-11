@@ -60,52 +60,52 @@ QUICK API CONFIGURATION EXAMPLE
 -------------------------------
 Adding an API to the I/O Docs configuration is relatively simple.
 
-1. Append the new top-level service information to the
-   "./public/data/apiconfig.json" file.
+First, append the new top-level service information to the `./public/data/apiconfig.json` file.
 
-   Example:
-      <pre>
-      "lowercaseapi": {
-          "name": "Lower Case API",
-          "protocol": "http",
-          "baseURL": "api.lowercase.sample.com",
-          "publicPath": "/v1",
-          "auth": "key",
-          "keyParam": "api_key_var_name"
-      }
-      </pre>
+Example:
+   
+```js
+"lowercaseapi": {
+    "name": "Lower Case API",
+    "protocol": "http",
+    "baseURL": "api.lowercase.sample.com",
+    "publicPath": "/v1",
+    "auth": "key",
+    "keyParam": "api_key_var_name"
+}
+```
 
-2. Add the file "./public/data/lowercaseapi.json" to define the
-   API.
+Add the file `./public/data/lowercaseapi.json` to define the API.
 
-   Example:
-   <pre>
-   {
-     "endpoints": [
+Example:
+   
+```js
+{
+    "endpoints": [
         {
-          "name": "Resource Group A",
-          "methods": [
-             {
-               "MethodName": "Method A1",
-               "Synopsis": "Grabs information from the A1 data set",
-               "HTTPMethod": "GET",
-               "URI": "/a1/grab",
-               "RequiresOAuth": "N",
-               "parameters": [
-                  {
-                     "Name": "param_1_name",
-                     "Required": "Y",
-                     "Default": "",
-                     "Type": "string",
-                     "Description": "Description of the first parameter."
-                  }
-               ]
-             }
-          ]
+            "name": "Resource Group A",
+            "methods": [
+                {
+                    "MethodName": "Method A1",
+                    "Synopsis": "Grabs information from the A1 data set",
+                    "HTTPMethod": "GET",
+                    "URI": "/a1/grab",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "param_1_name",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Description of the first parameter."
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-   }
-   </pre>
+    ]
+}
+```
 
 TOP-LEVEL SERVICE CONFIG DETAILS - apiconfig.json
 -------------------------------------------------
@@ -113,16 +113,16 @@ The *apiconfig.json* file contains high-level information about an API.
 
 ### Example #1 - Explanation of each field in an example API config that uses basic key authentication:
 
-<pre>
-1.  "lower": {
-2.     "name": "My API",
-3      "protocol": "http",
-4.     "baseURL": "api.lowercase.sample.com",
-5.     "publicPath": "/v1",
-6.     "auth": "key",
-7.     "keyParam": "api_key_var_name"
-8.  }
-</pre>
+```js
+"lower": {
+   "name": "My API",
+   "protocol": "http",
+   "baseURL": "api.lowercase.sample.com",
+   "publicPath": "/v1",
+   "auth": "key",
+   "keyParam": "api_key_var_name"
+}
+```
 
 Line:
 
@@ -165,27 +165,27 @@ Line:
 
 ### Example #2 - Twitter API config that uses 3-legged OAuth
 
-<pre>
-1.    "twitter": {
-2.        "name": "Twitter API",
-3.        "protocol": "http",
-4.        "baseURL": "api.twitter.com",
-5.        "publicPath": "/1",
-6.        "privatePath": "/1",
-7.        "booleanTrueVal": "true",
-8.        "booleanFalseVal": "false",
-9.        "auth": "oauth",
-10.        "oauth" : {
-11.           "type": "three-legged",
-12.           "requestURL": "https://api.twitter.com/oauth/request_token",
-13.           "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
-14.           "accessURL": "https://api.twitter.com/oauth/access_token",
-15.           "version": "1.0",
-16.           "crypt": "HMAC-SHA1",
-17.       }
-18.       "keyParam": "",
-19.    }
-</pre>
+```js
+"twitter": {
+    "name": "Twitter API",
+    "protocol": "http",
+    "baseURL": "api.twitter.com",
+    "publicPath": "/1",
+    "privatePath": "/1",
+    "booleanTrueVal": "true",
+    "booleanFalseVal": "false",
+    "auth": "oauth",
+    "oauth" : {
+       "type": "three-legged",
+       "requestURL": "https://api.twitter.com/oauth/request_token",
+       "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
+       "accessURL": "https://api.twitter.com/oauth/access_token",
+       "version": "1.0",
+       "crypt": "HMAC-SHA1",
+   }
+   "keyParam": "",
+}
+```
 
 Line:
 
@@ -276,49 +276,47 @@ You should look at the *./public/data/* directory for examples.
 
 ### Example #1 - Explanation of each field in an example API-level configuration
 
-<pre>
-1.  {
-2.      {
-3.         "name":"User Resources",
-4.         "methods":[
-5.            {
-6.              "MethodName":"users/show",
-7.               "Synopsis":"Returns extended user information",
-8.               "HTTPMethod":"GET",
-9.               "URI":"/users/show.json",
-10.              "RequiresOAuth":"N",
-11.              "parameters":[
-12.                  {
-13.                     "Name":"user_id",
-14.                     "Required":"Y",
-15.                     "Default":"",
-16.                     "Type":"string",
-17.                     "Description":"The ID of the user",
-18.                  },
-19.                  {
-20.                     "Name":"cereal",
-21.                     "Required":"Y",
-22.                     "Default":"fruitscoops",
-23.                     "Type":"enumerated",
-24.                     "EnumeratedList": [
-25.                         "fruitscoops",
-26.                         "sugarbombs",
-27.                         "frostedteeth"
-28.                        ],
-29.                     "Description":"The type of cereal desired"
-30.                  },
-31.                  {
-32.                     "Name":"skip_status",
-33.                     "Required":"N",
-34.                     "Default":"",
-35.                     "Type":"boolean",
-36.                     "Description":"If true, status not included"
-37.                  }
-38.               ]
-39.            ]
-40.        }
-41.  }
-</pre>
+```js
+{
+   "name":"User Resources",
+   "methods":[
+      {
+        "MethodName":"users/show",
+         "Synopsis":"Returns extended user information",
+         "HTTPMethod":"GET",
+         "URI":"/users/show.json",
+         "RequiresOAuth":"N",
+         "parameters":[
+             {
+                "Name":"user_id",
+                "Required":"Y",
+                "Default":"",
+                "Type":"string",
+                "Description":"The ID of the user",
+             },
+             {
+                "Name":"cereal",
+                "Required":"Y",
+                "Default":"fruitscoops",
+                "Type":"enumerated",
+                "EnumeratedList": [
+                    "fruitscoops",
+                    "sugarbombs",
+                    "frostedteeth"
+                   ],
+                "Description":"The type of cereal desired"
+             },
+             {
+                "Name":"skip_status",
+                "Required":"N",
+                "Default":"",
+                "Type":"boolean",
+                "Description":"If true, status not included"
+             }
+        ]
+    }]
+}
+```
 
 Line:
 
