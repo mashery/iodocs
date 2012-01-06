@@ -80,6 +80,13 @@ fs.readFile('public/data/apiconfig.json', 'utf-8', function(err, data) {
 
 var app = module.exports = express.createServer();
 
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    config.redis.host = rtg.hostname;
+    config.redis.port = rtg.port;
+    config.redis.password = rtg.auth.split(":")[1];
+}
+
 app.configure(function() {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
