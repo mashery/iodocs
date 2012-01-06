@@ -665,7 +665,6 @@ app.get('/:api([^\.]+)', function(req, res) {
 // Only listen on $ node app.js
 
 if (!module.parent) {
-    var port = process.env.PORT || config.port;
-    app.listen(port, config.address);
+    app.listen(config.port, config.address);
     console.log("Express server listening on port %d", app.address().port);
 }
