@@ -1,4 +1,21 @@
 {
+    "linkedin": {
+       "name": "LinkedIn",
+        "protocol": "http",
+        "baseURL": "api.linkedin.com",
+        "publicPath": "",
+        "privatePath": "/v1",
+        "auth": "oauth",
+        "oauth": {
+             "type": "three-legged",
+             "requestURL": "https://api.linkedin.com/uas/oauth/requestToken",
+             "signinURL":  "https://api.linkedin.com/uas/oauth/authorize?oauth_token=",
+             "accessURL":  "https://api.linkedin.com/uas/oauth/accessToken",
+             "version": "1.0",
+             "crypt": "HMAC-SHA1"
+        },
+        "keyParam":""
+    },
     "klout": {
         "name": "Klout API",
         "protocol": "http",
