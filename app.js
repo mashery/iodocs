@@ -52,7 +52,7 @@ var defaultDB = '0';
 var db;
 
 if (process.env.REDISTOGO_URL) {
-   var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+   var rtg = require("url").parse(process.env.REDISTOGO_URL);
    db = require("redis").createClient(rtg.port, rtg.hostname);
    db.auth(rtg.auth.split(":")[1]);
 } else {
@@ -88,18 +88,19 @@ fs.readFile('public/data/apiconfig.json', 'utf-8', function(err, data) {
     }
 });
 
+// CORE UPDATE:
+if (process.env.REDISTOGO_URL) {
+	// use production (Heroku) redis configuration
+	// overwrite `config` to keep it simple
+	var rtg = require("url").parse(process.env.REDISTOGO_URL);
+	config.redis.port = rtg.port;
+	config.redis.host = rtg.hostname;
+	config.redis.password = rtg.auth.split(":")[1];
+}
+
 var app = module.exports = express.createServer();
 
 app.configure(function() {
-   // CORE UPDATE:
-   if (process.env.REDISTOGO_URL) {
-	// use production (Heroku) redis configuration
-	// overwrite `config` to keep it simple
-	var rtg = require(‘url’).parse(process.env.REDISTOGO_URL);
-	config.redis.port = rtg.port;
-	config.redis.host = rtg.hostname;
-	config.redis.password = rtg.auth.split(“:”)[1];
-    }
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.logger());
