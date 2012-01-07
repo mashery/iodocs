@@ -1,21 +1,4 @@
 {
-    "linkedin": {
-       "name": "LinkedIn",
-        "protocol": "http",
-        "baseURL": "api.linkedin.com",
-        "publicPath": "",
-        "privatePath": "/v1",
-        "auth": "oauth",
-        "oauth": {
-             "type": "three-legged",
-             "requestURL": "https://api.linkedin.com/uas/oauth/requestToken",
-             "signinURL":  "https://api.linkedin.com/uas/oauth/authorize?oauth_token=",
-             "accessURL":  "https://api.linkedin.com/uas/oauth/accessToken",
-             "version": "1.0",
-             "crypt": "HMAC-SHA1"
-        },
-        "keyParam":""
-    },
     "klout": {
         "name": "Klout API",
         "protocol": "http",
@@ -32,14 +15,6 @@
         "auth": "key",
         "keyParam": "api_key"
     },
-    "alibris": {
-        "name": "Alibris API",
-        "protocol": "http",
-        "baseURL": "api.alibris.com",
-        "publicPath": "/v1/public",
-        "auth": "key",
-        "keyParam": "apikey"
-    },
     "usatoday": {
         "name": "USA TODAY Census API",
          "protocol": "http",
@@ -47,6 +22,23 @@
          "publicPath": "/open",
          "auth": "key",
          "keyParam": "api_key"
+    },
+    "linkedin": {
+       "name": "LinkedIn",
+        "protocol": "http",
+        "baseURL": "api.linkedin.com",
+        "publicPath": "",
+        "privatePath": "/v1",
+        "auth": "oauth",
+        "oauth": {
+             "type": "three-legged",
+             "requestURL": "https://api.linkedin.com/uas/oauth/requestToken",
+             "signinURL":  "https://api.linkedin.com/uas/oauth/authorize?oauth_token=",
+             "accessURL":  "https://api.linkedin.com/uas/oauth/accessToken",
+             "version": "1.0",
+             "crypt": "HMAC-SHA1"
+        },
+        "keyParam":""
     },
     "simplegeo": {
         "name": "SimpleGeo",
