@@ -49,18 +49,16 @@ try {
 // Redis connection
 //
 var defaultDB = '0';
-var db = redis.createClient(config.redis.port, config.redis.host);
-db.auth(config.redis.password);
+var db;
 
-// Select our DB
-db.on("connect", function() {
-    db.select(defaultDB);
-    db.get("livedocs", function(err, reply) {
-        if (config.debug) {
-            console.log('Selected db \''+ defaultDB + '\' named \'' + reply + '\'');
-        }
-    });
-});
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    db = require("redis").createClient(rtg.port, rtg.hostname);
+    db.auth(rtg.auth.split(":")[1]);
+} else {
+    db = redis.createClient(config.redis.port, config.redis.host);
+    db.auth(config.redis.password);
+}
 
 db.on("error", function(err) {
     if (config.debug) {
@@ -81,6 +79,13 @@ fs.readFile('public/data/apiconfig.json', 'utf-8', function(err, data) {
 });
 
 var app = module.exports = express.createServer();
+
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    config.redis.host = rtg.hostname;
+    config.redis.port = rtg.port;
+    config.redis.password = rtg.auth.split(":")[1];
+}
 
 app.configure(function() {
     app.set('views', __dirname + '/views');
@@ -651,6 +656,7 @@ app.get('/:api([^\.]+)', function(req, res) {
 // Only listen on $ node app.js
 
 if (!module.parent) {
-    app.listen(config.port, config.address);
+    var port = process.env.PORT || config.port;
+    app.listen(port);
     console.log("Express server listening on port %d", app.address().port);
 }
