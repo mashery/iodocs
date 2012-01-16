@@ -27,21 +27,20 @@
 var express     = require('express'),
     util        = require('util'),
     fs          = require('fs'),
-    sys         = require('sys'),
     OAuth       = require('oauth').OAuth,
     query       = require('querystring'),
     url         = require('url'),
     http        = require('http'),
+    crypto      = require('crypto'),
     redis       = require('redis'),
-    RedisStore  = require('connect-redis')(express),
-    hashlib     = require('hashlib');
+    RedisStore  = require('connect-redis')(express);
 
 // Configuration
 try {
     var configJSON = fs.readFileSync(__dirname + "/config.json");
     var config = JSON.parse(configJSON.toString());
 } catch(e) {
-    sys.puts("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`");
+    console.error("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`");
     process.exit(1);
 }
 
@@ -478,13 +477,13 @@ function processRequest(req, res, next) {
             if (apiConfig.signature.type == 'signed_md5') {
                 // Add signature parameter
                 var timeStamp = Math.round(new Date().getTime()/1000);
-                var sig = hashlib.md5('' + apiKey + apiSecret + timeStamp + '', { asString: true });
+                var sig = crypto.createHash('md5').update('' + apiKey + apiSecret + timeStamp + '').digest('base64');
                 options.path += '&' + apiConfig.signature.sigParam + '=' + sig;
             }
             else if (apiConfig.signature.type == 'signed_sha256') { // sha256(key+secret+epoch)
                 // Add signature parameter
                 var timeStamp = Math.round(new Date().getTime()/1000);
-                var sig = hashlib.sha256('' + apiKey + apiSecret + timeStamp + '', { asString: true });
+                var sig = crypto.createHash('sha256').update('' + apiKey + apiSecret + timeStamp + '').digest('base64');
                 options.path += '&' + apiConfig.signature.sigParam + '=' + sig;
             }
         }
