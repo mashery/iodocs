@@ -23,10 +23,8 @@
   "dependencies": {
     "connect-redis": "1.0.6",
     "express": "2.4.3",
-    "hashlib": "1.0.1",
     "jade": "0.13",
     "oauth": "0.9.3",
-    "querystring": "0.0.1",
     "redis": "0.6.6"
   },
   "devDependencies": {},
