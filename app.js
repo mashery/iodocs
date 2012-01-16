@@ -307,10 +307,10 @@ function processRequest(req, res, next) {
         baseHostPort = (baseHostInfo.length > 1) ? baseHostInfo[1] : "";
 
     var paramString = query.stringify(params),
-        privateReqURL = apiConfig.protocol + '//' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
+        privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
             headers: {},
-            protocol: apiConfig.protocol,
+            protocol: apiConfig.protocol + ':',
             host: baseHostUrl,
             port: baseHostPort,
             method: httpMethod,
@@ -395,7 +395,7 @@ function processRequest(req, res, next) {
                                null,
                                apiConfig.oauth.crypt);
 
-            var resource = options.protocol + '//' + options.host + options.path,
+            var resource = options.protocol + '://' + options.host + options.path,
                 cb = function(error, data, response) {
                     if (error) {
                         if (error.data == 'Server Error' || error.data == '') {
