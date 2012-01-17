@@ -469,7 +469,13 @@ function processRequest(req, res, next) {
 
         // Add API Key to params, if any.
         if (apiKey != '' && apiKey != 'undefined' && apiKey != undefined) {
-            options.path += '&' + apiConfig.keyParam + '=' + apiKey;
+            if (options.path.indexOf('?') !== -1) {
+                options.path += '&';
+            }
+            else {
+                options.path += '?';
+            }
+            options.path += apiConfig.keyParam + '=' + apiKey;
         }
 
         // Perform signature routine, if any.
