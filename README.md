@@ -43,7 +43,7 @@ From the command line type in:
 These will be automatically installed when you use any of the above *npm* installation methods above.
 
 1. [express](http://expressjs.com/) - framework
-2. [oauth](https://github.com/unscene/node-oauth) - oauth library
+2. [oauth](https://github.com/ciaranj/node-oauth) - oauth library
 3. [redis](https://github.com/mranney/node_redis) - connector to Redis
 3. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
 4. [hashlib](https://github.com/brainfucker/hashlib) - used for signatures
