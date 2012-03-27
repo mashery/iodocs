@@ -483,13 +483,13 @@ function processRequest(req, res, next) {
             if (apiConfig.signature.type == 'signed_md5') {
                 // Add signature parameter
                 var timeStamp = Math.round(new Date().getTime()/1000);
-                var sig = crypto.createHash('md5').update('' + apiKey + apiSecret + timeStamp + '').digest('base64');
+                var sig = crypto.createHash('md5').update('' + apiKey + apiSecret + timeStamp + '').digest(apiConfig.signature.digest);
                 options.path += '&' + apiConfig.signature.sigParam + '=' + sig;
             }
             else if (apiConfig.signature.type == 'signed_sha256') { // sha256(key+secret+epoch)
                 // Add signature parameter
                 var timeStamp = Math.round(new Date().getTime()/1000);
-                var sig = crypto.createHash('sha256').update('' + apiKey + apiSecret + timeStamp + '').digest('base64');
+                var sig = crypto.createHash('sha256').update('' + apiKey + apiSecret + timeStamp + '').digest(apiConfig.signature.digest);
                 options.path += '&' + apiConfig.signature.sigParam + '=' + sig;
             }
         }

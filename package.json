@@ -22,10 +22,11 @@
   },
   "dependencies": {
     "connect-redis": "1.0.6",
-    "express": "2.4.3",
+    "express": "2.5.8",
     "jade": "0.13",
     "oauth": "0.9.3",
-    "redis": "0.6.6"
+    "redis": "0.6.6",
+    "querystring": "0.1.0"
   },
   "devDependencies": {},
   "main": "index",

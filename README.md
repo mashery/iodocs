@@ -12,7 +12,6 @@ I/O Docs is a live interactive documentation system for RESTful web APIs. By def
 levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML).
 
 You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
-You can find a demo of it running here: [http://iodocs.demo.mashery.com](http://iodocs.demo.mashery.com)
 
 However, we recommend that you install I/O Docs with *npm*, the Node package manager. See instructions below.
 
@@ -46,9 +45,10 @@ These will be automatically installed when you use any of the above *npm* instal
 2. [oauth](https://github.com/ciaranj/node-oauth) - oauth library
 3. [redis](https://github.com/mranney/node_redis) - connector to Redis
 3. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
-4. [hashlib](https://github.com/brainfucker/hashlib) - used for signatures
-5. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
-6. [jade](http://jade-lang.com/) - the view engine
+4. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
+5. [jade](http://jade-lang.com/) - the view engine
+
+Note: hashlib is no longer a required module -- we're using the internal crypto module for signatures and digests.
 
 RUNNING I/O DOCS
 ----------------
@@ -145,7 +145,7 @@ Line:
 
     Ex: "/v1"
 
-    In the Example #2 below, there is also "privatePath"
+    In the Example #3 below, there is also "privatePath"
     which is used for endpoints behind protected resources.
 
 6. "auth" key value is the auth method. Valid values can be:
@@ -163,7 +163,82 @@ Line:
 
 ---
 
-### Example #2 - Twitter API config that uses 3-legged OAuth
+### Example #2 - Explanation of each field in an example API config that uses basic key authentication with signatures (signed call).
+
+```js
+"upper": {
+   "name": "Upper API",
+   "protocol": "http",
+   "baseURL": "api.upper.sample.com",
+   "publicPath": "/v3",
+   "auth": "key",
+   "keyParam": "api_key_var_name",
+   "signature": {
+      "type": "signed_md5",
+      "sigParam": "sig",
+      "digest": "hex"  
+   }
+}
+```
+
+Line:
+
+1. Handle of the API. It is used to pull up the client 
+   interface in the URL:
+
+    Ex: http://127.0.0.1:3000/upper
+
+2. "name" key value is a string that holds the name
+    of the API that is used in the Jade template output.
+
+3. "protocol" key value is either *http* or *https*
+
+4. "baseURL" key value is the host name of
+    the API calls (should not include protocol)
+
+5. "publicPath" key value is the full path prefix prepended
+    to all method URIs. This value often includes the version
+    in RESTful APIs.
+
+    Ex: "/v3"
+
+    In the Example #3 below, there is also "privatePath"
+    which is used for endpoints behind protected resources.
+
+6. "auth" key value is the auth method. Valid values can be:
+
+         "key" - simple API key in the URI
+         "oauth1" - OAuth 1.0/1.0a
+         "" - no authentication
+
+7. "keyParam" key value is the name of the query parameter that
+    is added to an API request when the "auth" key value from
+    (5) is set to "key"
+
+8. "signature" is a JSON object that contains the details about
+   the API call signing requirements. The signature routine coded
+   in app.js is a hash of the string concatenation of API key, 
+   API key secret and timestamp (epoch).
+
+9. "type" key value is either *signed_md5* or *signed_sha256*.
+   More signature methods are available with crypto.js, but have
+   not been included in the code as options.
+
+10. "sigParam" key value is the name of the query parameter that
+    is added to an API request that holds the digital signature.
+
+11. "digest" key value is the digest algorithm that is used.
+    Values can be *hex*, *base64* or *binary*.
+
+12. Closing curly-bracket for the "signature" object
+
+13. Closing curly bracket for main object.
+
+
+---
+
+
+### Example #3 - Twitter API config that uses 3-legged OAuth
 
 ```js
 "twitter": {
