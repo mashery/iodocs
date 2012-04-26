@@ -25,7 +25,7 @@
     "express": "2.5.8",
     "jade": "0.13",
     "oauth": "0.9.3",
-    "redis": "0.6.6",
+    "redis": ">= 0.7.0",
     "querystring": "0.1.0"
   },
   "devDependencies": {},
