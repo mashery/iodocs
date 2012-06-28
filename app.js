@@ -446,6 +446,7 @@ function processRequest(req, res, next) {
 
             switch (httpMethod) {
                 case 'GET':
+                    console.log(resource);
                     oa.get(resource, '', '',cb);
                     break;
                 case 'PUT':
