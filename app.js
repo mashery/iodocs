@@ -599,6 +599,7 @@ function processRequest(req, res, next) {
     }
 }
 
+
 // Dynamic Helpers
 // Passes variables to the view
 app.dynamicHelpers({
