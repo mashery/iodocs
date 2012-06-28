@@ -737,6 +737,28 @@ li {
   zoom: 1;
 }
 
+dl {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+dt {
+  width: 30%;
+  border-top: 1px rgba(0,0,0,.2) solid;
+  padding-top: 5px;
+  margin-top: 5px;
+  display: block;
+  float: left;
+}
+dd {
+  width: 70%;
+  border-top: 1px rgba(0,0,0,.2) solid;
+  padding-top: 5px;
+  margin-top: 5px;
+  display: block;
+  float: left;
+}
+
 @media print {
   * {
     background: transparent !important;
