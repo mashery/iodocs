@@ -314,8 +314,12 @@ function processRequest(req, res, next) {
             host: baseHostUrl,
             port: baseHostPort,
             method: httpMethod,
-            path: apiConfig.publicPath + methodURL + ((paramString.length > 0) ? '?' + paramString : "")
+            path: apiConfig.publicPath + methodURL// + ((paramString.length > 0) ? '?' + paramString : "")
         };
+
+    if (['POST','DELETE','PUT'].indexOf(httpMethod) !== -1) {
+        var requestBody = query.stringify(params);
+    }
 
     if (apiConfig.oauth) {
         console.log('Using OAuth');
@@ -442,7 +446,6 @@ function processRequest(req, res, next) {
 
             switch (httpMethod) {
                 case 'GET':
-                    console.log(resource);
                     oa.get(resource, '', '',cb);
                     break;
                 case 'PUT':
@@ -466,6 +469,10 @@ function processRequest(req, res, next) {
     // Unsecured API Call helper
     function unsecuredCall() {
         console.log('Unsecured Call');
+
+        if (['POST','PUT','DELETE'].indexOf(httpMethod) === -1) {
+            options.path += ((paramString.length > 0) ? '?' + paramString : "");
+        }
 
         // Add API Key to params, if any.
         if (apiKey != '' && apiKey != 'undefined' && apiKey != undefined) {
@@ -514,7 +521,16 @@ function processRequest(req, res, next) {
         }
 
         if (!options.headers['Content-Length']) {
-            options.headers['Content-Length'] = 0;
+            if (requestBody) {
+                options.headers['Content-Length'] = requestBody.length;
+            }
+            else {
+                options.headers['Content-Length'] = 0;
+            }
+        }
+
+        if (requestBody) {
+            options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         }
 
         if (config.debug) {
@@ -524,6 +540,7 @@ function processRequest(req, res, next) {
         // API Call. response is the response from the API, res is the response we will send back to the user.
         var apiCall = http.request(options, function(response) {
             response.setEncoding('utf-8');
+
             if (config.debug) {
                 console.log('HEADERS: ' + JSON.stringify(response.headers));
                 console.log('STATUS CODE: ' + response.statusCode);
@@ -573,7 +590,12 @@ function processRequest(req, res, next) {
             };
         });
 
-        apiCall.end();
+        if (requestBody) {
+            apiCall.end(requestBody, 'utf-8');
+        }
+        else {
+            apiCall.end();
+        }
     }
 }
 
@@ -582,18 +604,18 @@ function processRequest(req, res, next) {
 app.dynamicHelpers({
     session: function(req, res) {
     // If api wasn't passed in as a parameter, check the path to see if it's there
- 	    if (!req.params.api) {
- 	    	pathName = req.url.replace('/','');
- 	    	// Is it a valid API - if there's a config file we can assume so
- 	    	fs.stat('public/data/' + pathName + '.json', function (error, stats) {
-   				if (stats) {
-   					req.params.api = pathName;
-   				}
- 			});
- 	    }       
- 	    // If the cookie says we're authed for this particular API, set the session to authed as well
+        if (!req.params.api) {
+            pathName = req.url.replace('/','');
+            // Is it a valid API - if there's a config file we can assume so
+            fs.stat('public/data/' + pathName + '.json', function (error, stats) {
+                if (stats) {
+                    req.params.api = pathName;
+                }
+            });
+        }       
+        // If the cookie says we're authed for this particular API, set the session to authed as well
         if (req.params.api && req.session[req.params.api] && req.session[req.params.api]['authed']) {
-         	req.session['authed'] = true;
+            req.session['authed'] = true;
         }
 
         return req.session;
