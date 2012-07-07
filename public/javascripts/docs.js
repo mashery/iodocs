@@ -262,7 +262,7 @@
 
             if (response.code) {
                 $('pre.code', resultContainer)
-                    .text(formatJSON(response.code));
+                    .text(response.code);
             }
 
             if (response.headers) {
