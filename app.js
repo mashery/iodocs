@@ -632,7 +632,8 @@ app.post('/processReq', oauth, processRequest, function(req, res) {
     var result = {
         headers: req.resultHeaders,
         response: req.result,
-        call: req.call
+        call: req.call,
+        code: req.res.statusCode
     };
 
     res.send(result);
