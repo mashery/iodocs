@@ -31,6 +31,7 @@ var express     = require('express'),
     query       = require('querystring'),
     url         = require('url'),
     http        = require('http'),
+    https       = require('https'),
     crypto      = require('crypto'),
     redis       = require('redis'),
     RedisStore  = require('connect-redis')(express);
@@ -521,8 +522,18 @@ function processRequest(req, res, next) {
             console.log(util.inspect(options));
         };
 
+        var doRequest;
+        if (options.protocol === 'https' || options.protocol === 'https:') {
+            console.log('Protocol: HTTPS');
+            options.protocol = 'https:'
+            doRequest = https.request;
+        } else {
+            console.log('Protocol: HTTP');
+            doRequest = http.request;
+        }
+
         // API Call. response is the response from the API, res is the response we will send back to the user.
-        var apiCall = http.request(options, function(response) {
+        var apiCall = doRequest(options, function(response) {
             response.setEncoding('utf-8');
             if (config.debug) {
                 console.log('HEADERS: ' + JSON.stringify(response.headers));
