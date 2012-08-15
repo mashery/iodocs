@@ -379,6 +379,11 @@ You should look at the *./public/data/* directory for examples.
                     "sugarbombs",
                     "frostedteeth"
                    ],
+                "EnumeratedDescription": {
+                    "fruitscoops": "Fruit Scoops (packed with fruit goodness)",
+                    "sugarbombs": "Sugar Bombs (filled with sugar)",
+                    "frostedteeth": "Frosted Teeth (sugar coating)"
+                   },
                 "Description":"The type of cereal desired"
              },
              {
@@ -425,9 +430,11 @@ Line:
 
 24. "EnumeratedList" key value is an array of enumerated values that will render a drop-down (select box) on the form.
 
-25. Each value in the list is a string.
+25. "EnumeratedDescription" key value is an object of enumerated values as keys, and their descriptions as values that will be displayed below the Description.
 
-35. "Type" key value is *boolean* that will render a drop-down (select box) on the form for *true* and *false*.
+26. Each value in the list is a string.
+
+27. "Type" key value is *boolean* that will render a drop-down (select box) on the form for *true* and *false*.
 
 SUPPORT
 =======

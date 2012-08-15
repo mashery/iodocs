@@ -120,7 +120,13 @@ ul
                                                       - else
                                                           input(name='params[' + parameter.Name + ']', value=parameter.Default, placeholder=className)
                                                   td.type=parameter.Type
-                                                  td.description=parameter.Description || 'No description'
+                                                  td.description
+                                                      p=parameter.Description || 'No description'
+                                                      - if (parameter.Type =='enumerated' && parameter.EnumeratedDescription)
+                                                          dl.clearfix
+                                                              - each description, choice in parameter.EnumeratedDescription
+                                                                  dt #{choice}
+                                                                  dd #{description}
                             - if (method.headers && method.headers.length > 0)
                                 div.headers
                                     h4.title
