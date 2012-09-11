@@ -692,6 +692,7 @@ app.post('/upload', function(req, res) {
 
 // API shortname, all lowercase
 app.get('/:api([^\.]+)', function(req, res) {
+    req.params.api=req.params.api.replace(/\/$/,'');
     res.render('api');
 });
 
