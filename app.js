@@ -70,7 +70,7 @@ db.on("error", function(err) {
 // Load API Configs
 //
 var apisConfig;
-fs.readFile('public/data/apiconfig.json', 'utf-8', function(err, data) {
+fs.readFile(__dirname +'/public/data/apiconfig.json', 'utf-8', function(err, data) {
     if (err) throw err;
     apisConfig = JSON.parse(data);
     if (config.debug) {
@@ -620,7 +620,7 @@ app.dynamicHelpers({
         if (!req.params.api) {
             pathName = req.url.replace('/','');
             // Is it a valid API - if there's a config file we can assume so
-            fs.stat('public/data/' + pathName + '.json', function (error, stats) {
+            fs.stat(__dirname + '/public/data/' + pathName + '.json', function (error, stats) {
                 if (stats) {
                     req.params.api = pathName;
                 }
@@ -647,7 +647,7 @@ app.dynamicHelpers({
     },
     apiDefinition: function(req, res) {
         if (req.params.api) {
-            var data = fs.readFileSync('public/data/' + req.params.api + '.json');
+            var data = fs.readFileSync(__dirname + '/public/data/' + req.params.api + '.json');
             return JSON.parse(data);
         }
     }
