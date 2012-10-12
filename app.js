@@ -310,7 +310,7 @@ function processRequest(req, res, next) {
     var paramString = query.stringify(params),
         privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
-            headers: {},
+            headers: apiConfig.headers,
             protocol: apiConfig.protocol + ':',
             host: baseHostUrl,
             port: baseHostPort,

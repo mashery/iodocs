@@ -4,6 +4,7 @@
         "protocol": "http",
         "baseURL": "api.klout.com",
         "publicPath": "/1",
+        "headers" : {},
         "auth": "key",
         "keyParam": "key"
     },
