@@ -8,49 +8,29 @@
         "auth": "key",
         "keyParam": "key"
     },
-    "fanfeedr": {
-        "name": "FanFeedr Sports Basic API",
+    "usatoday": {
+        "name": "USA TODAY Census API",
         "protocol": "http",
-        "baseURL": "ffapi.fanfeedr.com",
-        "publicPath": "",
+        "baseURL": "api.usatoday.com",
+        "publicPath": "/open",
         "auth": "key",
         "keyParam": "api_key"
     },
-    "usatoday": {
-        "name": "USA TODAY Census API",
-         "protocol": "http",
-         "baseURL": "api.usatoday.com",
-         "publicPath": "/open",
-         "auth": "key",
-         "keyParam": "api_key"
-    },
     "linkedin": {
-       "name": "LinkedIn",
+        "name": "LinkedIn",
         "protocol": "http",
         "baseURL": "api.linkedin.com",
         "publicPath": "",
         "privatePath": "/v1",
         "auth": "oauth",
         "oauth": {
-             "type": "three-legged",
-             "requestURL": "https://api.linkedin.com/uas/oauth/requestToken",
-             "signinURL":  "https://api.linkedin.com/uas/oauth/authorize?oauth_token=",
-             "accessURL":  "https://api.linkedin.com/uas/oauth/accessToken",
-             "version": "1.0",
-             "crypt": "HMAC-SHA1"
+            "type": "three-legged",
+            "requestURL": "https://api.linkedin.com/uas/oauth/requestToken",
+            "signinURL":  "https://api.linkedin.com/uas/oauth/authorize?oauth_token=",
+            "accessURL":  "https://api.linkedin.com/uas/oauth/accessToken",
+            "version": "1.0",
+            "crypt": "HMAC-SHA1"
         },
         "keyParam":""
-    },
-    "simplegeo": {
-        "name": "SimpleGeo",
-        "protocol": "http",
-        "baseURL": "api.simplegeo.com",
-        "publicPath": "",
-        "auth": "oauth",
-        "oauth": {
-             "type": "two-legged",
-             "version": "1.0",
-             "crypt": "HMAC-SHA1"
-        }
     }
 }

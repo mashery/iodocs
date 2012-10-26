@@ -531,7 +531,7 @@ function processRequest(req, res, next) {
             }
         }
 
-        if (requestBody) {
+        if (!options.headers['Content-Type'] && requestBody) {
             options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         }
 
