@@ -521,7 +521,9 @@ function processRequest(req, res, next) {
 
             options.headers = headers;
         }
-
+        if(options.headers === void 0){
+            options.headers = {}
+        }
         if (!options.headers['Content-Length']) {
             if (requestBody) {
                 options.headers['Content-Length'] = requestBody.length;
