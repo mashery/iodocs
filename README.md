@@ -1,6 +1,6 @@
 I/O Docs - Open Source in Node.js
 =================================
-Copyright 2011 Mashery, Inc.
+Copyright 2012 Mashery, Inc.
 
 [http://www.mashery.com](http://www.mashery.com)
 
@@ -71,7 +71,11 @@ Example:
     "baseURL": "api.lowercase.sample.com",
     "publicPath": "/v1",
     "auth": "key",
-    "keyParam": "api_key_var_name"
+    "keyParam": "api_key_var_name",
+    "headers": {
+                "Accept": "application/json",
+                "Foo": "bar"
+    }
 }
 ```
 
@@ -115,12 +119,16 @@ The *apiconfig.json* file contains high-level information about an API.
 
 ```js
 "lower": {
-   "name": "My API",
-   "protocol": "http",
-   "baseURL": "api.lowercase.sample.com",
-   "publicPath": "/v1",
-   "auth": "key",
-   "keyParam": "api_key_var_name"
+    "name": "My API",
+    "protocol": "http",
+    "baseURL": "api.lowercase.sample.com",
+    "publicPath": "/v1",
+    "auth": "key",
+    "keyParam": "api_key_var_name",
+    "headers": {
+                "Accept": "application/json",
+                "Foo": "bar"
+    }
 }
 ```
 
@@ -156,9 +164,13 @@ Line:
 
 7. "keyParam" key value is name of the query parameter that
     is added to an API request when the "auth" key value from
-    (5) is set to "key"
+    (5) is set to "key".
 
-8. Closing curly-bracket ;)
+8. "headers" object contains key value pairs of HTTP headers
+    that will be sent for each request for API. These are
+    static key/value pairs.
+
+12. Closing curly-bracket ;)
 
 
 ---
