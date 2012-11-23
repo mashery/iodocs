@@ -282,7 +282,7 @@ function processRequest(req, res, next) {
         httpMethod = reqQuery.httpMethod,
         apiKey = reqQuery.apiKey,
         apiSecret = reqQuery.apiSecret,
-        apiName = reqQuery.apiName
+        apiName = reqQuery.apiName,
         apiConfig = apisConfig[apiName],
         key = req.sessionID + ':' + apiName;
 
