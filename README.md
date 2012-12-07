@@ -265,12 +265,12 @@ Line:
     "oauth" : {
        "type": "three-legged",
        "requestURL": "https://api.twitter.com/oauth/request_token",
-       "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token="
+       "signinURL": "https://api.twitter.com/oauth/authorize?oauth_token=",
        "accessURL": "https://api.twitter.com/oauth/access_token",
        "version": "1.0",
-       "crypt": "HMAC-SHA1",
-   }
-   "keyParam": "",
+       "crypt": "HMAC-SHA1"
+   },
+   "keyParam": ""
 }
 ```
 
