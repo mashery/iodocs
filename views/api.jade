@@ -84,6 +84,7 @@ ul
                                             th Parameter
                                             th Value
                                             th Type
+                                            th Location
                                             th Description
                                     tbody
                                         - var paramCount =0
@@ -119,7 +120,10 @@ ul
                                                                            option(value=choice) #{choice}
                                                       - else
                                                           input(name='params[' + parameter.Name + ']', value=parameter.Default, placeholder=className)
+                                                          input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
                                                   td.type=parameter.Type
+                                                  td.location
+                                                      p=parameter.Location || 'query'
                                                   td.description
                                                       p=parameter.Description || 'No description'
                                                       - if (parameter.Type =='enumerated' && parameter.EnumeratedDescription)

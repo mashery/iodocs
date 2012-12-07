@@ -32,5 +32,11 @@
             "crypt": "HMAC-SHA1"
         },
         "keyParam":""
+    },
+    "requestbin": {
+        "name": "Requestb.in",
+        "protocol": "http",
+        "baseURL": "requestb.in",
+        "publicPath": "/"
     }
 }

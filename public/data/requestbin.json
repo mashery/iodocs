@@ -1,0 +1,57 @@
+{
+   "endpoints":[
+      {
+         "name":"Requestb.in",
+         "methods":[
+            {
+               "MethodName":"Method with custom headers",
+               "HTTPMethod":"GET",
+               "URI":":request_bin",
+               "RequiresOAuth":"N",
+               "parameters":[
+                   {
+                     "Name":"request_bin",
+                     "Required":"Y",
+                     "Default":"",
+                     "Location":"query",
+                     "Type":"string",
+                     "Description":"The request bin id to use. Go to http://requestb.in to get one for free."
+                  },
+                  {
+                     "Name":"Cache-Control",
+                     "Required":"Y",
+                     "Default":"no-cache",
+                     "Location":"header",
+                     "Type":"string",
+                     "Description":""
+                  },
+                  {
+                     "Name":"Max-Forwards",
+                     "Required":"Y",
+                     "Default":"10",
+                     "Location":"header",
+                     "Type":"string",
+                     "Description":""
+                  },
+                  {
+                     "Name":"param1",
+                     "Required":"Y",
+                     "Default":"this is ithe first param",
+                     "Location":"query",
+                     "Type":"string",
+                     "Description":"First param, with explicitly set location property."
+                  },
+                  {
+                     "Name":"param2",
+                     "Required":"Y",
+                     "Default":"this is the second param",
+                     "Type":"string",
+                     "Description":"Second param, with no location property set. Should default to 'query'."
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
+
