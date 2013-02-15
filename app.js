@@ -38,8 +38,7 @@ var express     = require('express'),
 
 // Configuration
 try {
-    var configJSON = fs.readFileSync(__dirname + "/config.json");
-    var config = JSON.parse(configJSON.toString());
+    var config = require('./config.json');
 } catch(e) {
     console.error("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`");
     process.exit(1);
@@ -69,14 +68,16 @@ db.on("error", function(err) {
 //
 // Load API Configs
 //
-var apisConfig;
-fs.readFile(__dirname +'/public/data/apiconfig.json', 'utf-8', function(err, data) {
-    if (err) throw err;
-    apisConfig = JSON.parse(data);
+
+try {
+    var apisConfig = require('./public/data/apiconfig.json');
     if (config.debug) {
-         console.log(util.inspect(apisConfig));
+        console.log(util.inspect(apisConfig));
     }
-});
+} catch(e) {
+    console.error("File apiconfig.json not found or is invalid.");
+    process.exit(1);
+}
 
 var app = module.exports = express.createServer();
 
@@ -669,8 +670,7 @@ app.dynamicHelpers({
     },
     apiDefinition: function(req, res) {
         if (req.params.api) {
-            var data = fs.readFileSync(__dirname + '/public/data/' + req.params.api + '.json');
-            return JSON.parse(data);
+            return require(__dirname + '/public/data/' + req.params.api + '.json');
         }
     }
 })
