@@ -1,6 +1,6 @@
 I/O Docs - Open Source in Node.js
 =================================
-Copyright 2012 Mashery, Inc.
+Copyright 2012-2013 Mashery, Inc.
 
 [http://www.mashery.com](http://www.mashery.com)
 
