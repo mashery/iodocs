@@ -56,6 +56,16 @@ RUNNING I/O DOCS
 2. node ./app.js
 3. Point your browser to: [http://localhost:3000](http://localhost:3000)
 
+
+BASIC AUTH FOR SERVER
+---------------------
+Enabling HTTP basic authentication on the server is simple. By default, the username and password values are empty ("").
+
+1. Open up *config.json*
+2. Navigate down to the *basicAuth* object
+3. Add values for username and password within the object
+
+
 QUICK API CONFIGURATION EXAMPLE
 -------------------------------
 Adding an API to the I/O Docs configuration is relatively simple.

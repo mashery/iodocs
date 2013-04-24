@@ -4,6 +4,10 @@
     "port" : 3000,
     "debug" : false,
     "sessionSecret" : "12345",
+    "basicAuth": {
+        "username":"",
+        "password":""
+    },
     "redis" : {
                 "host" : "localhost",
                 "port" : 6379,

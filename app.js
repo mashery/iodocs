@@ -105,6 +105,14 @@ app.configure(function() {
         })
     }));
 
+    // Global basic authentication on server (applied if configured)
+    if (config.basicAuth && config.basicAuth.username && config.basicAuth.password) {
+        app.use(express.basicAuth(function(user, pass, callback) {
+            var result = (user === config.basicAuth.username && pass === config.basicAuth.password);
+            callback(null /* error */, result);
+        }));
+    }
+
     app.use(app.router);
 
     app.use(express.static(__dirname + '/public'));
