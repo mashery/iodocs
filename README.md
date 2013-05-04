@@ -47,14 +47,26 @@ These will be automatically installed when you use any of the above *npm* instal
 3. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
 4. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
 5. [jade](http://jade-lang.com/) - the view engine
+6. [supervisor](https://github.com/isaacs/node-supervisor) - restart node upon an error or changed javascript file
 
 Note: hashlib is no longer a required module -- we're using the internal crypto module for signatures and digests.
 
 RUNNING I/O DOCS
 ----------------
-1. You will need to copy *config.json.sample* to *config.json*. The defaults will work, but feel free to change them.
-2. node ./app.js
-3. Point your browser to: [http://localhost:3000](http://localhost:3000)
+**Create your config** file by copying the default config:
+
+```
+cp config.json.sample config.json
+```
+The defaults will work, but feel free to change them.
+
+**Start I/O Docs**:
+
+```
+npm start
+```
+
+**Point your browser** to: [localhost:3000](http://localhost:3000)
 
 
 BASIC AUTH FOR SERVER

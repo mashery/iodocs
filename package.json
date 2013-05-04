@@ -26,11 +26,16 @@
     "jade": "0.13",
     "oauth": "0.9.3",
     "redis": ">= 0.7.0",
-    "querystring": "0.1.0"
+    "querystring": "0.1.0",
+    "supervisor": ">= 0.5.x"
   },
   "devDependencies": {},
   "main": "index",
   "engines": {
-    "node": ">= 0.4.0"
+    "node": ">= 0.4.0",
+    "npm": ">= 1.1.49"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/supervisor app"
   }
 }
