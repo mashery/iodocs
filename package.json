@@ -36,6 +36,6 @@
     "npm": ">= 1.1.49"
   },
   "scripts": {
-    "start": "node_modules/.bin/supervisor app"
+    "start": "node_modules/.bin/supervisor -e json app"
   }
 }
