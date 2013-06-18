@@ -1,32 +1,85 @@
 {
    "endpoints":[
       {
-         "name":"Score Methods",
+         "name":"Identity Methods",
          "methods":[
             {
-               "MethodName":"Klout Score",
-               "Synopsis":"This method allows you to retrieve a Klout score",
+               "MethodName":"Get Identity via Twitter ID",
+               "Synopsis":"This method allows you to retrieve a KloutID for a numeric Twitter ID",
                "HTTPMethod":"GET",
-               "URI":"/klout.:format",
+               "URI":"/identity.json/tw/:twitterId",
                "RequiresOAuth":"N",
                "parameters":[
                   {
-                     "Name":"users",
+                     "Name":"twitterId",
                      "Required":"Y",
                      "Default":"",
                      "Type":"string",
-                     "Description":"One or more (comma-separated) Twitter usernames"
-                  },
+                     "Description":"A Twitter ID (e.g. 500042487)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"Get Identity via Google+ ID",
+               "Synopsis":"This method allows you to retreve a Kloud ID for a numeric Google+ ID",
+               "HTTPMethod":"GET",
+               "URI":"/identity.json/gp/:googleId",
+               "RequiresOAuth":"N",
+               "parameters":[
                   {
-                     "Name":"format",
+                     "Name":"googleId",
                      "Required":"Y",
-                     "Default":"json",
-                     "Type":"enumerated",
-                     "Description":"Output format as JSON or XML",
-                     "EnumeratedList":[
-                        "json",
-                        "xml"
-                     ]
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A Google+ ID (e.g. 112620727907435773834)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"Get Identity via Instagram ID",
+               "Synopsis":"This method allows you to retreve a Kloud ID for a numeric Instagram ID",
+               "HTTPMethod":"GET",
+               "URI":"/identity.json/ig/:instagramId",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"instagramId",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"An Instagram ID (e.g. 816029)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"Get Identity via Twitter Screen Name",
+               "Synopsis":"This method allows you to retrieve a numeric KloutID for a Twitter Screen Name",
+               "HTTPMethod":"GET",
+               "URI":"/identity.json/twitter",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"screenName",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A Twitter Screen Name (e.g. jtimberlake)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"Get Twitter ID via Kloud ID",
+               "Synopsis":"This method allows you to retrieve a Twitter ID for a numeric KloutID",
+               "HTTPMethod":"GET",
+               "URI":"/identity.json/klout/:kloutId/tw",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"kloutId",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A KloutId (e.g. 635263)"
                   }
                ]
             }
@@ -37,114 +90,65 @@
          "methods":[
             {
                "MethodName":"Show User",
-               "Synopsis":"This method allows you to retrieve user objects",
+               "Synopsis":"This method allows you to retrieve a user object",
                "HTTPMethod":"GET",
-               "URI":"/users/show.:format",
+               "URI":"/user.json/:kloutId",
                "RequiresOAuth":"N",
                "parameters":[
                   {
-                     "Name":"users",
+                     "Name":"kloutId",
                      "Required":"Y",
                      "Default":"",
                      "Type":"string",
-                     "Description":"One or more (comma-separated) Twitter usernames"
-                  },
+                     "Description":"A KloutId (e.g. 635263)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"Score",
+               "Synopsis":"This method allows you to retrieve a user's Klout Score and Deltas",
+               "HTTPMethod":"GET",
+               "URI":"/user.json/:kloutId/score",
+               "RequiresOAuth":"N",
+               "parameters":[
                   {
-                     "Name":"format",
+                     "Name":"kloutId",
                      "Required":"Y",
-                     "Default":"json",
-                     "Type":"enumerated",
-                     "Description":"Output format as JSON or XML",
-                     "EnumeratedList":[
-                        "json",
-                        "xml"
-                     ]
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A KloutId (e.g. 635263)"
                   }
                ]
             },
             {
                "MethodName":"Topics",
-               "Synopsis":"This method allows you to retrieve the top 3 topic objects for a given user",
+               "Synopsis":"This method allows you to retrieve a user's topics",
                "HTTPMethod":"GET",
-               "URI":"/users/topics.:format",
+               "URI":"/user.json/:kloutId/topics",
                "RequiresOAuth":"N",
                "parameters":[
                   {
-                     "Name":"users",
+                     "Name":"kloutId",
                      "Required":"Y",
                      "Default":"",
                      "Type":"string",
-                     "Description":"One or more (comma-separated) Twitter usernames"
-                  },
-                  {
-                     "Name":"format",
-                     "Required":"Y",
-                     "Default":"json",
-                     "Type":"enumerated",
-                     "Description":"Output format as JSON or XML",
-                     "EnumeratedList":[
-                        "json",
-                        "xml"
-                     ]
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         "name":"Relationship Methods",
-         "methods":[
-            {
-               "MethodName":"Influenced By",
-               "Synopsis":"This method allows you to retrieve up to 5 user score pairs for users that are influenced by the given influencer",
-               "HTTPMethod":"GET",
-               "URI":"/soi/influenced_by.:format",
-               "RequiresOAuth":"N",
-               "parameters":[
-                  {
-                     "Name":"users",
-                     "Required":"Y",
-                     "Default":"",
-                     "Type":"string",
-                     "Description":"One or more (comma-separated) Twitter usernames"
-                  },
-                  {
-                     "Name":"format",
-                     "Required":"Y",
-                     "Default":"json",
-                     "Type":"enumerated",
-                     "Description":"Output format as JSON or XML",
-                     "EnumeratedList":[
-                        "json",
-                        "xml"
-                     ]
+                     "Description":"A KloutId (e.g. 635263)"
                   }
                ]
             },
             {
-               "MethodName":"Influencer Of",
-               "Synopsis":"This method allows you to retrieve up to 5 user score pairs for users that are influencers of the given user",
+               "MethodName":"Influence",
+               "Synopsis":"This method allows you to retrieve a user's influencers and influencees",
                "HTTPMethod":"GET",
-               "URI":"/soi/influencer_of.:format",
+               "URI":"/user.json/:kloutId/influence",
                "RequiresOAuth":"N",
                "parameters":[
                   {
-                     "Name":"users",
+                     "Name":"kloutId",
                      "Required":"Y",
                      "Default":"",
                      "Type":"string",
-                     "Description":"One or more (comma-separated) Twitter usernames"
-                  },
-                  {
-                     "Name":"format",
-                     "Required":"Y",
-                     "Default":"json",
-                     "Type":"enumerated",
-                     "Description":"Output format as JSON or XML",
-                     "EnumeratedList":[
-                        "json",
-                        "xml"
-                     ]
+                     "Description":"A KloutId (e.g. 635263)"
                   }
                ]
             }
@@ -152,4 +156,3 @@
       }
    ]
 }
-
