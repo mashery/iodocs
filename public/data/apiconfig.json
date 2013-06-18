@@ -1,9 +1,9 @@
 {
     "klout": {
-        "name": "Klout API",
+        "name": "Klout v2 API",
         "protocol": "http",
         "baseURL": "api.klout.com",
-        "publicPath": "/1",
+        "publicPath": "/v2",
         "headers" : {},
         "auth": "key",
         "keyParam": "key"
