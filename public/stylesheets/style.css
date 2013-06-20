@@ -522,6 +522,10 @@ li {
   float: left;
 }
 
+.method .title .name span {
+  float: none;
+}
+
 .method .title .uri {
   color: #777;
 }
@@ -735,6 +739,18 @@ li {
 
 .clearfix {
   zoom: 1;
+}
+
+.foo{
+  color:red;
+}
+
+strong{
+  font-weight: bold;
+}
+
+em {
+  
 }
 
 dl {
