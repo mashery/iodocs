@@ -526,6 +526,10 @@ li {
   float: none;
 }
 
+.method .title .uri span {
+  float: none;
+}
+
 .method .title .uri {
   color: #777;
 }
