@@ -9,7 +9,7 @@ Copyright 2012-2013 Mashery, Inc.
 SYNOPSIS
 --------
 I/O Docs is a live interactive documentation system for RESTful web APIs. By defining APIs at the resource, method and parameter
-levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML).
+levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML). Basic HTML text tags are enabled in the JSON schema.
 
 You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
 

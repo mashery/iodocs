@@ -50,7 +50,7 @@ ul
     - each endpoint in apiDefinition.endpoints
         li.endpoint
             h3.title
-                span.name=endpoint.name
+                span.name!=endpoint.name
                 ul.actions
                     li.list-methods
                         a(href='#') List Methods
@@ -66,15 +66,15 @@ ul
                         - var secure =''
                     li(class='method ' + httpmethod + ' ' + secure)
                         div.title
-                            span.http-method #{method.HTTPMethod}
-                            span.name #{method.MethodName}
-                            span.uri #{method.URI}
+                            span.http-method !{method.HTTPMethod}
+                            span.name !{method.MethodName}
+                            span.uri !{method.URI}
                         form.hidden
                             input(type='hidden', name='httpMethod', value=method.HTTPMethod)
                             input(type='hidden', name='oauth', value=secure)
                             input(type='hidden', name='methodUri', value=method.URI)
 
-                            span.description #{method.Synopsis}
+                            span.description !{method.Synopsis}
                             br
                             br
                             - if (method.parameters.length > 0)
@@ -98,7 +98,7 @@ ul
                                                   - var required =false
                                                   - var className =''
                                               tr(class=className)
-                                                  td.name=parameter.Name
+                                                  td.name!=parameter.Name
                                                   td.parameter
                                                       - if (parameter.Type =='enumerated')
                                                           select(name='params[' + parameter.Name + ']', placeholder=className)
@@ -121,11 +121,11 @@ ul
                                                       - else
                                                           input(name='params[' + parameter.Name + ']', value=parameter.Default, placeholder=className)
                                                           input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
-                                                  td.type=parameter.Type
+                                                  td.type!=parameter.Type
                                                   td.location
-                                                      p=parameter.Location || 'query'
+                                                      p!=parameter.Location || 'query'
                                                   td.description
-                                                      p=parameter.Description || 'No description'
+                                                      p!=parameter.Description || 'No description'
                                                       - if (parameter.Type =='enumerated' && parameter.EnumeratedDescription)
                                                           dl.clearfix
                                                               - each description, choice in parameter.EnumeratedDescription
