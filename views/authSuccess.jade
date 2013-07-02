@@ -1,4 +1,6 @@
-h1= title
-script
+extends layout
+block content
+  h1= title
+  script.
     window.parent.opener.livedocs.authSuccess('Authenticated with OAuth'); //Indicate to the parent page
     window.close();

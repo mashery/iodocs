@@ -79,7 +79,7 @@ try {
     process.exit(1);
 }
 
-var app = module.exports = express.createServer();
+var app = module.exports = express();
 
 if (process.env.REDISTOGO_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
@@ -113,8 +113,9 @@ app.configure(function() {
         }));
     }
 
+    app.use(checkPathForAPI);
+    app.use(dynamicHelpers);
     app.use(app.router);
-
     app.use(express.static(__dirname + '/public'));
 });
 
@@ -297,11 +298,11 @@ function processRequest(req, res, next) {
         key = req.sessionID + ':' + apiName;
 
     // Extract custom headers from the params
-    for( var param in params ) 
+    for( var param in params )
     {
-         if (params.hasOwnProperty(param)) 
+         if (params.hasOwnProperty(param))
          {
-            if (params[param] !== '' && locations[param] == 'header' ) 
+            if (params[param] !== '' && locations[param] == 'header' )
             {
                 customHeaders[param] = params[param];
                 delete params[param];
@@ -375,7 +376,7 @@ function processRequest(req, res, next) {
                     console.log(apiSecret);
                     console.log(accessToken);
                     console.log(accessTokenSecret);
-                    
+
                     var oa = new OAuth(apiConfig.oauth.requestURL || null,
                                        apiConfig.oauth.accessURL || null,
                                        apiKey || null,
@@ -643,46 +644,43 @@ function processRequest(req, res, next) {
 }
 
 
-// Dynamic Helpers
+function checkPathForAPI(req, res, next) {
+    if (!req.params) req.params = {};
+    if (!req.params.api) {
+        // If api wasn't passed in as a parameter, check the path to see if it's there
+        var pathName = req.url.replace('/','');
+        // Is it a valid API - if there's a config file we can assume so
+        fs.stat(__dirname + '/public/data/' + pathName + '.json', function (error, stats) {
+            if (stats) {
+                req.params.api = pathName;
+            }
+            next();
+        });
+    } else {
+        next();
+    }
+
+}
+
+// Replaces deprecated app.dynamicHelpers that were dropped in Express 3.x
 // Passes variables to the view
-app.dynamicHelpers({
-    session: function(req, res) {
-    // If api wasn't passed in as a parameter, check the path to see if it's there
-        if (!req.params.api) {
-            pathName = req.url.replace('/','');
-            // Is it a valid API - if there's a config file we can assume so
-            fs.stat(__dirname + '/public/data/' + pathName + '.json', function (error, stats) {
-                if (stats) {
-                    req.params.api = pathName;
-                }
-            });
-        }       
+function dynamicHelpers(req, res, next) {
+    if (req.params.api) {
+        res.locals.apiInfo = apisConfig[req.params.api];
+        res.locals.apiName = req.params.api;
+        res.locals.apiDefinition = require(__dirname + '/public/data/' + req.params.api + '.json');
         // If the cookie says we're authed for this particular API, set the session to authed as well
-        if (req.params.api && req.session[req.params.api] && req.session[req.params.api]['authed']) {
+        if (req.session[req.params.api] && req.session[req.params.api]['authed']) {
             req.session['authed'] = true;
         }
-
-        return req.session;
-    },
-    apiInfo: function(req, res) {
-        if (req.params.api) {
-            return apisConfig[req.params.api];
-        } else {
-            return apisConfig;
-        }
-    },
-    apiName: function(req, res) {
-        if (req.params.api) {
-            return req.params.api;
-        }
-    },
-    apiDefinition: function(req, res) {
-        if (req.params.api) {
-            return require(__dirname + '/public/data/' + req.params.api + '.json');
-        }
+    } else {
+        res.locals.apiInfo = apisConfig;
     }
-})
 
+    res.locals.session = req.session;
+
+    next();
+}
 
 //
 // Routes
@@ -732,6 +730,6 @@ if (!module.parent) {
     var port = process.env.PORT || config.port;
     var l = app.listen(port);
     l.on('listening', function(err) {
-        console.log("Express server listening on port %d", app.address().port);
+        console.log("Express server listening on port %d", port);
     });
 }
