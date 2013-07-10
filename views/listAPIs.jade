@@ -1,7 +1,9 @@
-h1=title
+extends layout
+block content
+  h1=title
 
-h2 Choose an API
+  h2 Choose an API
 
-ul
-   - for (var api in apiInfo)
-       li: a(href = '/' + api) #{apiInfo[api].name}
+  ul
+     - for (var api in apiInfo)
+         li: a(href = '/' + api) #{apiInfo[api].name}
