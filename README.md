@@ -60,6 +60,12 @@ cp config.json.sample config.json
 ```
 The defaults will work, but feel free to change them.
 
+**Run a Redis instance:**
+
+```
+redis-server
+```
+
 **Start I/O Docs**:
 
 ```
