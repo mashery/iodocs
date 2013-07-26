@@ -1,0 +1,25 @@
+{
+   "endpoints":[
+      {
+         "name":"User Methods",
+         "methods":[
+            {
+               "MethodName":"Profile Information",
+               "Synopsis":"Returns profile information for a given user.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"string",
+                     "Description":"A foursquare user id (e.g. 1297336)"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

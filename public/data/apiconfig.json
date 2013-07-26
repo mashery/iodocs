@@ -33,6 +33,39 @@
         },
         "keyParam":""
     },
+    "linkedin2": {
+        "name": "LinkedIn2",
+        "protocol": "https",
+        "baseURL": "api.linkedin.com",
+        "publicPath": "",
+        "privatePath": "/v1",
+        "auth": "oauth",
+        "oauth2": {
+            "type": "three-legged",
+            "baseSite": "https://www.linkedin.com/",
+            "authorizeURL": "uas/oauth2/authorization",
+            "accessTokenURL": "uas/oauth2/accessToken",
+            "customHeaders": ""
+        },
+        "keyParam":""
+    },
+    "foursquare": {
+        "name": "FourSquare",
+        "protocol": "https",
+        "baseURL": "api.foursquare.com",
+        "publicPath": "",
+        "privatePath": "/v2",
+        "auth": "oauth2",
+        "oauth2": {
+            "type": "authorization-code",
+            "baseSite": "https://www.foursquare.com/",
+            "authorizeURL": "oauth2/authenticate",
+            "accessTokenURL": "oauth2/access_token",
+            "customHeaders": "",
+            "tokenName": "oauth_token"
+        },
+        "keyParam":""
+    },    
     "requestbin": {
         "name": "Requestb.in",
         "protocol": "http",
