@@ -25,7 +25,7 @@
     "connect-redis": "1.0.6",
     "express": "3.3.1",
     "jade": "0.32.0",
-    "oauth": "0.9.3",
+    "oauth": "0.9.10",
     "redis": "0.8.3",
     "querystring": "0.1.0",
     "supervisor": ">= 0.5.x"

@@ -250,49 +250,104 @@ function oauth2(req, res, next){
 
         // console.log('REFERERurl: ' + req.headers.referer);
 
-        // if (apiConfig.oauth2.type == 'authorization-code') {
-        //     console.log('AUTH CODE FTW');
-        // };
-
         // req.getAuthDetails();
         console.log(req.headers.referer);
 
+
         //FIX THIS TO ACCOUNT FOR NONEXISTANT REDIRECT_URI (MAYBE) AND TO ACCOUNT FOR DIFFERENT RESPONSE TYPES
-        var redirectUrl = oa.getAuthorizeUrl({redirect_uri : callbackURL, response_type : "code"});
+        if (apiConfig.oauth2.type == 'authorization-code') {
+            console.log('AUTH CODE FTW');
+            
+            var redirectUrl = oa.getAuthorizeUrl({redirect_uri : callbackURL, response_type : "code"});
 
-        // var redirectUrl = apiConfig.oauth2.baseSite + apiConfig.oauth2.authorizeURL + '?' + 'redirect_uri=' + callbackURL + '?response_type=code&client_id=' + apiKey + '&type=web_server';
+            // var redirectUrl = apiConfig.oauth2.baseSite + apiConfig.oauth2.authorizeURL + '?' + 'redirect_uri=' + callbackURL + '?response_type=code&client_id=' + apiKey + '&type=web_server';
 
 
-        db.set(key + ':apiKey', apiKey, redis.print);
-        db.set(key + ':apiSecret', apiSecret, redis.print);
-        db.set(key + ':baseURL', req.headers.referer, redis.print);
+            db.set(key + ':apiKey', apiKey, redis.print);
+            db.set(key + ':apiSecret', apiSecret, redis.print);
+            db.set(key + ':baseURL', req.headers.referer, redis.print);
 
-        // db.set(key + ':access_token', access_token, redis.print);
-        // db.set(key + ':refresh_token', oauthTokenSecret, redis.print);
+            // db.set(key + ':access_token', access_token, redis.print);
+            // db.set(key + ':refresh_token', oauthTokenSecret, redis.print);
 
-        // Set expiration to same as session
-        db.expire(key + ':apiKey', 1209600000);
-        db.expire(key + ':apiSecret', 1209600000);
-        db.expire(key + ':baseURL', 1209600000)
-        // db.expire(key + ':requestToken', 1209600000);
-        // db.expire(key + ':requestTokenSecret', 1209600000);
+            // Set expiration to same as session
+            db.expire(key + ':apiKey', 1209600000);
+            db.expire(key + ':apiSecret', 1209600000);
+            db.expire(key + ':baseURL', 1209600000)
+            // db.expire(key + ':requestToken', 1209600000);
+            // db.expire(key + ':requestTokenSecret', 1209600000);
 
-        // console.log('did it work?');
-        // console.log(redirectUrl);
+            // console.log('did it work?');
+            // console.log(redirectUrl);
 
-        // console.log('signin: ' + apiConfig.oauth.signinURL);
+            // console.log('signin: ' + apiConfig.oauth.signinURL);
 
-        //GET BACK TO THIS SOON
-        // res.send({ 'signin': apiConfig.oauth2.signinURL + oauthToken });
-        res.send({'signin': redirectUrl});
-        // console.log('AFTER THE SEND');
+            //GET BACK TO THIS SOON
+            // res.send({ 'signin': apiConfig.oauth2.signinURL + oauthToken });
+            res.send({'signin': redirectUrl});
+            // console.log('AFTER THE SEND');
 
-        // console.log('oa: ' + oa);
+            // console.log('oa: ' + oa);
 
-        // res.send(redirectUrl);
+            // res.send(redirectUrl);
 
-        // oa.redirect(res, redirectUrl, next());
-        
+            // oa.redirect(res, redirectUrl, next());
+        }
+        else if (apiConfig.oauth2.type == 'client_credentials') {
+            console.log('Using client_credentials authentication flow')
+                // var getAccessTokenURL = oa._getAccessTokenUrl();
+                // console.log('getAccessTokenURL: ' + getAccessTokenURL);
+
+            // res.send({'getToken' : getAccessTokenURL});
+
+            var aURL = apiConfig.oauth2.baseSite + apiConfig.oauth2.accessTokenURL;
+            console.log('aURL: ' + aURL);
+
+            oa._request("POST", aURL, {grant_type : 'client_credentials', client_id : apiKey, client_secret : apiSecret}, null, function(error, data, response) {
+                console.log(data);
+                if (error) {
+                    console.log("Error getting OAuth access token : " + util.inspect(error));
+                }
+                else {
+                    var results;
+                    try {
+                        results = JSON.parse(data);
+                    }
+                    catch(e) {
+                        results = querystring.parse(data)
+                    }
+                    var access_token = results["access_token"];
+                    var refresh_token = results["refresh_token"];
+                    delete results["refresh_token"];
+                    console.log('REQUEST IN client_credentials: ' + access_token + ' ' + refresh_token);
+                }
+            })
+
+            // oa.getOAuthAccessToken('',
+            // {grant_type : 'client_credentials', client_id : apiKey, client_secret : apiSecret},
+            // function(error, oauth2access_token, oauth2refresh_token, results){
+            //     if (error) {
+            //         console.log("Error getting OAuth access token : " + util.inspect(error) + "["+oauth2access_token+"]"+ "["+oauth2refresh_token+"]", 500);
+            //         res.send("Error getting OAuth access token : " + util.inspect(error) + "["+oauth2access_token+"]"+ "["+oauth2refresh_token+"]", 500);
+            //     } else {
+            //         if (config.debug) {
+            //             console.log('results: ' + util.inspect(results));
+            //         };
+            //         console.log('ACCESS_TOKEN: ' + oauth2access_token);
+            //         console.log('REQUEST_TOKEN' + oauth2refresh_token)
+            //         db.mset([key + ':access_token', oauth2access_token,
+            //                 key + ':refresh_token', oauth2refresh_token
+            //         ], function(err, results2) {
+            //             req.session[apiName] = {};
+            //             req.session[apiName].authed = true;
+            //             if (config.debug) {
+            //                 console.log('session[apiName].authed: ' + util.inspect(req.session));
+            //             };
+            //             next();
+            //         });
+            //     }
+            // });
+        };
     };
 
 
@@ -640,6 +695,7 @@ function processRequest(req, res, next) {
     var baseHostUrl = baseHostInfo[0],
         baseHostPort = (baseHostInfo.length > 1) ? baseHostInfo[1] : "";
     var headers = {};
+    var post_body = '';
     for( header in apiConfig.headers )
         headers[header] = apiConfig.headers[header];
     for( header in customHeaders )
@@ -856,7 +912,8 @@ function processRequest(req, res, next) {
                     //HERE
                     console.log('httpMethod: ' + httpMethod);
                     console.log('HEADERS: ' + util.inspect(headers));
-                    oa._request(httpMethod, privateReqURL, headers, access_token, function (error, data, response) {
+                    console.log('POSTBODY: ' + util.inspect(post_body));
+                    oa._request(httpMethod, privateReqURL, headers, post_body, access_token, function (error, data, response) {
                         console.log('REQ: ' + util.inspect(req));
                     // oa.getProtectedResource(privateReqURL, httpMethod, accessToken, accessTokenSecret,  function (error, data, response) {
                         req.call = privateReqURL;
