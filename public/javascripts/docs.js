@@ -153,32 +153,20 @@
     $('#credentials').submit(function(event) {
         event.preventDefault();
         var params = $(this).serializeArray();
-        console.log(params[1].name);
         if (params[1].name == 'oauth') {
-            console.log(params);
-            console.log('RESULT');
             $.post('/auth', params, function(result) {
                 if (result.signin) {
-                    console.log('signin');
-                    console.log(result);
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
                 }
             })
         }
         else if (params[1].name == 'oauth2') {
-            console.log('docs.js - oauth2');
-            console.log(params);
-            // window.location.replace(result.signin);
             $.post('/auth2', params, function(result) {
-                console.log('result - oauth2');
                 if (result.signin) {
-                    console.log('foobar123: ' + result.signin);
-                    // response.writehead(303, {'Location':result.signin});
-                    // response.end('');
-
-                    // window.location.replace(result.signin);
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
-                    // window.open(result.signin,"alex","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=");
+                }
+                else{
+                    window.location.reload();
                 }
             })
         };
@@ -254,8 +242,6 @@
             resultContainer.append($(document.createElement('pre'))
                 .addClass('response prettyprint'));
         }
-
-        console.log(params);
 
         $.post('/processReq', params, function(result, text) {
             // If we get passed a signin property, open a window to allow the user to signin/link their account

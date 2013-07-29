@@ -3,7 +3,7 @@ block content
   h1=apiInfo.name
   - if (session.authed && apiInfo.oauth && apiInfo.oauth.type =='three-legged')
       - var authed ='authed'
-  - else if (session.authed && apiInfo.oauth2 && apiInfo.oauth2.type == 'authorization-code')
+  - else if (session.authed && apiInfo.oauth2)
       - var authed ='authed'
   - else
       - var authed =''
@@ -47,7 +47,7 @@ block content
                - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
                    div
                       input(name='oauth', value='Authenticate with OAuth', type='submit', id='oauth-auth')
-               - else if (apiInfo.oauth2 && apiInfo.oauth2.type == 'authorization-code')
+               - else if (apiInfo.oauth2)
                    div
                       input(name='oauth', value='Authenticate with OAuth2', type='submit', id='oauth-auth')
 
