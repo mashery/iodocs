@@ -1,0 +1,32 @@
+{
+   "endpoints":[
+      {
+         "name":"Playlists",
+         "methods":[
+            {
+               "MethodName":"getPlaylists",
+               "Synopsis":"Returns a user’s playlists. If no user is specified then the current user will be used.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getPlaylists",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"user",
+                     "Required":"Y",
+                     "Default":"s422965",
+                     "Type":"string",
+                     "Description":"The user."
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

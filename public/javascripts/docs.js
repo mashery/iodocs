@@ -165,12 +165,21 @@
                 if (result.signin) {
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
                 }
-                else{
+                else if (result.implicit) {
+                    window.open(result.implicit,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
+                }
+                else if (result.refresh) {
+                    window.open(result.refresh,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
+                }
+                else {
                     window.location.reload();
                 }
             })
         };
     });
+    
+    // $.('#access_token').val(foo);
+
 
     /*
         Try it! button. Submits the method params, apikey and secret if any, and apiName

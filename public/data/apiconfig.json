@@ -51,7 +51,7 @@
         "keyParam":""
     },
     "rdio": {
-        "name": "rdio",
+        "name": "Rdio (client_credentials)",
         "protocol": "https",
         "baseURL": "www.rdio.com",
         "publicPath": "",
@@ -61,7 +61,24 @@
             "type": "client_credentials",
             "baseSite":"https://www.rdio.com/",
             "accessTokenURL": "oauth2/token",
-            "customHeaders": ""
+            "customHeaders": "Authoriation:",
+            "authorizationHeader":"Y"
+        },
+        "keyParam":""
+    },
+    "rdio2": {
+        "name": "Rdio (implicit)",
+        "protocol": "https",
+        "baseURL": "www.rdio.com",
+        "publicPath": "",
+        "privatePath": "/api/1",
+        "auth": "oauth2",
+        "oauth2": {
+            "type": "implicit",
+            "baseSite":"https://www.rdio.com/",
+            "accessTokenURL": "oauth2/authorize",
+            "customHeaders": "",
+            "authorizationHeader":"Y"
         },
         "keyParam":""
     },

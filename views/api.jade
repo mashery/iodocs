@@ -12,6 +12,7 @@ block content
   form#credentials
       input(type='hidden', name='apiName', value=apiName)
       - if (apiInfo.auth)
+          console.log(apiInfo)
           section(class='credentials ' + authed)
            - if (authed && apiInfo.oauth)
                span Authenticated with OAuth
@@ -86,11 +87,13 @@ block content
                               input(type='hidden', name='httpMethod', value=method.HTTPMethod)
                               input(type='hidden', name='oauth', value=secure)
                               input(type='hidden', name='methodUri', value=method.URI)
+                              input(type='hidden', name='accessToken', id='accessToken')
 
                               span.description !{method.Synopsis}
                               br
                               br
-                              - if (method.parameters.length > 0)
+                              //- if (method.parameters.length > 0)
+                              - if (method.parameters)
                                   table.parameters
                                       thead
                                           tr
