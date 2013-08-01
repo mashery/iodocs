@@ -61,7 +61,7 @@
             "type": "client_credentials",
             "baseSite":"https://www.rdio.com/",
             "accessTokenURL": "oauth2/token",
-            "customHeaders": "Authoriation:",
+            "customHeaders": "",
             "authorizationHeader":"Y"
         },
         "keyParam":""
