@@ -34,7 +34,7 @@
         "keyParam":""
     },
     "foursquare": {
-        "name": "FourSquare",
+        "name": "Foursquare (OAuth 2.0 Auth Code)",
         "protocol": "https",
         "baseURL": "api.foursquare.com",
         "publicPath": "",
@@ -51,7 +51,7 @@
         "keyParam":""
     },
     "rdio": {
-        "name": "Rdio (client_credentials)",
+        "name": "Rdio Beta (OAuth 2.0 Client Credentials)",
         "protocol": "https",
         "baseURL": "www.rdio.com",
         "publicPath": "",
@@ -67,7 +67,7 @@
         "keyParam":""
     },
     "rdio2": {
-        "name": "Rdio (implicit)",
+        "name": "Rdio Beta (OAuth 2.0 Implicit Grant)",
         "protocol": "https",
         "baseURL": "www.rdio.com",
         "publicPath": "",
