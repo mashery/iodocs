@@ -39,10 +39,16 @@ block content
                - else
                    - var defaultSecret =''
                div
-                   label(for='key') API Key
+                   - if (apiInfo.oauth || apiInfo.oauth2)
+                       label(for='key') Client ID
+                   - else
+                     label(for='key') API Key
                    input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
                div
-                   - if (apiInfo.oauth || apiInfo.oauth2 || apiInfo.signature)
+                   - if (apiInfo.oauth || apiInfo.oauth2)
+                       label(for='secret') Client Secret
+                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
+                   - else if (apiInfo.signature)
                        label(for='secret') Shared Secret
                        input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
                - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
