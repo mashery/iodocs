@@ -38,9 +38,6 @@ var livedocs = (function() {
         return data;
     }
 
-    console.log('LIVEDOCS');
-    console.log(window.location.hash);
-
     /**
      * Handle OAuth success callback
      */
