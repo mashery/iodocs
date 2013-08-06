@@ -8,7 +8,7 @@
                "Synopsis":"Gets the activity events for a user, a user's friends, or everyone on Rdio.",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
@@ -38,7 +38,7 @@
                "Synopsis":"Find the msot popular content for a user, their friends or the whole site.",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
@@ -103,7 +103,7 @@
                "Synopsis":"Return new albums released across a timeframe.",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
@@ -147,7 +147,7 @@
                "Synopsis":"Return the site-wide most popular items for a given type.",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
@@ -196,7 +196,7 @@
                "Synopsis":"Finds and returns albums based on their Universal Product Code (UPC).",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
@@ -248,34 +248,11 @@
          "name":"Social",
          "methods":[
             {
-               "MethodName":"currentUser",
-               "Synopsis":"Get information about the currently logged in user.",
-               "HTTPMethod":"POST",
-               "URI":"",
-               "RequiresOAuth":"Y",
-               "parameters":[
-                  {
-                     "Name":"method",
-                     "Required":"Y",
-                     "Default":"currentUser",
-                     "Type":"string",
-                     "Description":"Method name."
-                  },
-                  {
-                     "Name":"extras",
-                     "Required":"N",
-                     "Default":"",
-                     "Type":"string list",
-                     "Description":"a list of additional fields to return – a list, comma separated." 
-                  }
-               ]
-            },
-            {
                "MethodName":"findUser",
                "Synopsis":"Find a user either by email address or by their username. Exactly one of email or vanityName must be supplied.",
                "HTTPMethod":"POST",
                "URI":"",
-               "RequiresOAuth":"N",
+               "RequiresOAuth":"Y",
                "parameters":[
                   {
                      "Name":"method",
