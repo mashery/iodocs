@@ -1,0 +1,671 @@
+{
+   "endpoints":[
+      {
+         "name":"Users: General Methods",
+         "methods":[
+            {
+               "MethodName":"Profile Information",
+               "Synopsis":"Returns profile information for a given user.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"A foursquare user id (e.g. 1297336)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"User's Leaderboard",
+               "Synopsis":"Returns the user's Leaderboard",
+               "HTTPMethod":"GET",
+               "URI":"/users/leaderboard",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"neighbors",
+                     "Required":"N",
+                     "Default":"2",
+                     "Type":"int",
+                     "Description":"The number of friends' scores to return."
+                  }
+               ]
+            },
+            {
+               "MethodName":"User's Requests",
+               "Synopsis":"Returns the user's Leaderboard",
+               "HTTPMethod":"GET",
+               "URI":"/users/requests",
+               "RequiresOAuth":"Y"
+            },
+            {
+               "MethodName":"Find User",
+               "Synopsis":"Helps a user locate friends.",
+               "HTTPMethod":"GET",
+               "URI":"/users/search",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"phone",
+                     "Required":"N",
+                     "Default":"91712344567,123450",
+                     "Type":"int",
+                     "Description":"A comma-delimited list of phone numbers to look for."
+                  },
+                  {
+                     "Name":"email",
+                     "Required":"N",
+                     "Default":"foo@bar.com,alice@baz.com",
+                     "Type":"string",
+                     "Description":"A comma-delimited list of email addresses to look for."
+                  },
+                  {
+                     "Name":"twitter",
+                     "Required":"N",
+                     "Default":"dens,sesamestreet",
+                     "Type":"string",
+                     "Description":"A comma-delimited list of Twitter handles to look for."
+                  },
+                  {
+                     "Name":"twitterSource",
+                     "Required":"N",
+                     "Default":"krave",
+                     "Type":"string",
+                     "Description":"A single Twitter handle. Results will be users that this handle follows on Twitter who use Foursquare."
+                  },
+                  {
+                     "Name":"fbid",
+                     "Required":"N",
+                     "Default":"123,456",
+                     "Type":"int",
+                     "Description":"A comma-delimited list of Facebook ID's to look for."
+                  },
+                  {
+                     "Name":"name",
+                     "Required":"N",
+                     "Default":"Fred Fredrickson",
+                     "Type":"string",
+                     "Description":"A single string to search for in users' names."
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Users: Aspect Methods",
+         "methods":[
+            {
+               "MethodName":"User Badges",
+               "Synopsis":"Returns badges for a given user.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/badges",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"A foursquare user id (e.g. 1297336)"
+                  }
+               ]
+            },
+            {
+               "MethodName":"User Checkins",
+               "Synopsis":"Returns a history of checkins for the authenticated user.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/checkins",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"self",
+                     "Type":"string",
+                     "Description":"For now, only self is supported."
+                  },
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Number of results to return, up to 250."
+                  },
+                  {
+                     "Name":"offset",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"The number of results to skip. Used to page through results."
+                  },
+                  {
+                     "Name":"sort",
+                     "Required":"N",
+                     "Default":"newestfirst",
+                     "Type":"string",
+                     "Description":"How to sort the returned checkins. Can be newestfirst or oldestfirst."
+                  },
+                  {
+                     "Name":"afterTimestamp",
+                     "Required":"N",
+                     "Default":"1279044824",
+                     "Type":"int",
+                     "Description":"Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last poll time and then de-duplicating."
+                  },
+                  {
+                     "Name":"beforeTimestamp",
+                     "Required":"N",
+                     "Default":"1279044824",
+                     "Type":"int",
+                     "Description":"Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time."
+                  }
+               ]
+            },
+            {
+               "MethodName":"List Friends",
+               "Synopsis":"Returns an array of a user's friends.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/friends",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"A foursquare user id (e.g. 1297336). Pass self to get friends of the acting user."
+                  },
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Number of results to return, up to 500."
+                  },
+                  {
+                     "Name":"offset",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Used to page through results."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Lists",
+               "Synopsis":"A user's lists.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/lists",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"A foursquare user id (e.g. 1297336). Pass self to get lists of the acting user."
+                  },
+                  {
+                     "Name":"group",
+                     "Required":"N",
+                     "Default":"edited",
+                     "Type":"string",
+                     "Description":"can be created (lists created by this user), edited (other people's lists this user has edited), followed (lists this user follows), friends (lists from this user's friends), and suggested (lists relevant to the user's current location)."
+                  },
+                  {
+                     "Name":"ll",
+                     "Required":"Y",
+                     "Default":"40.7,-74",
+                     "Type":"int",
+                     "Description":"Location of the user, required in order to receive the suggested group."
+                  }
+               ] 
+            },
+            {
+               "MethodName":"Mayorships",
+               "Synopsis":"A user's mayorships.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/mayorships",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"A foursquare user id (e.g. 1297336)."
+                  }
+               ] 
+            },
+            {
+               "MethodName":"Photos",
+               "Synopsis":"Returns photos from a user.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/photos",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"self",
+                     "Type":"string",
+                     "Description":"For now, only self is supported."
+                  },
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Number of results to return, up to 500."
+                  },
+                  {
+                     "Name":"offset",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Used to page through results."
+                  }
+               ] 
+            },
+            {
+               "MethodName":"Venue History",
+               "Synopsis":"Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.",
+               "HTTPMethod":"GET",
+               "URI":"/users/:USER_ID/venuehistory",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"self",
+                     "Type":"string",
+                     "Description":"For now, only self is supported."
+                  },
+                  {
+                     "Name":"beforeTimestamp",
+                     "Required":"N",
+                     "Default":"123456789",
+                     "Type":"int",
+                     "Description":"Seconds since epoch."
+                  },
+                  {
+                     "Name":"afterTimestamp",
+                     "Required":"N",
+                     "Default":"123456789",
+                     "Type":"int",
+                     "Description":"Seconds since epoch."
+                  },
+                  {
+                     "Name":"categoryId",
+                     "Required":"N",
+                     "Default":"asad13242ljla",
+                     "Type":"string",
+                     "Description":"Limits returned venues to those in this category. If specifying a top-level category, all sub-categories will also match the query."
+                  }
+               ] 
+            }
+         ]
+      },
+      {
+         "name":"Users: Action Methods",
+         "methods":[
+            {
+               "MethodName":"Approve a Friend Request",
+               "Synopsis":"Approves a pending friend request from another user.",
+               "HTTPMethod":"POST",
+               "URI":"/users/:USER_ID/approve",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"The user ID of a pending friend."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Deny a Friend Request",
+               "Synopsis":"Denies a pending friend request from another user.",
+               "HTTPMethod":"POST",
+               "URI":"/users/:USER_ID/deny",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"The user ID of a pending friend."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Send a Friend/Follow Request",
+               "Synopsis":"Sends a friend request to another user. If the other user is a page then the requesting user will automatically start following the page.",
+               "HTTPMethod":"POST",
+               "URI":"/users/:USER_ID/request",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"The user ID to which a request will be sent."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Set Whether to Receive Pings About a User",
+               "Synopsis":"Changes whether the acting user will receive pings (phone notifications) when the specified user checks in.",
+               "HTTPMethod":"POST",
+               "URI":"/users/:USER_ID/setpings",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"The user ID of a friend."
+                  },
+                  {
+                     "Name":"value",
+                     "Required":"Y",
+                     "Default":"false",
+                     "Type":"string",
+                     "Description":"True of false."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Remove a Friend",
+               "Synopsis":"Removes a friend, unfollows a celebrity, or cancels a pending friend request.",
+               "HTTPMethod":"POST",
+               "URI":"/users/:USER_ID/unfriend",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"USER_ID",
+                     "Required":"Y",
+                     "Default":"1297336",
+                     "Type":"int",
+                     "Description":"Identity of the user to unfriend."
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Venues: General Methods",
+         "methods":[
+            {
+               "MethodName":"Add a Venue",
+               "Synopsis":"Allows users to add a new venue.",
+               "HTTPMethod":"POST",
+               "URI":"/venues/add",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"name",
+                     "Required":"Y",
+                     "Default":"Habana Output",
+                     "Type":"string",
+                     "Description":"The name of the venue."
+                  },
+                  {
+                     "Name":"address",
+                     "Required":"N",
+                     "Default":"1313 Mockingbird Lane",
+                     "Type":"string",
+                     "Description":"The address of the venue."
+                  },
+                  {
+                     "Name":"crossStreet",
+                     "Required":"N",
+                     "Default":"at Fulton St",
+                     "Type":"string",
+                     "Description":"The nearest intersecting street or streets."
+                  },
+                  {
+                     "Name":"city",
+                     "Required":"N",
+                     "Default":"New York",
+                     "Type":"string",
+                     "Description":"The city name where this venue is."
+                  },
+                  {
+                     "Name":"state",
+                     "Required":"N",
+                     "Default":"New York",
+                     "Type":"string",
+                     "Description":"The nearest state or province to the venue."
+                  },
+                  {
+                     "Name":"zip",
+                     "Required":"N",
+                     "Default":"AE1234",
+                     "Type":"int",
+                     "Description":"The zip or postal code for the venue."
+                  },
+                  {
+                     "Name":"phone",
+                     "Required":"N",
+                     "Default":"00 01 23 1234",
+                     "Type":"int",
+                     "Description":"THe phone number of the venue."
+                  },
+                  {
+                     "Name":"twitter",
+                     "Required":"N",
+                     "Default":"eathabana",
+                     "Type":"string",
+                     "Description":"The twitter handle of the venue."
+                  },
+                  {
+                     "Name":"ll",
+                     "Required":"Y",
+                     "Default":"44.3, 37.2",
+                     "Type":"int",
+                     "Description":"Latitude and longitude of the venue, as accurate as is known."
+                  },
+                  {
+                     "Name":"primaryCategoryId",
+                     "Required":"N",
+                     "Default":"4bf58dd8d48988d1d4941735",
+                     "Type":"string",
+                     "Description":"The ID of the category to which you want to assign this venue."
+                  },
+                  {
+                     "Name":"description",
+                     "Required":"N",
+                     "Default":"We are a business...",
+                     "Type":"string",
+                     "Description":"A freeform description of the venue, up to 300 characters."
+                  },
+                  {
+                     "Name":"url",
+                     "Required":"N",
+                     "Default":"http://www.mercurylounge.com",
+                     "Type":"string",
+                     "Description":"The url of the homepage of the venue."
+                  },
+                  {
+                     "Name":"ignoreDuplicates",
+                     "Required":"N",
+                     "Default":"true",
+                     "Type":"string",
+                     "Description":"A boolean flag telling the server to ignore duplicates and force the addition of this venue."
+                  },
+                  {
+                     "Name":"ignoreDuplicatesKey",
+                     "Required":"N",
+                     "Default":"bb29f248166648fb51d8d92b1740444c",
+                     "Type":"string",
+                     "Description":"Required if ignoreDuplicates is true. This key will be available in the response of the HTTP 409 error of the first (failed) attempt to add venue."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Venue Categories",
+               "Synopsis":"Returns a hierarchical list of categories applied to venues.",
+               "HTTPMethod":"GET",
+               "URI":"/venues/categories",
+               "RequiresOAuth":"Y",
+               "parameters":[
+               ]
+            },
+            {
+               "MethodName":"Explore Recommended and Popular Venues",
+               "Synopsis":"Returns a hierarchical list of categories applied to venues.",
+               "HTTPMethod":"GET",
+               "URI":"/venues/explore",
+               "RequiresOAuth":"Y",
+               "parameters":[ 
+                  {
+                     "Name":"ll",
+                     "Required":"Y",
+                     "Default":"44.3,37.2",
+                     "Type":"string",
+                     "Description":"Required unless near is provided. Latitude and longitude of the user's location."
+                  },
+                  {
+                     "Name":"near",
+                     "Required":"Y",
+                     "Default":"Chicago, IL",
+                     "Type":"string",
+                     "Description":"Required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode and adds a geocode object to the response."
+                  },
+                  {
+                     "Name":"llAcc",
+                     "Required":"N",
+                     "Default":"10000.0",
+                     "Type":"float",
+                     "Description":"Accuracy of latitude and longitude, in meters."
+                  },
+                  {
+                     "Name":"alt",
+                     "Required":"N",
+                     "Default":"0",
+                     "Type":"int",
+                     "Description":"Altitude of the user's location, in meters."
+                  },
+                  {
+                     "Name":"altAcc",
+                     "Required":"N",
+                     "Default":"10000.0",
+                     "Type":"float",
+                     "Description":"Accuracy of the user's altitude, in meters."
+                  },
+                  {
+                     "Name":"radius",
+                     "Required":"N",
+                     "Default":"250",
+                     "Type":"int",
+                     "Description":"Radius to search within, in meters. If radius is not specified, a suggested radius will be used based on the density of venues in the area."
+                  },
+                  {
+                     "Name":"section",
+                     "Required":"N",
+                     "Default":"food",
+                     "Type":"string",
+                     "Description":"One of food, drinks, coffee, shops, arts, outdoors, sights, trending or specials, nextVenues (venues frequently visited after a given venue), or topPicks (a mix of recommendations generated without a query from the user). Choosing one of these limits results to venues with the specified category or property."
+                  },
+                  {
+                     "Name":"query",
+                     "Required":"N",
+                     "Default":"donuts",
+                     "Type":"string",
+                     "Description":"A term to be searched against a venue's tips, category, etc. The query parameter has no effect when a section is specified."
+                  },
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"10",
+                     "Type":"int",
+                     "Description":"Number of results to return, up to 50."
+                  },
+                  {
+                     "Name":"offset",
+                     "Required":"N",
+                     "Default":"20",
+                     "Type":"int",
+                     "Description":"Used to page through results."
+                  },
+                  {
+                     "Name":"novelty",
+                     "Required":"N",
+                     "Default":"new",
+                     "Type":"string",
+                     "Description":"Pass new or old to limit results to places the acting user hasn't been or has been, respectively. Omitting this parameter returns a mixture of old and new venues."
+                  },
+                  {
+                     "Name":"friendVisits",
+                     "Required":"N",
+                     "Default":"visited",
+                     "Type":"string",
+                     "Description":"Pass visited or notvisited to limit results to places the acting user's friends have or haven't been, respectively. Omitting this parameter returns a mixture of venues to which the user's friends have or haven't been."
+                  },
+                  {
+                     "Name":"time",
+                     "Required":"N",
+                     "Default":"any",
+                     "Type":"string",
+                     "Description":"Pass any to retrieve results for any time of day. Omitting this parameter returns results targeted to the current time of day."
+                  },
+                  {
+                     "Name":"day",
+                     "Required":"N",
+                     "Default":"any",
+                     "Type":"string",
+                     "Description":"Pass any to retrieve results for any day of the week. Omitting this parameter returns results targeted to the current day of the week."
+                  },
+                  {
+                     "Name":"venuePhotos",
+                     "Required":"N",
+                     "Default":"1",
+                     "Type":"int",
+                     "Description":"Boolean flag to include a photo in the response for each venue, if one is available. Default is 0 (no photos). Photos are returned as part of the venue JSON object."
+                  },
+                  {
+                     "Name":"lastVenue",
+                     "Required":"N",
+                     "Default":"4ef0e7cf7beb5932d5bdeb4e",
+                     "Type":"string",
+                     "Description":"A venue ID to use in combination with the intent=nextVenues parameter, which returns venues users often visit after a given venue. If intent=nextVenues is specified but lastVenue is not, the user's last check-in will be used if it is within 2 hours. If the user has not checked in within the last 2 hours, no results will be returned."
+                  }
+               ]
+            },
+            {
+               "MethodName":"Managed Venues",
+               "Synopsis":"Get a list of venues the current user manages.",
+               "HTTPMethod":"GET",
+               "URI":"/venues/managed",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"100",
+                     "Type":"int",
+                     "Description":"Number of managed venues to return. Defaults to 100, maximum is 1000."
+                  },
+                  {
+                     "Name":"offset",
+                     "Required":"N",
+                     "Default":"500",
+                     "Type":"int",
+                     "Description":"Number of venues to skip over for paging. Defaults to 0."
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

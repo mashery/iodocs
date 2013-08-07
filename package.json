@@ -14,7 +14,8 @@
     "Kelly Miyashiro <kelly@mashery.com.com>",
     "Neil Mansilla <neil@mashery.com>",
     "Mike Squires <msquires@mashery.com>",
-    "Uriah Welcome <uriah@mashery.com>"
+    "Uriah Welcome <uriah@mashery.com>",
+    "Alex Adkins <aadkins@mashery.com>"
   ],
   "repository": {
     "type": "git",
@@ -24,8 +25,8 @@
     "connect-redis": "1.0.6",
     "express": "3.3.1",
     "jade": "0.32.0",
-    "oauth": "0.9.3",
-    "redis": ">= 0.7.0",
+    "oauth": "0.9.10",
+    "redis": "0.8.3",
     "querystring": "0.1.0",
     "supervisor": ">= 0.5.x"
   },

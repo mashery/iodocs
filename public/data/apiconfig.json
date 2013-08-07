@@ -33,6 +33,55 @@
         },
         "keyParam":""
     },
+    "foursquare": {
+        "name": "Foursquare (OAuth 2.0 Auth Code)",
+        "protocol": "https",
+        "baseURL": "api.foursquare.com",
+        "publicPath": "",
+        "privatePath": "/v2",
+        "auth": "oauth2",
+        "oauth2": {
+            "type": "authorization-code",
+            "baseSite": "https://foursquare.com/",
+            "authorizeURL": "oauth2/authenticate",
+            "accessTokenURL": "oauth2/access_token",
+            "customHeaders": "",
+            "tokenName": "oauth_token"
+        },
+        "keyParam":""
+    },
+    "rdio": {
+        "name": "Rdio Beta (OAuth 2.0 Client Credentials)",
+        "protocol": "https",
+        "baseURL": "www.rdio.com",
+        "publicPath": "",
+        "privatePath": "/api/1",
+        "auth": "oauth2",
+        "oauth2": {
+            "type": "client_credentials",
+            "baseSite":"https://www.rdio.com/",
+            "accessTokenURL": "oauth2/token",
+            "customHeaders": "",
+            "authorizationHeader":"Y"
+        },
+        "keyParam":""
+    },
+    "rdio2": {
+        "name": "Rdio Beta (OAuth 2.0 Implicit Grant)",
+        "protocol": "https",
+        "baseURL": "www.rdio.com",
+        "publicPath": "",
+        "privatePath": "/api/1",
+        "auth": "oauth2",
+        "oauth2": {
+            "type": "implicit",
+            "baseSite":"https://www.rdio.com/",
+            "accessTokenURL": "oauth2/authorize",
+            "customHeaders": "",
+            "authorizationHeader":"Y"
+        },
+        "keyParam":""
+    },
     "requestbin": {
         "name": "Requestb.in",
         "protocol": "http",

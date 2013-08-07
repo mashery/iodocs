@@ -1,0 +1,313 @@
+{
+   "endpoints":[
+      {
+         "name":"Activity Methods",
+         "methods":[
+            {
+               "MethodName":"getActivityStream",
+               "Synopsis":"Gets the activity events for a user, a user's friends, or everyone on Rdio.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getActivityStream",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"user",
+                     "Required":"Y",
+                     "Default":"s3828768",
+                     "Type":"string",
+                     "Description":"The user to retrieve an activity stream for." 
+                  },
+                  {
+                     "Name":"scope",
+                     "Required":"Y",
+                     "Default":"user",
+                     "Type":"string",
+                     "Description":"The scope of the activity stream, either “user”, “friends” or “everyone”."
+                  }
+               ]
+            },
+            {
+               "MethodName":"getHeavyRotation",
+               "Synopsis":"Find the msot popular content for a user, their friends or the whole site.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getHeavyRotation",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"user",
+                     "Required":"N",
+                     "Default":"s3828768",
+                     "Type":"object key",
+                     "Description":"The user, or everyone if this is missing." 
+                  },
+                  {
+                     "Name":"type",
+                     "Required":"N",
+                     "Default":"albums",
+                     "Type":"enum",
+                     "Description":"Type of content to return."
+                  },
+                  {
+                     "Name":"friends",
+                     "Required":"N",
+                     "Default":"false",
+                     "Type":"string",
+                     "Description":"The user's friend's heavy rotation instead of the user's. true/false"
+                  },
+                  {
+                     "Name":"limit",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"int",
+                     "Description":"The maximum number of results to return."
+                  },
+                  {
+                     "Name":"start",
+                     "Required":"N",
+                     "Default":"0",
+                     "Type":"int",
+                     "Description":"The offset of the first result to return."
+                  },
+                  {
+                     "Name":"count",
+                     "Required":"N",
+                     "Default":"10",
+                     "Type":"int",
+                     "Description":"The maximum number of results to return."
+                  },
+                  {
+                     "Name":"extras",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string list",
+                     "Description":"A list of additional fields to return - a list, comma separated."
+                  }
+               ]
+            },
+            {
+               "MethodName":"getNewReleases",
+               "Synopsis":"Return new albums released across a timeframe.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getNewReleases",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"time",
+                     "Required":"N",
+                     "Default":"thisweek",
+                     "Type":"enum",
+                     "Description":"Timeframe. Examples: thisweek, overview, lastweek, twoweeks." 
+                  },
+                  {
+                     "Name":"start",
+                     "Required":"N",
+                     "Default":"0",
+                     "Type":"int",
+                     "Description":"The offset of the first result to return."
+                  },
+                  {
+                     "Name":"count",
+                     "Required":"N",
+                     "Default":"20",
+                     "Type":"int",
+                     "Description":"The maximum number of results to return."
+                  },
+                  {
+                     "Name":"extras",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string list",
+                     "Description":"A list of additional fields to return - a list, comma separated."
+                  }
+               ]
+            },
+            {
+               "MethodName":"getTopCharts",
+               "Synopsis":"Return the site-wide most popular items for a given type.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getTopCharts",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"type",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"object type",
+                     "Description":"Type to include in results - An object type name. Examples: Album, Artist, Playlist, Track" 
+                  },
+                  {
+                     "Name":"start",
+                     "Required":"N",
+                     "Default":"0",
+                     "Type":"int",
+                     "Description":"The offset of the first result to return."
+                  },
+                  {
+                     "Name":"count",
+                     "Required":"N",
+                     "Default":"20",
+                     "Type":"int",
+                     "Description":"The maximum number of results to return."
+                  },
+                  {
+                     "Name":"extras",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string list",
+                     "Description":"A list of additional fields to return - a list, comma separated."
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Catalog",
+         "methods":[
+            {
+               "MethodName":"getAlbumsByUPC",
+               "Synopsis":"Finds and returns albums based on their Universal Product Code (UPC).",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getAlbumsByUPC",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"user",
+                     "Required":"Y",
+                     "Default":"s422965",
+                     "Type":"string",
+                     "Description":"The user."
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Playlists",
+         "methods":[
+            {
+               "MethodName":"getPlaylists",
+               "Synopsis":"Returns a user’s playlists. If no user is specified then the current user will be used.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"getPlaylists",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"user",
+                     "Required":"Y",
+                     "Default":"s422965",
+                     "Type":"string",
+                     "Description":"The user."
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Social",
+         "methods":[
+            {
+               "MethodName":"currentUser",
+               "Synopsis":"Get information about the currently logged in user.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"currentUser",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"extras",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string list",
+                     "Description":"a list of additional fields to return – a list, comma separated." 
+                  }
+               ]
+            },
+            {
+               "MethodName":"findUser",
+               "Synopsis":"Find a user either by email address or by their username. Exactly one of email or vanityName must be supplied.",
+               "HTTPMethod":"POST",
+               "URI":"",
+               "RequiresOAuth":"Y",
+               "parameters":[
+                  {
+                     "Name":"method",
+                     "Required":"Y",
+                     "Default":"findUser",
+                     "Type":"string",
+                     "Description":"Method name."
+                  },
+                  {
+                     "Name":"email",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"An email address." 
+                  },
+                  {
+                     "Name":"vanityName",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A username." 
+                  },
+                  {
+                     "Name":"extras",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string list",
+                     "Description":"A list of additional fields to return – a list, comma separated." 
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

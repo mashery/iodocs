@@ -60,6 +60,12 @@ cp config.json.sample config.json
 ```
 The defaults will work, but feel free to change them.
 
+**Run a Redis instance:**
+
+```
+redis-server
+```
+
 **Start I/O Docs**:
 
 ```
@@ -376,6 +382,110 @@ Line:
     method.
 
 19. Closing curly bracket for main object.
+
+
+---
+
+
+### Example #4 - Foursquare API config that uses Authorization Code OAuth 2
+
+```js
+"foursquare": {
+    "name": "Foursquare (OAuth 2.0 Auth Code)",
+    "protocol": "https",
+    "baseURL": "api.foursquare.com",
+    "publicPath": "",
+    "privatePath": "/v2",
+    "auth": "oauth2",
+    "oauth2": {
+        "type": "authorization-code",
+        "baseSite": "https://foursquare.com/",
+        "authorizeURL": "oauth2/authenticate",
+        "accessTokenURL": "oauth2/access_token",
+        "tokenName": "oauth_token",
+        "authorizationHeader":"N"
+    },
+    "keyParam":""
+}
+```
+
+Line:
+
+1. Handle of the API. It is used to pull up the client
+    interface in the URL:
+
+    Ex: http://localhost:3000/foursquare
+
+2. "name" key value is a string that holds the name
+    of the API that is used in the Jade template output.
+
+3. "protocol" key value contains either *http* or *https*,
+    but you're welcome to try other protocols.
+
+4. "baseURL" key value is the base URL that accepts
+    the API calls (should not include protocol)
+
+5. "publicPath" key value is the path prefix prepended
+    to all method URIs for non-protected method resources.
+    This value often includes the version in RESTful APIs.
+
+    Ex: "/v1", "/1", etc.
+
+6. "privatePath" key value is the path prefix prepended
+    to all method URIs for OAuth2 protected method resources.
+    This value is most often the version in RESTful APIs.
+
+    Ex: "/v1", "/1", etc.
+
+9. "auth" key value is set to "oauth2" when OAuth2 is the
+    authentication mechanism. Field is required.
+
+10. "oauth" key value is a JSON object that contains the
+    OAuth implementation details for this API. Field is
+    required when "auth" value is "oauth".
+
+11. "type" key value is the OAuth 2 authorization flow
+    used for this API. Valid values are "authorization-code", 
+    "client_credentials", and "implicit", named for each grant
+    found here: "http://tools.ietf.org/html/rfc6749". 
+
+12. "baseSite" key value is the base website URL used in
+    the OAuth 2 dance. It is required.
+
+13. "authorizeURL" key value is the url string used to 
+    retrieve the authorization token in the 
+    "authorization-code" OAuth 2 flow. This is not necessary 
+    in any other OAuth 2 flow.
+
+14. "accessTokenURL" key value is the url string used to 
+    retrieve the access (Bearer) token in any OAuth 2 flow.
+    This is required in all OAuth 2 flows. 
+
+15. "tokenName" key value if the API does not use "access_token"
+    as the default token name when making calls with the 
+    access token in the url query parameters. Not required if 
+    "access_token" is used. 
+
+16. "authorizationHeader" must by "Y" if the access (Bearer)
+    token is sent through the request header as 
+    "Authorization: Bearer access_token". Only required if this
+    is the case.
+
+17. Closing curly bracket for "oauth2" JSON object. 
+
+18. "keyParam" key value is blank when OAuth 2 is the authentication
+    method.
+
+19. Closing curly bracket for main object.
+
+Additional Note: All redirect URIs for the Foursquare API & your 
+Foursqare app must be set through the Foursquare developer site. 
+For the iodocs Foursquare API test these URIs are :
+"http://localhost:3000/foursquare", "http://localhost:3000/oauth2Success/foursquare"
+
+For the Rdio API test, beta access to their new API is necessary. 
+The site for the beta API is: "http://www.rdio.com/developers/"
+
 
 
 API-LEVEL CONFIG DETAILS

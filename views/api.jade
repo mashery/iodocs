@@ -3,43 +3,56 @@ block content
   h1=apiInfo.name
   - if (session.authed && apiInfo.oauth && apiInfo.oauth.type =='three-legged')
       - var authed ='authed'
+  - else if (session.authed && apiInfo.oauth2)
+      - var authed ='authed'
   - else
       - var authed =''
-
 
   form#credentials
       input(type='hidden', name='apiName', value=apiName)
       - if (apiInfo.auth)
           section(class='credentials ' + authed)
-           - if (authed && apiInfo.oauth)
-               span Authenticated with OAuth
-               img(src='/images/accept.png')
-           - else
-               h2 API Credentials
-                 img(src='/images/key.png')
+              - if (apiInfo.oauth)
+                  input(type='hidden', name='oauth', value='authrequired')
+              - else if (apiInfo.oauth2)
+                  input(type='hidden', name='oauth2', value='authrequired')
 
-               - if (apiInfo.oauth)
-                   input(type='hidden', name='oauth', value='authrequired')
+              - if (apiInfo.auth.defaultKey)
+                  - var defaultKey =apiInfo.auth.defaultKey
+              - else
+                  - var defaultKey =''
 
-               - if (apiInfo.auth.defaultKey)
-                   - var defaultKey =apiInfo.auth.defaultKey
-               - else
-                   - var defaultKey =''
+              - if (apiInfo.auth.defaultSecret)
+                  - var defaultSecret =apiInfo.auth.defaultSecret
+              - else
+                  - var defaultSecret =''
+              div
+                  - if (apiInfo.oauth || apiInfo.oauth2)
+                      label(for='key') Client ID
+                  - else
+                    label(for='key') API Key
+                  input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
+              div
+                  - if (apiInfo.oauth || apiInfo.oauth2)
+                      label(for='secret') Client Secret
+                      input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
+                  - if (apiInfo.signature)
+                      label(for='secret') Shared Secret
+                      input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
+              - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
+                  div
+                     input(name='oauth', value='Authenticate with OAuth', type='submit', id='oauth-auth')
+              - else if (apiInfo.oauth2)
+                  div
+                     input(name='oauth', value='Authenticate with OAuth2', type='submit', id='oauth-auth')
+              div(id='oauthAuthenticated', style='display:none')
+                  br
+                  span(style='vertical-align:botttom') Authenticated with OAuth
+                      img(src='/images/accept.png')
+              - if (authed && (apiInfo.oauth || apiInfo.oauth2))
+                  script.
+                      document.getElementById('oauthAuthenticated').style.display = 'block';
 
-               - if (apiInfo.auth.defaultSecret)
-                   - var defaultSecret =apiInfo.auth.defaultSecret
-               - else
-                   - var defaultSecret =''
-               div
-                   label(for='key') API Key
-                   input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
-               div
-                   - if (apiInfo.oauth || apiInfo.signature)
-                       label(for='secret') Shared Secret
-                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
-               - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
-                   div
-                      input(name='oauth', value='Authenticate with OAuth', type='submit', id='oauth-auth')
 
   div(id='controls')
       ul
@@ -75,11 +88,13 @@ block content
                               input(type='hidden', name='httpMethod', value=method.HTTPMethod)
                               input(type='hidden', name='oauth', value=secure)
                               input(type='hidden', name='methodUri', value=method.URI)
+                              input(type='hidden', name='accessToken', id='accessToken')
 
                               span.description !{method.Synopsis}
                               br
                               br
-                              - if (method.parameters.length > 0)
+                              //- if (method.parameters.length > 0)
+                              - if (method.parameters)
                                   table.parameters
                                       thead
                                           tr
