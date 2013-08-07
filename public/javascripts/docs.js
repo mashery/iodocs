@@ -153,6 +153,8 @@
     $('#credentials').submit(function(event) {
         event.preventDefault();
         var params = $(this).serializeArray();
+        $('#oauthAuthenticated').hide();
+        $('section.credentials').removeClass('authed');
         if (params[1].name == 'oauth') {
             $.post('/auth', params, function(result) {
                 if (result.signin) {

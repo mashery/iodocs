@@ -3,10 +3,10 @@ block content
   h1= title
   - if (apiInfo.oauth)
       script.
-        window.parent.opener.livedocs.authSuccess('Authenticated with OAuth'); //Indicate to the parent page
+        window.parent.opener.livedocs.authSuccess(); //Indicate to the parent page
         window.close();
-  - else
+  - else (apiInfo.oauth2)
       script.
         var accToken = window.location.hash;
-        window.parent.opener.livedocs.authSuccess('Authenticated with OAuth2', accToken); //Indicate to the parent page
+        window.parent.opener.livedocs.authSuccess(accToken); //Indicate to the parent page
         window.close();
