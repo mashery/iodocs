@@ -235,7 +235,7 @@ function oauth2(req, res, next){
 
             db.set(key + ':apiKey', apiKey, redis.print);
             db.set(key + ':apiSecret', apiSecret, redis.print);
-            db.set(key + ':baseURL', req.headers.referer, redis.print);
+            db.set(key + ':baseURL', callbackURL, redis.print);
 
             // Set expiration to same as session
             db.expire(key + ':apiKey', 1209600000);
