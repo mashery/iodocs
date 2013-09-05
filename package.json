@@ -38,6 +38,6 @@
   },
   "scripts": {
     "start": "node_modules/.bin/supervisor -e 'js|json' app",
-	"startwin": "supervisor -e 'js' app"
+    "startwin": "supervisor -e 'js' app"
   }
 }
