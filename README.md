@@ -69,8 +69,10 @@ redis-server
 **Start I/O Docs**:
 
 ```
-npm start
+npm start (*nix, Mac OSX)
+npm run-script startwin (Windows)
 ```
+
 
 **Point your browser** to: [localhost:3000](http://localhost:3000)
 
