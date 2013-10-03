@@ -968,6 +968,7 @@ app.post('/processReq', oauth, processRequest, function(req, res) {
         call: req.call,
         code: req.res.statusCode
     };
+    req.res.statusCode = 200;
     res.send(result);
 });
 

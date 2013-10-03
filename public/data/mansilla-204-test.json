@@ -1,0 +1,18 @@
+{
+   "endpoints":[
+      {
+         "name":"HTTP Status Methods",
+         "methods":[
+            {
+               "MethodName":"204 test",
+               "Synopsis":"This method will respond with the 204 code",
+               "HTTPMethod":"GET",
+               "URI":"/204.cgi",
+               "RequiresOAuth":"N",
+               "parameters":[
+               ]
+            }
+         ]
+      }
+   ]
+}

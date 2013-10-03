@@ -1,4 +1,13 @@
 {
+    "mansilla-204-test": {
+        "name": "mansilla-204-test",
+        "protocol": "http",
+        "baseURL": "mansilla.com",
+        "publicPath": "",
+        "headers" : {},
+        "auth": "",
+        "keyParam": ""
+    },
     "klout": {
         "name": "Klout v2 API",
         "protocol": "http",
