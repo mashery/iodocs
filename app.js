@@ -266,7 +266,10 @@ function oauth2(req, res, next){
             var encoded_basic = new Buffer(basic_cred).toString('base64')
  
             http_method = (apiConfig.oauth2.authorizationHeader == 'Y') ? "POST" : "GET";
-            header = (apiConfig.oauth2.authorizationHeader == 'Y') ? {'Authorization' : 'Basic ' + encoded_basic} : '';
+            header = { 'Content-Type': 'application/x-www-form-urlencoded' };
+            if ( apiConfig.oauth2.authorizationHeader == 'Y' ) {
+              header[ 'Authorization' ] = 'Basic ' + encoded_basic;
+            }
             fillerpost = query.stringify({grant_type : "client_credentials", client_id : apiKey, client_secret : apiSecret});
 
             db.set(key + ':apiKey', apiKey, redis.print);
