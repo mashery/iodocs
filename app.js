@@ -27,6 +27,7 @@
 var express     = require('express'),
     util        = require('util'),
     fs          = require('fs'),
+    path        = require('path'),
     OAuth       = require('oauth').OAuth,
     OAuth2      = require('oauth/lib/oauth2').OAuth2,
     query       = require('querystring'),
@@ -70,8 +71,14 @@ db.on("error", function(err) {
 // Load API Configs
 //
 
+config.apiConfigDir = path.resolve(config.apiConfigDir || 'public/data');
+if (!fs.existsSync(config.apiConfigDir)) {
+    console.error("Could not find API config directory: " + config.apiConfigDir);
+    process.exit(1);
+}
+
 try {
-    var apisConfig = require('./public/data/apiconfig.json');
+    var apisConfig = require(path.join(config.apiConfigDir, 'apiconfig.json'));
     if (config.debug) {
         console.log(util.inspect(apisConfig));
     }
@@ -920,7 +927,7 @@ function checkPathForAPI(req, res, next) {
         // If api wasn't passed in as a parameter, check the path to see if it's there
         var pathName = req.url.replace('/','');
         // Is it a valid API - if there's a config file we can assume so
-        fs.stat(__dirname + '/public/data/' + pathName + '.json', function (error, stats) {
+        fs.stat(path.join(config.apiConfigDir, pathName + '.json'), function (error, stats) {
             if (stats) {
                 req.params.api = pathName;
             }
@@ -938,7 +945,7 @@ function dynamicHelpers(req, res, next) {
     if (req.params.api) {
         res.locals.apiInfo = apisConfig[req.params.api];
         res.locals.apiName = req.params.api;
-        res.locals.apiDefinition = require(__dirname + '/public/data/' + req.params.api + '.json');
+        res.locals.apiDefinition = require(path.join(config.apiConfigDir, req.params.api + '.json'));
         // If the cookie says we're authed for this particular API, set the session to authed as well
         if (req.session[req.params.api] && req.session[req.params.api]['authed']) {
             req.session['authed'] = true;

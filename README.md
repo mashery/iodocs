@@ -76,6 +76,11 @@ npm run-script startwin (Windows)
 
 **Point your browser** to: [localhost:3000](http://localhost:3000)
 
+CONFIGURING API DEFINITION LOCATION
+-----------------------------------
+API definitions are, by default, stored in `./public/data/` and described by `./public/data/apiconfig.json`. This can
+be overridden in `config.json` by setting the `"apiConfigDir"` property.
+
 
 BASIC AUTH FOR SERVER
 ---------------------
