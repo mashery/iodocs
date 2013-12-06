@@ -519,7 +519,7 @@ function processRequest(req, res, next) {
 
                 // If the param is actually a part of the URL, put it in the URL and remove the param
                 if (!!regx.test(methodURL)) {
-                    methodURL = methodURL.replace(regx, params[param]);
+                    methodURL = methodURL.replace(regx, encodeURIComponent(params[param]));
                     delete params[param]
                 }
             } else {
