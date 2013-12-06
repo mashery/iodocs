@@ -102,6 +102,7 @@ app.configure(function() {
             'host':   config.redis.host,
             'port':   config.redis.port,
             'pass':   config.redis.password,
+            'db'  :   config.redis.database,
             'maxAge': 1209600000
         })
     }));
