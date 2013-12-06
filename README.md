@@ -134,12 +134,37 @@ Example:
                             "Description": "Description of the first parameter."
                         }
                     ]
+                },
+                {
+                    "MethodName": "Method A1 User",
+                    "Synopsis": "Grabs information from the A1 data set for a specific user",
+                    "HTTPMethod": "GET",
+                    "URI": "/a1/grab/:userId",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "param_1_name",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Description of the first parameter."
+                        },
+                        {
+                            "Name": "userId",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The userId parameter that is in the URI."
+                        }
+                    ]
                 }
             ]
         }
     ]
 }
 ```
+
+By default the parameters are added to the query string. But if the URI contains a named variable, it will substitute the value in the path.
 
 TOP-LEVEL SERVICE CONFIG DETAILS - apiconfig.json
 -------------------------------------------------
