@@ -5,14 +5,14 @@
     "apiConfigDir" : "./public/data/",
     "debug" : false,
     "sessionSecret" : "12345",
-    "basicAuth": {
-        "username":"",
-        "password":""
+    "basicAuth" : {
+        "username" : "",
+        "password" : ""
     },
     "redis" : {
-                "host" : "localhost",
-                "port" : 6379,
-                "password" : "",
-                "database" : "0"
-             }
+        "host" : "localhost",
+        "port" : 6379,
+        "password" : "",
+        "database" : "0"
+    }
 }
