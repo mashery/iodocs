@@ -2,6 +2,7 @@
     "title" : "I/O Docs - http://github.com/mashery/iodocs",
     "address": "0.0.0.0",
     "port" : 3000,
+    "apiConfigDir" : "./public/data/",
     "debug" : false,
     "sessionSecret" : "12345",
     "basicAuth": {
