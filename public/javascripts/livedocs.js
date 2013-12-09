@@ -1,6 +1,6 @@
 var livedocs = (function() {
 
-    ld = {};
+    var ld = {};
 
     /**
      * Convert ugly data into pretty data based on the content-type.
@@ -36,7 +36,7 @@ var livedocs = (function() {
         }
 
         return data;
-    }
+    };
 
     /**
      * Handle OAuth success callback
@@ -47,8 +47,8 @@ var livedocs = (function() {
         if (token) {
             $('#accessToken').val(token.match(/access_token\=([^&]+)[&]?/)[1]);
         }
-    }
+    };
 
     return ld;
-}(livedocs || {}));
+}());
 
