@@ -534,7 +534,7 @@ function processRequest(req, res, next) {
     }
     for (var customHeader in customHeaders) {
         if (customHeaders.hasOwnProperty(customHeader)) {
-            headers[customHeader] = apiConfig.headers[customHeader];
+            headers[customHeader] = customHeaders[customHeader];
         }
     }
 
