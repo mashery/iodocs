@@ -821,7 +821,7 @@ function processRequest(req, res, next) {
         if(options.headers === void 0){
             options.headers = {}
         }
-        if (!options.headers['Content-Length']) {
+        if (['POST','PUT'].indexOf(httpMethod) !== -1 && !options.headers['Content-Length']) {
             if (requestBody) {
                 options.headers['Content-Length'] = requestBody.length;
             }
