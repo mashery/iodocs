@@ -682,6 +682,19 @@ li {
   border-bottom: 1px solid #e3c399;
 }
 
+.patch {
+  background: #fce9e3;
+  border-color: #f5d5c3;
+}
+
+.patch .http-method {
+  background-color: #d38042;
+}
+
+.patch th, .patch td {
+  border-bottom: 1px solid #e3c399;
+}
+
 .delete {
   background: #f5e8e8;
   border-color: #deb3b3;
