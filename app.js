@@ -50,6 +50,7 @@ try {
 // Redis connection
 //
 var defaultDB = '0';
+if(config.redis) {
 config.redis.database = config.redis.database || defaultDB;
 
 if (process.env.REDISTOGO_URL) {
@@ -67,6 +68,7 @@ db.on("error", function(err) {
          console.log("Error " + err);
     }
 });
+}
 
 //
 // Load API Configs
@@ -97,6 +99,7 @@ app.configure(function() {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser());
+if(config.redis) {
     app.use(express.session({
         secret: config.sessionSecret,
         store:  new RedisStore({
@@ -107,6 +110,11 @@ app.configure(function() {
             'maxAge': 1209600000
         })
     }));
+} else {
+    app.use(express.session({
+        secret: config.sessionSecret
+    }));
+} 
 
     // Global basic authentication on server (applied if configured)
     if (config.basicAuth && config.basicAuth.username && config.basicAuth.password) {
