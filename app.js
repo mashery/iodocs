@@ -38,11 +38,26 @@ var express     = require('express'),
     redis       = require('redis'),
     RedisStore  = require('connect-redis')(express);
 
+// Parse arguments
+var optimist = require('optimist')
+        .usage('Usage: $0 --config-file [file]')
+        .alias('c', 'config-file')
+        .alias('h', 'help')
+        .describe('c', 'Specify the config file location')
+        .default('c', './config.json');
+var argv = optimist.argv;
+
+if (argv.help) {
+    optimist.showHelp();
+    process.exit(0);
+}
+
 // Configuration
+var configFilePath = path.resolve(argv['config-file']);
 try {
-    var config = require('./config.json');
+    var config = require(configFilePath);
 } catch(e) {
-    console.error("File config.json not found or is invalid.  Try: `cp config.json.sample config.json`");
+    console.error("File " + configFilePath + " not found or is invalid.  Try: `cp config.json.sample config.json`");
     process.exit(1);
 }
 

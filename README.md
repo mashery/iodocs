@@ -73,6 +73,15 @@ npm start (*nix, Mac OSX)
 npm run-script startwin (Windows)
 ```
 
+**Start I/O Docs with a custom config file**:
+
+```
+./node_modules/.bin/supervisor -e 'js|json' -- app --config-file ../config.json (*nix, Mac OSX)
+supervisor -e 'js' -- app --config-file ../config.json (Windows)
+```
+
+Ideally, the `--config-file` arg would be possible to use with `npm start`, but until
+[npm issue #3494](https://github.com/isaacs/npm/issues/3494) is resolved, this is not supported.
 
 **Point your browser** to: [localhost:3000](http://localhost:3000)
 
