@@ -1,10 +1,8 @@
-(function() {
+(function($) {
 
     // Storing common selections
     var allEndpoints = $('li.endpoint'),
-        allEndpointsLength = allEndpoints.length,
-        allMethodLists = $('ul.methods'),
-        allMethodListsLength = allMethodLists.length;
+        allEndpointsLength = allEndpoints.length;
 
     function listMethods(context) {
         var methodsList = $('ul.methods', context || null);
@@ -17,43 +15,47 @@
     // Toggle show/hide of method details, form, and results
     $('li.method > div.title').click(function() {
         $('form', this.parentNode).slideToggle();
-    })
+    });
 
     // Toggle an endpoint
     $('li.endpoint > h3.title span.name').click(function() {
         $('ul.methods', this.parentNode.parentNode).slideToggle();
         $(this.parentNode.parentNode).toggleClass('expanded')
-    })
+    });
 
     // Toggle all endpoints
     $('#toggle-endpoints').click(function(event) {
         event.preventDefault();
 
+        function expandEndpoint(methodsList) {
+            methodsList.slideDown();
+            methodsList.parent().toggleClass('expanded', true);
+        }
+        function collapseEndpoint(methodsList) {
+            methodsList.slideUp();
+            methodsList.parent().toggleClass('expanded', false);
+        }
+
         // Check for collapsed endpoints (hidden methods)
         var endpoints = $('ul.methods:not(:visible)'),
-            endpointsLength = endpoints.length;
+            endpointsLength = endpoints.length,
+            action;
 
         if (endpointsLength > 0) {
             // Some endpoints are collapsed, expand them.
-            for (var x = 0; x < endpointsLength; x++) {
-                var methodsList = $(endpoints[x]);
-                methodsList.slideDown();
-                methodsList.parent().toggleClass('expanded', true)
-
-            }
+            action = expandEndpoint;
         } else {
             // All endpoints are expanded, collapse them
-            var endpoints = $('ul.methods'),
-                endpointsLength = endpoints.length;
-
-            for (var x = 0; x < endpointsLength; x++) {
-                var methodsList = $(endpoints[x]);
-                methodsList.slideUp();
-                methodsList.parent().toggleClass('expanded', false)
-            }
+            endpoints = $('ul.methods');
+            endpointsLength = endpoints.length;
+            action = collapseEndpoint;
         }
 
-    })
+        for (var x = 0; x < endpointsLength; x++) {
+            var methodsList = $(endpoints[x]);
+            action(methodsList);
+        }
+    });
 
     // Toggle all methods
     $('#toggle-methods').click(function(event) {
@@ -90,7 +92,7 @@
         for (var z = 0; z < allEndpointsLength; z++) {
             $(allEndpoints[z]).toggleClass('expanded', true);
         }
-    })
+    });
 
     // List methods for a particular endpoint.
     // Hide all forms if visible
@@ -106,15 +108,14 @@
         // Make sure all method forms are collapsed
         var visibleMethods = $.grep(methods, function(method) {
             return $(method).is(':visible')
-        })
+        });
 
         $(visibleMethods).each(function(i, method) {
             $(method).slideUp();
-        })
+        });
 
         $(endpoint).toggleClass('expanded', true);
-
-    })
+    });
 
     // Expand methods for a particular endpoint.
     // Show all forms and list all methods
@@ -130,14 +131,13 @@
         // Make sure all method forms are expanded
         var hiddenMethods = $.grep(methods, function(method) {
             return $(method).not(':visible')
-        })
+        });
 
         $(hiddenMethods).each(function(i, method) {
             $(method).slideDown();
-        })
+        });
 
         $(endpoint).toggleClass('expanded', true);
-
     });
 
     // Toggle headers section
@@ -161,8 +161,7 @@
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
                 }
             })
-        }
-        else if (params[1].name == 'oauth2') {
+        } else if (params[1].name == 'oauth2') {
             $.post('/auth2', params, function(result) {
                 if (result.signin) {
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
@@ -177,7 +176,7 @@
                     window.location.reload();
                 }
             })
-        };
+        }
     });
     
     // $.('#access_token').val(foo);
@@ -208,7 +207,7 @@
         if ($('pre.response', resultContainer).length === 0) {
 
             // Clear results link
-            var clearLink = $(document.createElement('a'))
+            $(document.createElement('a'))
                 .text('Clear results')
                 .addClass('clear-results')
                 .attr('href', '#')
@@ -262,7 +261,7 @@
                 var response,
                     responseContentType = result.headers['content-type'];
                 // Format output according to content-type
-                response = livedocs.formatData(result.response, result.headers['content-type'])
+                response = livedocs.formatData(result.response, responseContentType);
 
                 $('pre.response', resultContainer)
                     .toggleClass('error', false)
@@ -296,8 +295,7 @@
             var response;
 
             if (err.responseText !== '') {
-                var result = JSON.parse(err.responseText),
-                    headers = formatJSON(result.headers);
+                var result = JSON.parse(err.responseText);
 
                 if (result.headers && result.headers['content-type']) {
                     // Format the result.response and assign it to response
@@ -316,4 +314,4 @@
         })
     })
 
-})();
+})(jQuery);

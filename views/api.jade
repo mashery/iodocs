@@ -83,7 +83,7 @@ block content
                       li(class='method ' + httpmethod + ' ' + secure)
                           div.title.clickable
                               - var methodLink = (endpoint.name + '-' + method.HTTPMethod + '-' + method.MethodName).replace(/\s/g, '-')
-                              a(href='#'+methodLink) 
+                              a(href='#'+methodLink)
                               span.http-method !{method.HTTPMethod}
                               span.name !{method.MethodName}
                               span.uri !{method.URI}
@@ -138,6 +138,14 @@ block content
                                                                              option(value=choice, selected=true) #{choice}
                                                                      - else
                                                                              option(value=choice) #{choice}
+                                                        - else if (parameter.Type =='text')
+                                                            textarea(name='params[' + parameter.Name + ']', placeholder=className)
+                                                               if (parameter.Default)
+                                                                  | #{parameter.Default}
+                                                            input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
+                                                        - else if (parameter.Type =='password')
+                                                            input(type='password', name='params[' + parameter.Name + ']', value=parameter.Default)
+                                                            input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
                                                         - else
                                                             input(name='params[' + parameter.Name + ']', value=parameter.Default, placeholder=className)
                                                             input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')

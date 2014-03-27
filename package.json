@@ -15,7 +15,8 @@
     "Neil Mansilla <neil@mashery.com>",
     "Mike Squires <msquires@mashery.com>",
     "Uriah Welcome <uriah@mashery.com>",
-    "Alex Adkins <aadkins@mashery.com>"
+    "Alex Adkins <aadkins@mashery.com>",
+    "Rowan Hill https://github.com/rowanhill"
   ],
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "oauth": "0.9.10",
     "redis": "0.8.3",
     "querystring": "0.1.0",
-    "supervisor": ">= 0.5.x"
+    "supervisor": ">= 0.5.x",
+    "optimist": ">= 0.6.0"
   },
   "devDependencies": {},
   "main": "index",
