@@ -35,6 +35,7 @@ var express     = require('express'),
     http        = require('http'),
     https       = require('https'),
     crypto      = require('crypto'),
+    clone       = require('clone'),
     redis       = require('redis'),
     RedisStore  = require('connect-redis')(express);
 
@@ -564,7 +565,7 @@ function processRequest(req, res, next) {
     var paramString = query.stringify(params),
         privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
-            headers: headers,
+            headers: clone(apiConfig.headers),
             protocol: apiConfig.protocol + ':',
             host: baseHostUrl,
             port: baseHostPort,
