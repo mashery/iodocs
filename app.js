@@ -1018,9 +1018,13 @@ app.get('/:api([^\.]+)', function(req, res) {
 // Only listen on $ node app.js
 
 if (!module.parent) {
-    var port = process.env.PORT || config.port;
-    var l = app.listen(port);
-    l.on('listening', function(err) {
-        console.log("Express server listening on port %d", port);
-    });
+    if (typeof config.socket != "undefined") {
+        var args = [config.socket];
+        console.log("Express server starting on UNIX socket %s", args[0]);
+    } else {
+        var args = [process.env.PORT || config.port, config.address];
+        console.log("Express server starting on %s:%d", args[1], args[0]);
+    }
+
+    app.listen.apply(app, args);
 }
