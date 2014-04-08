@@ -76,7 +76,7 @@ if (process.env.REDISTOGO_URL || process.env.REDIS_URL) {
     config.redis.password = rtg.auth && rtg.auth.split(":")[1] ? rtg.auth.split(":")[1] : '';
 }
 
-var db = redis.createClient(config.redis.port || process.env.REDIS_PORT_6379_TCP_PORT, config.redis.host || process.env.REDIS_PORT_6379_TCP_PORT);
+var db = redis.createClient(config.redis.port, config.redis.host);
 db.auth(config.redis.password);
 
 db.on("error", function(err) {
