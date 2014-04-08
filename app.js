@@ -40,16 +40,16 @@ var express     = require('express'),
     RedisStore  = require('connect-redis')(express);
 
 // Parse arguments
-var optimist = require('yargs')
+var yargs = require('yargs')
         .usage('Usage: $0 --config-file [file]')
         .alias('c', 'config-file')
         .alias('h', 'help')
         .describe('c', 'Specify the config file location')
         .default('c', './config.json');
-var argv = optimist.argv;
+var argv = yargs.argv;
 
 if (argv.help) {
-    optimist.showHelp();
+    yargs.showHelp();
     process.exit(0);
 }
 
