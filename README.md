@@ -19,9 +19,11 @@ BUILD/RUNTIME DEPENDENCIES
 --------------------------
 1. Node.js - server-side JS engine
 2. npm - node package manager
-3. Redis - key+value storage engine
+3. Redis - key+value storage engine 
 
-Note: Node and some of the modules require compiler (like gcc). If you are on a Mac, you will need to install XCode. If you're on Linux, you'll need to install build-essentials, or something equivalent.
+Build note: If you're not using a package manager, Node and some of the modules require compiler (like gcc). If you are on a Mac, you will need to install XCode. If you're on Linux, you'll need to install build-essentials, or something equivalent.
+
+Redis note: Redis is considered a runtime dependency. It is used to store OAuth information server side. If you are not implementing OAuth, redis is not required. You can simply remove the redis block from config.json. However, if you do implement OAuth down the road, you will need to use Redis, otherwise you will see 500 errors during the auth dance.
 
 INSTALLATION INSTRUCTIONS FOR NODE, NPM & REDIS
 -----------------------------------------------
