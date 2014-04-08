@@ -31,7 +31,7 @@
     "redis": "0.8.3",
     "querystring": "0.1.0",
     "supervisor": ">= 0.5.x",
-    "optimist": ">= 0.6.0"
+    "yargs": ">= 1.2.1"
   },
   "devDependencies": {},
   "main": "index",

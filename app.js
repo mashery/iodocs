@@ -40,16 +40,16 @@ var express     = require('express'),
     RedisStore  = require('connect-redis')(express);
 
 // Parse arguments
-var optimist = require('optimist')
+var yargs = require('yargs')
         .usage('Usage: $0 --config-file [file]')
         .alias('c', 'config-file')
         .alias('h', 'help')
         .describe('c', 'Specify the config file location')
         .default('c', './config.json');
-var argv = optimist.argv;
+var argv = yargs.argv;
 
 if (argv.help) {
-    optimist.showHelp();
+    yargs.showHelp();
     process.exit(0);
 }
 
@@ -69,11 +69,11 @@ var defaultDB = '0';
 if(config.redis) {
 config.redis.database = config.redis.database || defaultDB;
 
-if (process.env.REDISTOGO_URL) {
-    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+if (process.env.REDISTOGO_URL || process.env.REDIS_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL || process.env.REDIS_URL);
     config.redis.host = rtg.hostname;
     config.redis.port = rtg.port;
-    config.redis.password = rtg.auth.split(":")[1];
+    config.redis.password = rtg.auth && rtg.auth.split(":")[1] ? rtg.auth.split(":")[1] : '';
 }
 
 var db = redis.createClient(config.redis.port, config.redis.host);
