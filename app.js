@@ -71,7 +71,6 @@ config.redis.database = config.redis.database || defaultDB;
 
 if (process.env.REDISTOGO_URL || process.env.REDIS_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL || process.env.REDIS_URL);
-  console.log(rtg);
     config.redis.host = rtg.hostname;
     config.redis.port = rtg.port;
     config.redis.password = rtg.auth && rtg.auth.split(":")[1] ? rtg.auth.split(":")[1] : '';
