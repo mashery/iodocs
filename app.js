@@ -1021,10 +1021,12 @@ if (!module.parent) {
     if (typeof config.socket != "undefined") {
         var args = [config.socket];
         console.log("Express server starting on UNIX socket %s", args[0]);
+        fs.unlink(config.socket, function () {
+          app.listen.apply(app, args);
+        });
     } else {
         var args = [process.env.PORT || config.port, config.address];
         console.log("Express server starting on %s:%d", args[1], args[0]);
+        app.listen.apply(app, args);
     }
-
-    app.listen.apply(app, args);
 }
