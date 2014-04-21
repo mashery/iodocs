@@ -39,6 +39,9 @@ var express     = require('express'),
     redis       = require('redis'),
     RedisStore  = require('connect-redis')(express);
 
+// Add minify to the JSON object
+JSON.minify = JSON.minify || require("node-json-minify");
+
 // Parse arguments
 var yargs = require('yargs')
         .usage('Usage: $0 --config-file [file]')
@@ -56,7 +59,8 @@ if (argv.help) {
 // Configuration
 var configFilePath = path.resolve(argv['config-file']);
 try {
-    var config = require(configFilePath);
+    var config = JSON.parse(JSON.minify(fs.readFileSync(configFilePath, 'utf8')));
+
 } catch(e) {
     console.error("File " + configFilePath + " not found or is invalid.  Try: `cp config.json.sample config.json`");
     process.exit(1);
@@ -97,7 +101,7 @@ if (!fs.existsSync(config.apiConfigDir)) {
 }
 
 try {
-    var apisConfig = require(path.join(config.apiConfigDir, 'apiconfig.json'));
+    var apisConfig = JSON.parse(JSON.minify(fs.readFileSync(path.join(config.apiConfigDir, 'apiconfig.json'), 'utf8')));
     if (config.debug) {
         console.log(util.inspect(apisConfig));
     }
@@ -953,7 +957,8 @@ function dynamicHelpers(req, res, next) {
     if (req.params.api) {
         res.locals.apiInfo = apisConfig[req.params.api];
         res.locals.apiName = req.params.api;
-        res.locals.apiDefinition = require(path.join(config.apiConfigDir, req.params.api + '.json'));
+        res.locals.apiDefinition = JSON.parse(JSON.minify(fs.readFileSync(path.join(config.apiConfigDir, req.params.api + '.json'), 'utf8')));
+
         // If the cookie says we're authed for this particular API, set the session to authed as well
         if (req.session[req.params.api] && req.session[req.params.api]['authed']) {
             req.session['authed'] = true;
