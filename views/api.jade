@@ -48,7 +48,7 @@ block content
               div(id='oauthAuthenticated', style='display:none')
                   br
                   span(style='vertical-align:botttom') Authenticated with OAuth
-                      img(src='/images/accept.png')
+                      img(src='images/accept.png')
               - if (authed && (apiInfo.oauth || apiInfo.oauth2))
                   script.
                       document.getElementById('oauthAuthenticated').style.display = 'block';
