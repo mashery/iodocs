@@ -156,13 +156,13 @@
         $('#oauthAuthenticated').hide();
         $('section.credentials').removeClass('authed');
         if (params[1].name == 'oauth') {
-            $.post('/auth', params, function(result) {
+            $.post('auth', params, function(result) {
                 if (result.signin) {
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
                 }
             })
         } else if (params[1].name == 'oauth2') {
-            $.post('/auth2', params, function(result) {
+            $.post('auth2', params, function(result) {
                 if (result.signin) {
                     window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
                 }
@@ -253,7 +253,7 @@
                 .addClass('response prettyprint'));
         }
 
-        $.post('/processReq', params, function(result, text) {
+        $.post('processReq', params, function(result, text) {
             // If we get passed a signin property, open a window to allow the user to signin/link their account
             if (result.signin) {
                 window.open(result.signin,"_blank","height=900,width=800,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=0,toolbar=0");
