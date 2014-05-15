@@ -578,7 +578,9 @@ function processRequest(req, res, next) {
         };
 
     if (['POST','DELETE','PUT'].indexOf(httpMethod) !== -1) {
-        var requestBody = query.stringify(params);
+        var requestBody;
+        requestBody = (options.headers['Content-Type'] === 'application/json') ?
+             JSON.stringify(params) : query.stringify(params);
     }
 
     if (apiConfig.oauth) {
@@ -677,6 +679,8 @@ function processRequest(req, res, next) {
                     }
 
                     // Set Headers and Call
+                    if (options.headers) req.requestHeaders = options.headers;
+                    if (requestBody) req.requestBody = requestBody;
                     if (response) {
                         req.resultHeaders = response.headers || 'None';
                     } else {
@@ -776,6 +780,8 @@ function processRequest(req, res, next) {
 
                             next();
                         } else {
+                            if (options.headers) req.requestHeaders = options.headers;
+                            if (requestBody) req.requestBody = requestBody;
                             req.resultHeaders = response.headers;
                             req.result = JSON.parse(data);
                             next();
@@ -904,6 +910,8 @@ function processRequest(req, res, next) {
                 }
 
                 // Set Headers and Call
+                if (options.headers) req.requestHeaders = options.headers;
+                if (requestBody) req.requestBody = requestBody;
                 req.resultHeaders = response.headers;
                 req.call = url.parse(options.host + options.path);
                 req.call = url.format(req.call);
@@ -988,6 +996,8 @@ app.post('/processReq', oauth, processRequest, function(req, res) {
         call: req.call,
         code: req.res.statusCode
     };
+    if (req.requestHeaders) result.requestHeaders = req.requestHeaders;
+    if (req.requestBody) result.requestBody = req.requestBody;
     res.send(result);
 });
 
