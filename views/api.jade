@@ -110,6 +110,8 @@ block content
                                           - each parameter in method.parameters
                                               - paramCount++
                                               div(id='param' + paramCount)
+                                                input(type='hidden', name='keys['+paramCount+']', value=parameter.Name)
+                                                - input_name = 'values['+paramCount+']'
                                                 - if (parameter.Required =='Y')
                                                     - var required =true
                                                     - var className ='required'
@@ -119,8 +121,9 @@ block content
                                                 tr(class=className)
                                                     td.name!=parameter.Name
                                                     td.parameter
+                                                        input(type='hidden', name='locations['+paramCount+']', value=parameter.Location || 'query')
                                                         - if (parameter.Type =='enumerated')
-                                                            select(name='params[' + parameter.Name + ']', placeholder=className)
+                                                            select(name=input_name, placeholder=className)
                                                               - if (parameter.Default =='')
                                                                   option(value='')
                                                               - each choice in parameter.EnumeratedList
@@ -129,7 +132,7 @@ block content
                                                                   - else
                                                                           option(value=choice) #{choice}
                                                         - else if (parameter.Type =='boolean')
-                                                             select(name='params[' + parameter.Name + ']', placeholder=className)
+                                                             select(name=input_name, placeholder=className)
                                                                   - if (parameter.Default =='')
                                                                           option(value='')
                                                                   - each choice in [apiInfo.booleanTrueVal,apiInfo.booleanFalseVal]
@@ -146,8 +149,7 @@ block content
                                                             input(type='password', name='params[' + parameter.Name + ']', value=parameter.Default)
                                                             input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
                                                         - else
-                                                            input(name='params[' + parameter.Name + ']', value=parameter.Default, placeholder=className)
-                                                            input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
+                                                            input(name=input_name, value=parameter.Default, placeholder=className)
                                                     td.type!=parameter.Type
                                                     td.location
                                                         p!=parameter.Location || 'query'

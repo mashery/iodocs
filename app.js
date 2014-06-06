@@ -519,7 +519,9 @@ function processRequest(req, res, next) {
 
     var reqQuery = req.body,
         customHeaders = {},
-        params = reqQuery.params || {},
+        params    = {},
+        keys      = reqQuery.keys || {},
+        values    = reqQuery.values || {},
         locations = reqQuery.locations || {},
         methodURL = reqQuery.methodUri,
         httpMethod = reqQuery.httpMethod,
@@ -530,28 +532,27 @@ function processRequest(req, res, next) {
         key = req.sessionID + ':' + apiName,
         implicitAccessToken = reqQuery.accessToken;
 
-    for (var param in params) {
-         if (params.hasOwnProperty(param)) {
-             if (params[param] !== '') {
-                 if (locations[param] == 'header') {
-                     // Extract custom headers from the params
-                     customHeaders[param] = params[param];
-                     delete params[param];
-                 } else {
-                     // Replace placeholders in the methodURL with matching params
-                     // URL params are prepended with ":"
-                     var regx = new RegExp(':' + param);
+    for( var i in keys )
+    {
+        var k = keys[i];
+        var v = values[i];
+        if (v !== '')
+        {
+            // Set custom headers from the params
+            if (locations[i] == 'header' ) {
+                customHeaders[k] = v;
+            } else {
+                // URL params are prepended with ":"
+                var regx = new RegExp(':' + k);
 
-                     // If the param is actually a part of the URL, put it in the URL and remove the param
-                     if (!!regx.test(methodURL)) {
-                         methodURL = methodURL.replace(regx, encodeURIComponent(params[param]));
-                         delete params[param]
-                     }
-                 }
-             } else {
-                 delete params[param]; // Delete blank params
-             }
-         }
+                // If the param is actually a part of the URL, put it in the URL
+                if (!!regx.test(methodURL)) {
+                    methodURL = methodURL.replace(regx, v);
+                } else {
+                    params[k] = v;
+                }
+            }
+        }
     }
 
     var baseHostInfo = apiConfig.baseURL.split(':');
