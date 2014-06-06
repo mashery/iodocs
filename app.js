@@ -265,12 +265,12 @@ function oauth2(req, res, next){
 
             db.set(key + ':apiKey', apiKey, redis.print);
             db.set(key + ':apiSecret', apiSecret, redis.print);
-            db.set(key + ':baseURL', callbackURL, redis.print);
+            db.set(key + ':callbackURL', callbackURL, redis.print);
 
             // Set expiration to same as session
             db.expire(key + ':apiKey', 1209600000);
             db.expire(key + ':apiSecret', 1209600000);
-            db.expire(key + ':baseURL', 1209600000);
+            db.expire(key + ':callbackURL', 1209600000);
 
             res.send({'signin': redirectUrl});
         }
@@ -280,12 +280,12 @@ function oauth2(req, res, next){
 
             db.set(key + ':apiKey', apiKey, redis.print);
             db.set(key + ':apiSecret', apiSecret, redis.print);
-            db.set(key + ':baseURL', req.headers.referer, redis.print);
+            db.set(key + ':callbackURL', callbackURL, redis.print);
 
             // Set expiration to same as session
             db.expire(key + ':apiKey', 1209600000);
             db.expire(key + ':apiSecret', 1209600000);
-            db.expire(key + ':baseURL', 1209600000);
+            db.expire(key + ':callbackURL', 1209600000);
 
             res.send({'implicit': redirectUrl});
         }
@@ -300,12 +300,12 @@ function oauth2(req, res, next){
 
             db.set(key + ':apiKey', apiKey, redis.print);
             db.set(key + ':apiSecret', apiSecret, redis.print);
-            db.set(key + ':baseURL', req.headers.referer, redis.print);
+            db.set(key + ':callbackURL', callbackURL, redis.print);
 
             // Set expiration to same as session
             db.expire(key + ':apiKey', 1209600000);
             db.expire(key + ':apiSecret', 1209600000);
-            db.expire(key + ':baseURL', 1209600000);
+            db.expire(key + ':callbackURL', 1209600000);
 
             //client_credentials w/Authorization header
             oa._request(http_method, accessURL, header, 
@@ -362,16 +362,16 @@ function oauth2Success(req, res, next) {
         db.mget([
             key + ':apiKey',
             key + ':apiSecret',
-            key + ':baseURL',
+            key + ':callbackURL',
             key + ':accessToken',
             key + ':refreshToken'
         ], function(err, result) {
             if (err) {
                 console.log(util.inspect(err));
             }
-            apiKey = result[0];
-            apiSecret = result[1];
-            baseURL = result[2];
+            apiKey = result[0],
+            apiSecret = result[1],
+            callbackURL = result[2];
 
             if (result[3] && apiConfig.oauth2.type == 'client_credentials') {
                 req.session[apiName] = {};
@@ -402,7 +402,7 @@ function oauth2Success(req, res, next) {
 
             if (apiConfig.oauth2.type == 'authorization-code') {
                 oa.getOAuthAccessToken(req.query.code,
-                    {grant_type : "authorization_code", redirect_uri : baseURL, client_id : apiKey, client_secret : apiSecret},
+                    {grant_type : "authorization_code", redirect_uri : callbackURL, client_id : apiKey, client_secret : apiSecret},
                     function(error, oauth2access_token, oauth2refresh_token, results){
                     if (error) {
                         res.send("Error getting OAuth access token : " + util.inspect(error) + "["+oauth2access_token+"]"+ "["+oauth2refresh_token+"]", 500);
