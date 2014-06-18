@@ -27,9 +27,21 @@
                   {
                      "Name":"sumlevid",
                      "Required":"N",
-                     "Default":"",
-                     "Type":"enumerated list",
-                     "Description":"1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+                     "Default":"2",
+                     "Type":"enumerated",
+                     "EnumeratedList": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                     ],
+                     "EnumeratedDescription": {
+                        "1": "National level",
+                        "2": "State level",
+                        "3": "County level",
+                        "4": "City, town level"
+                     },
+                     "Description":"Use sumlevid to define what level of census data you would like."
                   }
                ]
             },
@@ -57,9 +69,21 @@
                   {
                      "Name":"sumlevid",
                      "Required":"N",
-                     "Default":"",
-                     "Type":"enumerated list",
-                     "Description":"1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+                     "Default":"2",
+                     "Type":"enumerated",
+                     "EnumeratedList": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                     ],
+                     "EnumeratedDescription": {
+                        "1": "National level",
+                        "2": "State level",
+                        "3": "County level",
+                        "4": "City, town level"
+                     },
+                     "Description":"Use sumlevid to define what level of census data you would like."
                   }
                ]
             },
@@ -87,9 +111,21 @@
                   {
                      "Name":"sumlevid",
                      "Required":"N",
-                     "Default":"",
-                     "Type":"enumerated list",
-                     "Description":"1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+                     "Default":"2",
+                     "Type":"enumerated",
+                     "EnumeratedList": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                     ],
+                     "EnumeratedDescription": {
+                        "1": "National level",
+                        "2": "State level",
+                        "3": "County level",
+                        "4": "City, town level"
+                     },
+                     "Description":"Use sumlevid to define what level of census data you would like."
                   }
                ]
             },
@@ -117,9 +153,21 @@
                   {
                      "Name":"sumlevid",
                      "Required":"N",
-                     "Default":"",
-                     "Type":"enumerated list",
-                     "Description":"1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+                     "Default":"2",
+                     "Type":"enumerated",
+                     "EnumeratedList": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                     ],
+                     "EnumeratedDescription": {
+                        "1": "National level",
+                        "2": "State level",
+                        "3": "County level",
+                        "4": "City, town level"
+                     },
+                     "Description":"Use sumlevid to define what level of census data you would like."
                   }
                ]
             },
@@ -147,9 +195,21 @@
                   {
                      "Name":"sumlevid",
                      "Required":"N",
-                     "Default":"",
-                     "Type":"enumerated list",
-                     "Description":"1 = National level, 2 = State level, 3 = County level, 4,6 = City,town level"
+                     "Default":"2",
+                     "Type":"enumerated",
+                     "EnumeratedList": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                     ],
+                     "EnumeratedDescription": {
+                        "1": "National level",
+                        "2": "State level",
+                        "3": "County level",
+                        "4": "City, town level"
+                     },
+                     "Description":"Use sumlevid to define what level of census data you would like."
                   }
                ]
             }
