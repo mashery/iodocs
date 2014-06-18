@@ -227,6 +227,12 @@
             resultContainer.append($(document.createElement('h4')).text('Call'));
             resultContainer.append($(document.createElement('pre')).addClass('call'));
 
+            resultContainer.append($(document.createElement('h4')).addClass('reqHeadText').text('Request Headers'));
+            resultContainer.append($(document.createElement('pre')).addClass('requestHeaders'));
+
+            resultContainer.append($(document.createElement('h4')).addClass('reqBodyText').text('Request Body'));
+            resultContainer.append($(document.createElement('pre')).addClass('requestBody'));
+
             // Code
             resultContainer.append($(document.createElement('h4')).text('Response Code'));
             resultContainer.append($(document.createElement('pre')).addClass('code prettyprint'));
@@ -276,6 +282,32 @@
             if (response.call) {
                 $('pre.call', resultContainer)
                     .text(response.call);
+            }
+
+            if (response.requestHeaders && !$.isEmptyObject(response.requestHeaders)) {
+                $('pre.requestHeaders', resultContainer)
+                    .addClass('prettyprint')
+                    .text(formatJSON(response.requestHeaders));
+            } else if ($.isEmptyObject(response.requestHeaders)) {
+                $('pre.requestHeaders', resultContainer).hide();
+                $('h4.reqHeadText').hide();
+            } else {
+                $('pre.requestHeaders', resultContainer).hide();
+                $('h4.reqHeadText').hide();
+            }
+
+
+            if (response.requestBody) {
+                var requestBody;
+                if (response.headers['content-type'].substr(0, 16) === 'application/json') {
+                    requestBody = formatJSON(JSON.parse(response.requestBody));
+                } else {
+                    requestBody = response.requestBody;
+                }
+                $('pre.requestBody', resultContainer).addClass('prettyprint').text(requestBody);
+            } else {
+                $('pre.requestBody', resultContainer).hide();
+                $('h4.reqBodyText').hide();
             }
 
             if (response.code) {
