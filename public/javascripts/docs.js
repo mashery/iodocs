@@ -227,10 +227,10 @@
             resultContainer.append($(document.createElement('h4')).text('Call'));
             resultContainer.append($(document.createElement('pre')).addClass('call'));
 
-            resultContainer.append($(document.createElement('h4')).text('Request Headers'));
+            resultContainer.append($(document.createElement('h4')).addClass('reqHeadText').text('Request Headers'));
             resultContainer.append($(document.createElement('pre')).addClass('requestHeaders'));
 
-            resultContainer.append($(document.createElement('h4')).text('Request Body'));
+            resultContainer.append($(document.createElement('h4')).addClass('reqBodyText').text('Request Body'));
             resultContainer.append($(document.createElement('pre')).addClass('requestBody'));
 
             // Code
@@ -284,13 +284,18 @@
                     .text(response.call);
             }
 
-            if (response.requestHeaders) {
+            if (response.requestHeaders && !$.isEmptyObject(response.requestHeaders)) {
                 $('pre.requestHeaders', resultContainer)
                     .addClass('prettyprint')
                     .text(formatJSON(response.requestHeaders));
+            } else if ($.isEmptyObject(response.requestHeaders)) {
+                $('pre.requestHeaders', resultContainer).hide();
+                $('h4.reqHeadText').hide();
             } else {
                 $('pre.requestHeaders', resultContainer).hide();
+                $('h4.reqHeadText').hide();
             }
+
 
             if (response.requestBody) {
                 var requestBody;
@@ -301,7 +306,8 @@
                 }
                 $('pre.requestBody', resultContainer).addClass('prettyprint').text(requestBody);
             } else {
-                $('pre.requestHeaders', resultContainer).hide();
+                $('pre.requestBody', resultContainer).hide();
+                $('h4.reqBodyText').hide();
             }
 
             if (response.code) {
