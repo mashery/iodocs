@@ -567,13 +567,14 @@ function processRequest(req, res, next) {
     for (var customHeader in customHeaders) {
         if (customHeaders.hasOwnProperty(customHeader)) {
             headers[customHeader] = customHeaders[customHeader];
+
         }
     }
 
     var paramString = query.stringify(params),
         privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
-            headers: clone(apiConfig.headers),
+            headers: clone(headers),
             protocol: apiConfig.protocol + ':',
             host: baseHostUrl,
             port: baseHostPort,
