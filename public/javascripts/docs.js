@@ -1,8 +1,8 @@
 (function($) {
 
     // Storing common selections
-    var allEndpoints = $('li.endpoint'),
-        allEndpointsLength = allEndpoints.length;
+    var allResources = $('li.resource'),
+        allResourcesLength = allResources.length;
 
     function listMethods(context) {
         var methodsList = $('ul.methods', context || null);
@@ -17,42 +17,42 @@
         $('form', this.parentNode).slideToggle();
     });
 
-    // Toggle an endpoint
-    $('li.endpoint > h3.title span.name').click(function() {
+    // Toggle an resource
+    $('li.resource > h3.title span.name').click(function() {
         $('ul.methods', this.parentNode.parentNode).slideToggle();
         $(this.parentNode.parentNode).toggleClass('expanded')
     });
 
-    // Toggle all endpoints
-    $('#toggle-endpoints').click(function(event) {
+    // Toggle all resources
+    $('#toggle-resources').click(function(event) {
         event.preventDefault();
 
-        function expandEndpoint(methodsList) {
+        function expandResource(methodsList) {
             methodsList.slideDown();
             methodsList.parent().toggleClass('expanded', true);
         }
-        function collapseEndpoint(methodsList) {
+        function collapseResource(methodsList) {
             methodsList.slideUp();
             methodsList.parent().toggleClass('expanded', false);
         }
 
-        // Check for collapsed endpoints (hidden methods)
-        var endpoints = $('ul.methods:not(:visible)'),
-            endpointsLength = endpoints.length,
+        // Check for collapsed resources (hidden methods)
+        var resources = $('ul.methods:not(:visible)'),
+            resourcesLength = resources.length,
             action;
 
-        if (endpointsLength > 0) {
-            // Some endpoints are collapsed, expand them.
-            action = expandEndpoint;
+        if (resourcesLength > 0) {
+            // Some resources are collapsed, expand them.
+            action = expandResource;
         } else {
-            // All endpoints are expanded, collapse them
-            endpoints = $('ul.methods');
-            endpointsLength = endpoints.length;
-            action = collapseEndpoint;
+            // All resources are expanded, collapse them
+            resources = $('ul.methods');
+            resourcesLength = resources.length;
+            action = collapseResource;
         }
 
-        for (var x = 0; x < endpointsLength; x++) {
-            var methodsList = $(endpoints[x]);
+        for (var x = 0; x < resourcesLength; x++) {
+            var methodsList = $(resources[x]);
             action(methodsList);
         }
     });
@@ -69,7 +69,7 @@
             var methodLists = $('ul.methods:not(:visible)'), // Any hidden methods
             methodListsLength = methodLists.length;
 
-            // First make sure all the hidden endpoints are expanded.
+            // First make sure all the hidden resources are expanded.
             for (var x = 0; x < methodListsLength; x++) {
                 $(methodLists[x]).slideDown();
             }
@@ -89,21 +89,21 @@
             }
         }
 
-        for (var z = 0; z < allEndpointsLength; z++) {
-            $(allEndpoints[z]).toggleClass('expanded', true);
+        for (var z = 0; z < allResourcesLength; z++) {
+            $(allResources[z]).toggleClass('expanded', true);
         }
     });
 
-    // List methods for a particular endpoint.
+    // List methods for a particular resource.
     // Hide all forms if visible
     $('li.list-methods a').click(function(event) {
         event.preventDefault();
 
-        // Make sure endpoint is expanded
-        var endpoint = $(this).closest('li.endpoint'),
-            methods = $('li.method form', endpoint);
+        // Make sure resource is expanded
+        var resource = $(this).closest('li.resource'),
+            methods = $('li.method form', resource);
 
-        listMethods(endpoint);
+        listMethods(resource);
 
         // Make sure all method forms are collapsed
         var visibleMethods = $.grep(methods, function(method) {
@@ -114,19 +114,19 @@
             $(method).slideUp();
         });
 
-        $(endpoint).toggleClass('expanded', true);
+        $(resource).toggleClass('expanded', true);
     });
 
-    // Expand methods for a particular endpoint.
+    // Expand methods for a particular resource.
     // Show all forms and list all methods
     $('li.expand-methods a').click(function(event) {
         event.preventDefault();
 
-        // Make sure endpoint is expanded
-        var endpoint = $(this).closest('li.endpoint'),
-            methods = $('li.method form', endpoint);
+        // Make sure resource is expanded
+        var resource = $(this).closest('li.resource'),
+            methods = $('li.method form', resource);
 
-        listMethods(endpoint);
+        listMethods(resource);
 
         // Make sure all method forms are expanded
         var hiddenMethods = $.grep(methods, function(method) {
@@ -137,7 +137,7 @@
             $(method).slideDown();
         });
 
-        $(endpoint).toggleClass('expanded', true);
+        $(resource).toggleClass('expanded', true);
     });
 
     // Toggle headers section
@@ -197,6 +197,13 @@
 
         params.push(apiKey, apiSecret, apiName);
 
+        //Accounts for array values
+        for (i in params) {
+            if (params[i].name.split("_")[0] == "values") {
+                params[i].name = params[i].name.split("_")[0] + "[" + params[i].name.split("_")[1] + "]"; 
+            }
+        }
+
         // Setup results container
         var resultContainer = $('.result', self);
         if (resultContainer.length === 0) {
@@ -227,9 +234,11 @@
             resultContainer.append($(document.createElement('h4')).text('Call'));
             resultContainer.append($(document.createElement('pre')).addClass('call'));
 
+            // Request Headers
             resultContainer.append($(document.createElement('h4')).addClass('reqHeadText').text('Request Headers'));
             resultContainer.append($(document.createElement('pre')).addClass('requestHeaders'));
 
+            // Request Body
             resultContainer.append($(document.createElement('h4')).addClass('reqBodyText').text('Request Body'));
             resultContainer.append($(document.createElement('pre')).addClass('requestBody'));
 
@@ -278,12 +287,10 @@
         // Complete, runs on error and success
         .complete(function(result, text) {
             var response = JSON.parse(result.responseText);
-
             if (response.call) {
                 $('pre.call', resultContainer)
                     .text(response.call);
             }
-
             if (response.requestHeaders && !$.isEmptyObject(response.requestHeaders)) {
                 $('pre.requestHeaders', resultContainer)
                     .addClass('prettyprint')
@@ -299,7 +306,7 @@
 
             if (response.requestBody) {
                 var requestBody;
-                if (response.headers['content-type'].substr(0, 16) === 'application/json') {
+                if (response && response.requestHeaders && response.requestHeaders['Content-Type'] && response.requestHeaders['Content-Type'].substr(0, 16) === 'application/json') {
                     requestBody = formatJSON(JSON.parse(response.requestBody));
                 } else {
                     requestBody = response.requestBody;

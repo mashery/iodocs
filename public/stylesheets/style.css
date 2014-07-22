@@ -383,7 +383,7 @@ li {
   border-left: 1px solid #ddd;
 }
 
-.endpoint {
+.resource {
   margin: 0;
   background-color: #f9f9f9;
   border-bottom: 1px solid #eee;
@@ -403,43 +403,43 @@ li {
   transition-timing-function: ease;
 }
 
-.endpoint.expanded {
+.resource.expanded {
   background-color: #fff;
 }
 
-.endpoint > .title {
+.resource > .title {
   font-weight: normal;
   padding: 20px 0 10px 10px;
   overflow: hidden;
   *zoom: 1;
 }
 
-.endpoint > .title .name {
+.resource > .title .name {
   font-size: 18px;
   float: left;
 }
 
-.endpoint > .title .name:hover {
+.resource > .title .name:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.endpoint > .title .actions {
+.resource > .title .actions {
   float: right;
 }
 
-.endpoint > .title .actions li {
+.resource > .title .actions li {
   float: left;
   padding: 0 10px;
   border-left: 1px solid #ddd;
 }
 
-.endpoint > .title .actions li:first-child {
+.resource > .title .actions li:first-child {
   border: 0;
 }
 
 .methods {
-  display: none;
+  /*display: none;*/
 }
 
 .method {
@@ -627,6 +627,7 @@ li {
   overflow: auto;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.9);
+  width: 95%;
 }
 
 .method pre.response {
