@@ -1,10 +1,17 @@
 extends layout
 block content
   h1=apiInfo.name
-  - if (session.authed && apiInfo.oauth && apiInfo.oauth.type =='three-legged')
-      - var authed ='authed'
-  - else if (session.authed && apiInfo.oauth2)
-      - var authed ='authed'
+  .apiName(id=apiName)
+  script.
+    count = 0;
+  - if (apiInfo.auth && apiInfo.auth.oauth && apiInfo.auth.oauth.version && apiInfo.auth.oauth.version == "1.0" && apiInfo.auth.oauth.type =='three-legged')
+      - var oAuthVersion = '1.0'
+      - if (session.authed)
+        - var authed = 'authed'
+  - else if (apiInfo.auth && apiInfo.auth.oauth && apiInfo.auth.oauth.version && apiInfo.auth.oauth.version == "2.0")
+      - var oAuthVersion = '2.0'
+      - if (session.authed)
+        - var authed = 'authed'
   - else
       - var authed =''
 
@@ -12,9 +19,9 @@ block content
       input(type='hidden', name='apiName', value=apiName)
       - if (apiInfo.auth)
           section(class='credentials ' + authed)
-              - if (apiInfo.oauth)
+              - if (oAuthVersion == '1.0')
                   input(type='hidden', name='oauth', value='authrequired')
-              - else if (apiInfo.oauth2)
+              - else if (oAuthVersion == '2.0')
                   input(type='hidden', name='oauth2', value='authrequired')
 
               - if (apiInfo.auth.defaultKey)
@@ -27,29 +34,31 @@ block content
               - else
                   - var defaultSecret =''
               div
-                  - if (apiInfo.oauth || apiInfo.oauth2)
+                  - if (oAuthVersion)
                       label(for='key') Client ID
+                      - var secure ='authrequired'
                   - else
                     label(for='key') API Key
+                    - var secure =''
                   input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
               div
-                  - if (apiInfo.oauth || apiInfo.oauth2)
+                  - if (oAuthVersion)
                       label(for='secret') Client Secret
                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
-                  - if (apiInfo.signature)
+                  - if (apiInfo.auth.signature)
                       label(for='secret') Shared Secret
                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
-              - if (apiInfo.oauth && apiInfo.oauth.type !='two-legged')
+              - if (oAuthVersion == '1.0' && apiInfo.auth.oauth.type !='two-legged')
                   div
                      input(name='oauth', value='Authenticate with OAuth', type='submit', id='oauth-auth')
-              - else if (apiInfo.oauth2)
+              - else if (oAuthVersion == '2.0')
                   div
                      input(name='oauth', value='Authenticate with OAuth2', type='submit', id='oauth-auth')
               div(id='oauthAuthenticated', style='display:none')
                   br
                   span(style='vertical-align:botttom') Authenticated with OAuth
                       img(src='images/accept.png')
-              - if (authed && (apiInfo.oauth || apiInfo.oauth2))
+              - if (authed && oAuthVersion)
                   script.
                       document.getElementById('oauthAuthenticated').style.display = 'block';
 
@@ -57,133 +66,50 @@ block content
   div(id='controls')
       ul
           li
-              a#toggle-endpoints(href='#') Toggle All Endpoints
+              a#toggle-resources(href='#') Toggle All Resources
           li
               a#toggle-methods(href='#') Toggle All Methods
 
   ul
-      - each endpoint in apiDefinition.endpoints
-          li.endpoint
+      - each resource, resourceName in apiInfo.resources
+          li.resource
               h3.title
                   span.name
-                      a(href='#'+endpoint.name.replace(/\s/g, '-'))!=endpoint.name
+                      a(href='#'+resourceName.replace(/\s/g, '-'))!=resourceName
                   ul.actions
                       li.list-methods
                           a(href='#') List Methods
                       li.expand-methods
                           a(href='#') Expand Methods
-              - if (endpoint.methods.length)
+              - if (Object.keys(resource).length)
               ul.methods.hidden
-                  - each method in endpoint.methods
-                      - var httpmethod =method.HTTPMethod.toLowerCase()
-                      - if (method.RequiresOAuth ==='Y' || method.RequiresOAuth ===true)
-                          - var secure ='authrequired'
-                      - else
-                          - var secure =''
+                  - each method, methodKey in resource.methods
+                      div(id = method.httpMethod)
+                      - var httpmethod = method.httpMethod.toLowerCase()
                       li(class='method ' + httpmethod + ' ' + secure)
                           div.title.clickable
-                              - var methodLink = (endpoint.name + '-' + method.HTTPMethod + '-' + method.MethodName).replace(/\s/g, '-')
+                              - var methodLink = (resourceName + '-' + method.httpMethod + '-' + method.name).replace(/\s/g, '-')
+                              div(id = methodLink)
                               a(href='#'+methodLink)
-                              span.http-method !{method.HTTPMethod}
-                              span.name !{method.MethodName}
-                              span.uri !{method.URI}
-                          form.hidden
-                              input(type='hidden', name='httpMethod', value=method.HTTPMethod)
+                              span.http-method !{method.httpMethod}
+                              span.name !{method.name}
+                              span.uri !{method.path}
+                          form.hidden(class='container')
+                              input(type='hidden', name='httpMethod', value=method.httpMethod)
                               input(type='hidden', name='oauth', value=secure)
-                              input(type='hidden', name='methodUri', value=method.URI)
+                              input(type='hidden', name='methodUri', value=method.path)
                               input(type='hidden', name='accessToken', id='accessToken')
 
-                              span.description !{method.Synopsis}
+                              span.description !{method.description}
                               br
                               br
-                              - if (method.parameters && method.parameters.length > 0)
-                                  table.parameters
-                                      thead
-                                          tr
-                                              th Parameter
-                                              th Value
-                                              th Type
-                                              th Location
-                                              th Description
-                                      tbody
-                                          - var paramCount =0
-                                          - each parameter in method.parameters
-                                              - paramCount++
-                                              div(id='param' + paramCount)
-                                                input(type='hidden', name='keys['+paramCount+']', value=parameter.Name)
-                                                - input_name = 'values['+paramCount+']'
-                                                - if (parameter.Required =='Y')
-                                                    - var required =true
-                                                    - var className ='required'
-                                                - else
-                                                    - var required =false
-                                                    - var className =''
-                                                tr(class=className)
-                                                    td.name!=parameter.Name
-                                                    td.parameter
-                                                        input(type='hidden', name='locations['+paramCount+']', value=parameter.Location || 'query')
-                                                        - if (parameter.Type =='enumerated')
-                                                            select(name=input_name, placeholder=className)
-                                                              - if (parameter.Default =='')
-                                                                  option(value='')
-                                                              - each choice in parameter.EnumeratedList
-                                                                  - if (parameter.Default ==choice)
-                                                                          option(value=choice, selected=true) #{choice}
-                                                                  - else
-                                                                          option(value=choice) #{choice}
-                                                        - else if (parameter.Type =='boolean')
-                                                             select(name=input_name, placeholder=className)
-                                                                  - if (parameter.Default =='')
-                                                                          option(value='')
-                                                                  - each choice in [apiInfo.booleanTrueVal,apiInfo.booleanFalseVal]
-                                                                     - if (parameter.Default ==choice)
-                                                                             option(value=choice, selected=true) #{choice}
-                                                                     - else
-                                                                             option(value=choice) #{choice}
-                                                        - else if (parameter.Type =='text')
-                                                            textarea(name='params[' + parameter.Name + ']', placeholder=className)
-                                                               if (parameter.Default)
-                                                                  | #{parameter.Default}
-                                                            input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
-                                                        - else if (parameter.Type =='password')
-                                                            input(type='password', name='params[' + parameter.Name + ']', value=parameter.Default)
-                                                            input(type='hidden', name='locations['+parameter.Name+']', value=parameter.Location || 'query')
-                                                        - else
-                                                            input(name=input_name, value=parameter.Default, placeholder=className)
-                                                    td.type!=parameter.Type
-                                                    td.location
-                                                        p!=parameter.Location || 'query'
-                                                    td.description
-                                                        p!=parameter.Description || 'No description'
-                                                        - if (parameter.Type =='enumerated' && parameter.EnumeratedDescription)
-                                                            dl.clearfix
-                                                                - each description, choice in parameter.EnumeratedDescription
-                                                                    dt #{choice}
-                                                                    dd #{description}
-                              - if (method.headers && method.headers.length > 0)
-                                  div.headers
-                                      h4.title
-                                          div.indicator
-                                          span Headers
-                                      div.fields
-                                          table
-                                              colgroup
-                                                  col(class='name')
-                                                  col(class='value')
-                                                  col(class='remove')
-                                              thead
-                                                  tr
-                                                      th Name
-                                                      th(colspan='2') Value
-                                              tbody
-                                                  tr
-                                                      td
-                                                          input(name='headerNames[]', placeholder='Name')
-                                                      td
-                                                          input(name='headerValues[]', placeholder='Value')
-                                                      td
-                                                          a(href='#', class='remove') Remove
-                                          a(href='#', class='add-headers') Add Header
-                                      // Create header fields and button to add/remove headers.
+                              .container.header
+                                .row
+                                  .col-description.header Description !{method.MethodName}
+                                  .location.header Location
+                                  .col-type.header Type
+                                  .col-parameter.header Value
+                                  .col-name.header Parameter
+                              table(id=methodKey)
                               - if (!method['read-only'])
-                                  input(type='submit', id=method.MethodName, value='Try it!')
+                                  input(type='submit', id=method.name, value='Try it!')

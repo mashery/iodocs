@@ -1,57 +1,72 @@
 {
-   "endpoints":[
-      {
-         "name":"Requestb.in",
-         "methods":[
-            {
-               "MethodName":"Method with custom headers",
-               "HTTPMethod":"GET",
-               "URI":":request_bin",
-               "RequiresOAuth":"N",
-               "parameters":[
-                   {
-                     "Name":"request_bin",
-                     "Required":"Y",
-                     "Default":"",
-                     "Location":"query",
-                     "Type":"string",
-                     "Description":"The request bin id to use. Go to http://requestb.in to get one for free."
-                  },
-                  {
-                     "Name":"Cache-Control",
-                     "Required":"Y",
-                     "Default":"no-cache",
-                     "Location":"header",
-                     "Type":"string",
-                     "Description":""
-                  },
-                  {
-                     "Name":"Max-Forwards",
-                     "Required":"Y",
-                     "Default":"10",
-                     "Location":"header",
-                     "Type":"string",
-                     "Description":""
-                  },
-                  {
-                     "Name":"param1",
-                     "Required":"Y",
-                     "Default":"this is ithe first param",
-                     "Location":"query",
-                     "Type":"string",
-                     "Description":"First param, with explicitly set location property."
-                  },
-                  {
-                     "Name":"param2",
-                     "Required":"Y",
-                     "Default":"this is the second param",
-                     "Type":"string",
-                     "Description":"Second param, with no location property set. Should default to 'query'."
-                  }
-               ]
-            }
-         ]
-      }
-   ]
+	"name": "Requestb.in",
+	"protocol": "rest",
+	"basePath": "http://requestb.in",
+	"publicPath": "/",
+	"privatePath": "",
+	"headers": {
+		"Content-Type": "application/json"
+	},
+	"schemas": {
+		"arrayExample2" : {
+			"properties": {
+				"arrayExample2": {
+		            "type": "array",
+		            "items": {
+		                "title":"arrayExample2",
+		                "default": "abc",
+		                "type":"string",
+		                "description":"An array in the body."
+		            }
+		        }
+			}
+		}
+	},
+	"resources": {
+		"Requestb.in": {
+			"methods": {
+				"arrayExampleMethod": {
+					"name": "Method with array parameters",
+					"description": "An example of arrays.",
+					"httpMethod": "POST",
+					"path": "{requestBin}",
+					"request": {
+						"$ref": "arrayExample2"
+					},
+				    "parameters": {
+				        "requestBin": {
+				            "title":"requestBin", 
+				            "required": true,
+				            "default": "ojynm7oj",
+				            "type":"string",
+				            "description":"",
+				            "location": "path"
+				        },
+						"arrayExample": {
+				            "type": "array",
+				            "items": {
+				                "title":"arrayExample",
+				                "required": true,
+				                "default": "123",
+				                "type":"string",
+				                "description":"An array in the header.",
+				                "location": "header"
+				            }
+				        },
+						"enumArray": {
+							"type": "array",
+							"items": {
+								"title": "enumArray",
+								"required":true,
+								"type":"string",
+								"enum": ["abc", "123"],
+								"description": "An array that is an enum.",
+								"location": "header"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
-

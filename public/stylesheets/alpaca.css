@@ -1,0 +1,942 @@
+/*!
+Alpaca Version 1.1.3
+
+Copyright 2014 Gitana Software, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+
+You may obtain a copy of the License at 
+	http://www.apache.org/licenses/LICENSE-2.0 
+
+Unless required by applicable law or agreed to in writing, software 
+distributed under the License is distributed on an "AS IS" BASIS, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions and 
+limitations under the License. 
+
+For more information, please contact Gitana Software, Inc. at this
+address:
+
+  info@gitanasoftware.com
+*/
+.alpaca-hover {
+}
+
+.alpaca-clear {
+    clear: both;
+}
+
+.alpaca-hidden
+{
+    display: none;
+}
+
+/** Abstract Field **/
+.alpaca-field {
+}
+
+.alpaca-field-required {
+}
+
+.alpaca-field-optional {
+}
+
+.alpaca-field-valid {
+}
+
+.alpaca-field-invalid {
+}
+
+.alpaca-field-readonly {
+}
+
+/**
+ *  Control Field
+ */
+.alpaca-controlfield {
+    display: block;
+    padding: 2px;
+    margin: 2px;
+}
+
+.alpaca-controlfield * {
+    /*background: transparent;*/
+}
+
+.alpaca-controlfield-container {
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.alpaca-controlfield-label
+{
+    font-size: 1.0em;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 1px;
+}
+
+.alpaca-controlfield-helper {
+    font-size: 0.75em;
+    margin-top: 2px;
+}
+
+.alpaca-controlfield-message {
+    font-size: 0.85em;
+}
+
+.alpaca-controlfield-message-hidden {
+    display: none;
+}
+
+.alpaca-field-message-container {
+}
+
+.alpaca-field-required span.ui-icon-star {
+    float: left;
+    margin-right: 0.3em;
+}
+
+.alpaca-controlfield-helper > span.ui-icon, .alpaca-controlfield-message > span.ui-icon {
+    float: left;
+    margin-right: .3em;
+}
+
+/**
+ * Form Controls
+ */
+input, textarea, select {
+    border: 1px solid #555;
+    padding: 2px;
+    font-size: 1em;
+    border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    border: 0px;
+}
+
+input[type="file"] {
+    border: none;
+    box-shadow: none;
+}
+
+select {
+    min-width: 150px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border: 1px solid #058cf5;
+}
+
+.alpaca-field-readonly input, .alpaca-field-readonly textarea, input[readonly], textarea[readonly] {
+    background-color: #dcdcdc;
+    cursor: default;
+}
+
+/* BEGIN styles for Text Field */
+
+.alpaca-controlfield-text {
+}
+
+DIV.alpaca-controlfield-text .twitter-typeahead .tt-dropdown-menu
+{
+    background-color: white;
+    border: 1px #777 solid;
+    padding-left: 10px;
+    margin-left: 2px;
+    padding-right: 10px;
+    color: #ccc;
+}
+
+DIV.alpaca-controlfield-text .twitter-typeahead .tt-dropdown-menu P
+{
+    font-size: 1em;
+}
+
+.tt-suggestion.tt-is-under-cursor
+{
+    background-color: #ccc;
+    color: #333;
+}
+
+.alpaca-fieldset-legend-button-text
+{
+    padding-left: 6px;
+}
+
+/* END styles for Text Field */
+
+/* BEGIN styles for Date Field, Phone Field, Password Field and Email Field */
+
+.alpaca-controlfield-date {
+}
+
+.alpaca-controlfield-date input {
+/*    background: url("./images/alpaca-icons.png") no-repeat right -5px;*/
+}
+
+.alpaca-controlfield-phone {
+}
+
+.alpaca-controlfield-phone input {
+/*    background: url("./images/alpaca-icons.png") no-repeat right -85px;*/
+}
+
+.alpaca-controlfield-email {
+}
+
+.alpaca-controlfield-email input {
+/*    background: url("./images/alpaca-icons.png") no-repeat right -45px;*/
+}
+
+.alpaca-controlfield-time {
+}
+
+.alpaca-controlfield-time input {
+/*    background: url("./images/alpaca-icons.png") no-repeat right -125px;*/
+}
+
+.alpaca-controlfield-password {
+}
+
+.alpaca-controlfield-email > span.ui-icon, .alpaca-controlfield-date > span.ui-icon, .alpaca-controlfield-phone > span.ui-icon {
+    float: right;
+    margin-left: .3em;
+}
+
+.alpaca-controlfield-helper .alpaca-controlfield-helper-text, .alpaca-controlfield-message .alpaca-controlfield-message-text, .alpaca-controlfield-email > input, .alpaca-controlfield-date > input, .alpaca-controlfield-phone > input {
+    line-height: 16px;
+}
+
+/* END styles for Date Field, Phone Field, Password Field and Email Field */
+
+/* BEGIN styles for Address Map Field */
+
+.alpaca-controlfield-address-mapcanvas {
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+}
+
+/* END styles for Address Map Field */
+
+/* BEGIN styles for Checkbox Field */
+
+.alpaca-controlfield-checkbox {
+    padding-top: 0.4em;
+}
+
+.alpaca-controlfield-checkbox input {
+    margin-right: 1em;
+}
+
+/* IE < 8 */
+.alpaca-controlfield-checkbox {
+    *padding-top: 0;
+}
+
+/* END styles for Checkbox Field */
+
+/* BEGIN styles for Radio Field */
+
+.alpaca-controlfield-radio {
+    padding-top: 0.5em;
+}
+
+.alpaca-controlfield-radio input {
+    margin-right: 0.3em;
+}
+
+.alpaca-controlfield-radio-label {
+    margin-right: 0.3em;
+}
+
+/* END styles for Radio Field */
+
+/* BEGIN styles for Select Field */
+
+.alpaca-controlfield-select {
+}
+
+/* END styles for Select Field */
+
+/* BEGIN styles for Number Field */
+
+.alpaca-controlfield-number {
+}
+
+/* END styles for Number Field */
+
+/* BEGIN styles for Integer Field */
+
+.alpaca-controlfield-integer {
+}
+
+/* END styles for Integer Field */
+
+/* BEGIN styles for Textarea Field */
+
+.alpaca-controlfield-textarea {
+}
+
+/* END styles for Textarea Field */
+
+/* BEGIN styles for WYSIWYG Field */
+
+.alpaca-controlfield-wysiwyg {
+}
+
+/* END styles for WYSIWYG Field */
+
+/* BEGIN styles for Button Field */
+
+.alpaca-controlfield-button {
+}
+
+/* END styles for Button Field */
+
+/* BEGIN styles for File Field */
+
+.alpaca-controlfield-file {
+}
+
+.alpaca-controlfield-file-custom-input {
+    position: absolute;
+    height: 100px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity = 0);
+    z-index: 999;
+}
+
+.alpaca-controlfield-file-custom {
+    width: 350px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+}
+
+.alpaca-controlfield-file-custom-disabled {
+    opacity: .5;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity = 0);
+    cursor: default;
+}
+
+.alpaca-controlfield-file-custom-feedback {
+    display: block;
+    margin: 1px 1px 1px 5px;
+    font-style: italic;
+    padding: .3em .6em;
+}
+
+.alpaca-controlfield-file-custom-feedback-populated {
+    font-style: normal;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+/* END styles for File Field */
+
+/* BEGIN styles for Editor Field */
+
+.alpaca-controlfield-editor
+{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border: 1px #ccc solid;
+}
+
+.alpaca-controlfield-editor .control-field-editor-el
+{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right:0
+}
+
+/* END styles for Editor Field */
+
+/* BEGIN styles for JSON Field */
+
+.alpaca-controlfield .alpaca-controlfield-json textarea {
+    font-family: "Courier New";
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* END styles for JSON Field */
+
+/* BEGIN styles for Hidden Field */
+.alpaca-controlfield-hidden {
+    display: none;
+}
+/* END styles for Hidden Field */
+
+/* BEGIN styles for Container Field (Fieldset) */
+
+.alpaca-fieldset {
+    padding: 4px;
+    margin: 4px;
+    overflow: auto;
+    position: relative;
+}
+
+fieldset.alpaca-fieldset {
+    /*margin: 0.5em 1em 1em 0px;*/
+    margin-top: 0.5em;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 0.5em;
+}
+
+legend.alpaca-fieldset-legend {
+    font-size: 1.1em;
+    text-align: left;
+    bottom: -1px;
+}
+
+.alpaca-fieldset-legend {
+    font-size: 1.0em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.alpaca-fieldset-helper {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    clear: both;
+}
+
+.alpaca-fieldset-items-container {
+    padding-top: 5px;
+    /**padding-bottom: 5px;**/
+    clear: both;
+}
+
+.alpaca-fieldset-legend-link {
+    float: left;
+    margin-right: 0.3em;
+}
+
+/* END styles for Container Field (Fieldset) */
+
+/* BEGIN styles for Array Field */
+
+.alpaca-fieldset-array-item-toolbar {
+    padding: 1px;
+    margin: 0px 2px 0px 2px;
+    font-size: 0.75em;
+}
+
+.alpaca-fieldset-array-toolbar {
+    padding: 10px 4px;
+}
+
+.alpaca-fieldset-array-item-toolbar-disabled {
+    opacity: .5;
+}
+
+.alpaca-fieldset-array-item-toolbar-add {
+}
+
+.alpaca-fieldset-array-item-toolbar-remove {
+}
+
+.alpaca-fieldset-array-item-toolbar-up {
+}
+
+.alpaca-fieldset-array-item-toolbar-down {
+}
+
+/* END styles for Array Field */
+
+/* BEGIN styles for Form */
+
+.alpaca-form {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.alpaca-form-buttons-container {
+    clear: both;
+    display: block;
+    margin: 5px 0 5px 0;
+}
+
+.alpaca-form-button {
+}
+
+.alpaca-form-button-print {
+}
+
+.alpaca-form-button-reload {
+}
+
+.alpaca-form-button-save {
+}
+
+.alpaca-form-button-view-switcher {
+    position: absolute;
+    float: left;
+    font-size: 1em;
+    padding: 8px 3px 3px;
+    zIndex: 999999;
+}
+
+.alpaca-form-button-view-switcher ul {
+    listStyle: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+.alpaca-form-button-view-switcher ul li {
+    padding: 2px;
+    margin: 1px;
+    clear: left;
+    float: left;
+}
+
+.alpaca-form-button-view-switcher ul li a {
+    text-decoration: none;
+}
+
+.alpaca-form-buttons-container input {
+    margin-right: 4px;
+}
+
+.alpaca-form-buttons-container input.alpaca-form-button:hover {
+    background: #FFFFCC;
+}
+
+/* END styles for Form */
+
+/* BEGIN styles for VIEW: DISPLAY */
+
+div.alpaca-fieldset {
+    display: block;
+    border: none;
+    margin: 1.5em 1em 1em 0px;
+}
+
+div.alpaca-fieldset-legend {
+}
+
+.alpaca-data-container {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+    display: block;
+}
+
+.alpaca-data {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.alpaca-data-label {
+    float: left;
+    min-width: 100px;
+    clear: both;
+    font-weight: bold;
+    display: block;
+}
+
+/* END styles for VIEW: DISPLAY */
+
+/* BEGIN styles for Wizard */
+
+.alpaca-wizard-status-bar {
+    list-style: none;
+    overflow: hidden;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    counter-reset: step;
+    float: left;
+}
+
+.alpaca-wizard-status-bar li {
+    float: left;
+}
+
+.alpaca-wizard-status-bar li span {
+    display: block;
+    font-size: 1.2em;
+}
+
+.alpaca-wizard-status-bar li div {
+    display: block;
+    position: relative;
+    padding: 2px 25px 2px 30px;
+}
+
+.alpaca-wizard-status-bar li div:before {
+    font-size: 1em;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    margin-top: -8px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px 6px;
+    counter-increment: step;
+    content: counter(step);
+}
+
+.alpaca-wizard-status-bar li div strong {
+    font-weight: normal
+}
+
+.alpaca-wizard-status-bar li.current {
+}
+
+.alpaca-wizard-status-bar li.current-has-next {
+}
+
+.alpaca-wizard-title {
+    font-size: 1.2em;
+    margin: 0px;
+    padding: 10px 0px;
+    font-weight: bold;
+}
+
+.alpaca-wizard-desc {
+    font-size: 0.9em;
+    margin: 0px;
+    padding: 5px 0px;
+}
+
+.alpaca-wizard-step-title {
+    font-size: 1em;
+    margin: 0px;
+    padding: 10px 0px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.alpaca-wizard-nav-bar {
+    clear: both;
+    float: right;
+}
+
+.alpaca-wizard-button {
+}
+
+.alpaca-wizard-button:hover {
+}
+
+.alpaca-wizard-button-back {
+}
+
+.alpaca-wizard-button-next {
+}
+
+/* END styles for Wizard */
+
+/** BEGIN view-web-list **/
+
+fieldset.alpaca-view-web-list
+{
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
+    padding-right: 3em;
+}
+
+fieldset.alpaca-view-web-list.fieldset-collapsed
+{
+    border: solid 1px;
+}
+
+.alpaca-view-web-list .alpaca-controlfield-label {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0.5em;
+}
+
+.alpaca-view-web-list .alpaca-controlfield-label {
+    width: 130px;
+}
+
+fieldset.alpaca-view-list legend {
+    /* to make chrome not wrapping text */
+    font-size: 1.01em
+}
+
+.alpaca-controlfield.alpaca-view-web-list
+{
+    display:inline-block;
+}
+
+SPAN.alpaca-view-web-list label.alpaca-controlfield-label
+{
+    font-size: 1.0em;
+    font-weight: bold !important;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.alpaca-view-web-list DIV.alpaca-controlfield-container
+{
+    display:inline-block;
+}
+
+.alpaca-controlfield-label-list-view {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0.5em;
+}
+
+.alpaca-fieldset-message-list-view {
+    float: left;
+    margin-right: .3em;
+}
+
+.alpaca-controlfield-item-label-list-view {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0.25em;
+}
+
+ol.alpaca-fieldset-itemscontainer-list-view-top {
+    padding-left :0;
+}
+
+li.alpaca-fieldset-itemcontainer-list-view-top {
+    list-style:none;
+}
+
+.alpaca-item-container-first
+{
+
+}
+
+.alpaca-item-container-last
+{
+
+}
+
+.alpaca-fieldset-items-container-empty
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/** END view-web-list **/
+
+/* BEGIN styles for VIEW: TWO COLUMN */
+
+.alpaca-layout-two-column-mask {
+    overflow: auto;
+    width: 100%;
+    min-width: 600px;
+    display: inline-block;
+}
+
+.alpaca-layout-two-column-left {
+    overflow: auto;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.alpaca-layout-two-column-right {
+    overflow: auto;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: top;
+}
+
+
+fieldset.alpaca-fieldset-no-legend {
+    border: none;
+}
+
+/* END styles for VIEW: TWO COLUMN */
+
+/* BEGIN styles for VIEW: VIEW_WEB_EDIT_YAML */
+
+fieldset.alpaca-view-web-edit-yaml.alpaca-fieldset {
+    border: solid 1px;
+    border-radius: 5px;
+    margin: 1px 0 0 0;
+    padding-top: 4px;
+    padding-bottom: 2px;
+}
+
+/*hide the arrow icon before the fieldset name*/
+fieldset.alpaca-view-web-edit-yaml legend.alpaca-fieldset-legend span {
+    display: none;
+}
+
+/* make the fonts the right size */
+fieldset.alpaca-view-web-edit-yaml legend.alpaca-fieldset-legend {
+	font-size: 1em;
+}
+
+fieldset.alpaca-view-web-edit-yaml.fieldset-collapsed {
+    border: none;
+    margin: 1px 1px 1px 1px;
+}
+
+fieldset.alpaca-view-web-edit-yaml legend.alpaca-fieldset-legend.legend-expanded:after {
+    content: url("./images/down.png");
+    padding-left: 5px;
+}
+fieldset.alpaca-view-web-edit-yaml legend.alpaca-fieldset-legend.legend-collapsed:after {
+    content: url("./images/left.png");
+    padding-left: 5px;
+}
+
+/*sort out the text boxes so that they disappear when not focused */
+fieldset.alpaca-view-web-edit-yaml span:not(.alpaca-field-focused) div.alpaca-controlfield-text input {
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+fieldset.alpaca-view-web-edit-yaml {
+    font-family: courier;
+    padding-right: 1em;
+    padding-top: 0px;
+}
+
+fieldset.alpaca-view-web-edit-yaml div.alpaca-controlfield-checkbox {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+fieldset.alpaca-view-web-edit-yaml div.alpaca-controlfield-select {
+	margin-bottom: 1px;
+}
+fieldset.alpaca-view-web-edit-yaml div.alpaca-controlfield-radio div.alpaca-controlfield-radio {
+	padding-top: 3px;
+	padding-bottom: 4px;
+}
+
+fieldset.alpaca-view-web-edit-yaml > input,
+fieldset.alpaca-view-web-edit-yaml > select,
+fieldset.alpaca-view-web-edit-yaml > label
+{
+    font-family: courier;
+}
+
+span.alpaca-view-web-edit-yaml .alpaca-controlfield-label {
+    width: 175px;
+    padding-top: 3px;
+    padding-left: 3px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+span.alpaca-view-web-edit-yaml div.alpaca-controlfield-container {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+span.alpaca-view-web-edit-yaml div.alpaca-controlfield-container > input,
+span.alpaca-view-web-edit-yaml div.alpaca-controlfield-container > select
+{
+    padding: 1px 1px 1px 1px;
+}
+
+fieldset.alpaca-view-web-edit-yaml span.alpaca-field {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+fieldset.alpaca-view-web-edit-yaml ol.alpaca-fieldset-items-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+/* make the array item toolbar float, without displacing any other elements */
+fieldset.alpaca-view-web-edit-yaml div.alpaca-fieldset-array-item-toolbar {
+    position: absolute;
+    z-index: 99999;
+    right: 15px;
+}
+
+
+fieldset.alpaca-view-web-edit-yaml .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
+	padding: 2px;
+}
+
+/* END styles for the view VIEW_WEB_EDIT_YAML */
+
+/* BEGIN styles for the view VIEW_WEB_EDIT_INLINE */
+
+.alpaca-inline .alpaca-inline-item-container {
+    float: left;
+}
+
+.alpaca-inline-item-container .alpaca-inline .alpaca-fieldset, .alpaca-inline-item-container  .alpaca-fieldset.alpaca-inline {
+	margin: 0 1.5em;
+	padding: 0;
+}
+
+.alpaca-inline-item-container .alpaca-fieldset-array-item-toolbar {
+	width: 60px;
+	float: right;
+	margin-top: 0.7em;
+}
+
+.alpaca-inline .alpaca-fieldset-items-container {
+	margin: 0em 1em;
+	padding: 0;
+}
+
+.alpaca-inline select {
+	min-width: 0px;
+}
+
+#module-settings input:focus, textarea:focus {
+	border-width: 1px;
+}
+
+
+/* To Remove up/down buttons on items
+
+.alpaca-inline-item-container .alpaca-fieldset-array-item-toolbar .alpaca-fieldset-array-item-toolbar-up,
+.alpaca-inline-item-container .alpaca-fieldset-array-item-toolbar .alpaca-fieldset-array-item-toolbar-down {
+{
+	display: none;
+}
+*/
+
+/* To hide labels of inlined fields
+
+.alpaca-inline-item-container .alpaca-inline .alpaca-controlfield-label, .alpaca-inline-item-container .alpaca-inline .alpaca-fieldset-legend {
+	display: none;
+}
+
+*/
+
+/* END styles for VIEW: VIEW_WEB_EDIT_INLINE */
+

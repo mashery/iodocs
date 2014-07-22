@@ -1,0 +1,71 @@
+.container {
+	display: table;
+	width: 100%;
+}
+
+.alpaca-item-container-last {
+	border-bottom: none;
+}
+
+.alpaca-fieldset-item-container {
+	border-bottom: 1px solid #cccccc;
+}
+
+.row  {
+	display: table-row;
+	width: 82%;
+	float: left;
+}
+
+.ui-widget-header {
+	width: 16%;
+	float: right;
+	border: none;
+	background: none;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+
+.header {
+	font-weight: bold;
+}
+
+.col-name, .col-parameter, .col-type, .location, .col-description {
+	display: table-cell;
+	float: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+
+.col-name {
+	width: 15%;
+}
+
+.col-parameter {
+	width: 25%;
+}
+
+.col-type, .location{
+	width: 10%;
+}
+
+.col-description {
+	width: 40%;
+}
+
+.ui-widget-content { 
+	border: none;
+	background: none;
+	color: none;
+}
+
+.ui-state-default {
+	float: left;
+}
+
+button.ui-button-icon-only {
+	width: 2em;
+	height: 2em;
+}
