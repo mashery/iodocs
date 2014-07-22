@@ -6,6 +6,23 @@ Copyright 2011-2014 Mashery, Inc.
 
 [http://developer.mashery.com](http://developer.mashery.com)
 
+MAJOR CHANGE LOG
+================
+### 2014-07-22 - Summer Release Feature Enhancements
+#### This set of updates addresses several feature requests around POST/PUT calls. There are several other enhancements listed below. Note, if you are using a version of I/O Docs Community Edition that pre-dates this release, you will need to update your schema. The structure is similar in many ways, but the top level objects have been renamed, as well as many of the key names.
+
+* Numerous schema changes and improvements
+  * Support for references
+  * Base paths and authorization moved from apiConfig to api{name}.json files
+  * More robust/extensible auth definition block
+* POST/PUT request body capabilities added
+  * Array type and interface added for use in request body
+  * Size and order support
+  * Serialized JSON support
+* Parameter location enhancements
+  * Placement in the query string, path or header
+* Method form UI generation driven by Alpaca/jQuery
+
 SYNOPSIS
 --------
 I/O Docs is a live interactive documentation system for RESTful web APIs. By defining APIs at the resource, method and parameter levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML). Basic HTML text tags are enabled in the JSON schema.
@@ -592,20 +609,6 @@ Line:
 
 26. "$ref" key value is the reference to the same string in "schemas"
 
-
-MAJOR CHANGE LOG
-================
-### 2014-07-22 - Summer Release Feature Enhancements
-* Numerous schema changes and improvements
-  * Support for references
-  * Base paths and authorization moved from apiConfig to api{name}.json files
-* POST/PUT request body capabilities added
-  * Array type and interface added for use in request body
-  * Size and order support
-  * Serialized JSON support
-* Parameter location enhancements
-  * Placement in the query string, path or header
-* Method form UI generation driven by Alpaca/jQuery 
 
 SUPPORT
 =======
