@@ -12,7 +12,10 @@
             "base_uri": "https://apidemo.egnyte.com",
             "type": "implicit",
             "authorize_uri": "/puboauth/token",
-            "access_token_uri": "/puboauth/token"
+            "access_token_uri": "/puboauth/token",
+            "token": {
+                "location": "header"
+            }
         }
     },
     "schemas": {

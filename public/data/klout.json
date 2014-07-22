@@ -1,154 +1,154 @@
 {
-    "name": "Partner API v2",
-    "version": "2.0",
-    "protocol": "rest",
-    "basePath": "http://api.klout.com",
-    "publicPath": "/v2",
     "auth": {
         "key": {
             "param": "key"
         }
     },
+    "basePath": "http://api.klout.com",
+    "name": "Partner API v2",
+    "protocol": "rest",
+    "publicPath": "/v2",
+    "version": "2.0",
     "resources": {
         "Identity Methods": {
             "methods": {
-                "IdentityTwitter": {
-                    "name": "Identity (Twitter)",
-                    "path": "/identity.json/tw/{twitter_id}",
-                    "httpMethod": "GET",
-                    "description": "This method allows you to retrieve a KloutID for numeric twitter_id",
-                    "parameters": {
-                        "twitter_id": {
-                            "type": "string",
-                            "required": true,
-                            "default": "500042487",
-                            "description": "A twitter ID (e.g. 500042487)"
-                        }
-                    }
-                },
                 "IdentityGoogle": {
-                    "name": "Identity(Google+)",
-                    "path": "/identity.json/gp/{google_plus_id}",
-                    "httpMethod": "GET",
                     "description": "This method allows you to retrieve a KloutID for numeric google_plus_id",
+                    "httpMethod": "GET",
+                    "name": "Identity(Google+)",
                     "parameters": {
                         "google_plus_id": {
-                            "type": "string",
-                            "required": true,
                             "default": "112620727907435773834",
                             "description": "A Google+ ID (e.g. 112620727907435773834)",
-                            "location": "path"
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/identity.json/gp/{google_plus_id}"
                 },
                 "IdentityInstagram": {
-                    "name": "Identity(Instagram)",
-                    "path": "/identity.json/ig/{instagram_id}",
-                    "httpMethod": "GET",
                     "description": "This method allows you to retrieve a KloutID for numeric Instagram_id",
+                    "httpMethod": "GET",
+                    "name": "Identity(Instagram)",
                     "parameters": {
                         "instagram_id": {
-                            "type": "string",
-                            "required": true,
                             "default": "816029",
                             "description": "An Instagram ID (e.g. 816029)",
-                            "location": "path"
-                        }
-                    }
-                },
-                "Identitytwitter_screen_name": {
-                    "name": "Identity(twitter_screen_name)",
-                    "path": "/identity.json/twitter",
-                    "httpMethod": "GET",
-                    "description": "This method allows you to retrieve a KloutID for a twitter screen_name",
-                    "parameters": {
-                        "screenName": {
-                            "type": "string",
+                            "location": "path",
                             "required": true,
-                            "default": "jtimberlake",
-                            "description": "A twitter screen name (e.g. jtimberlake)",
-                            "location": "query"
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/identity.json/ig/{instagram_id}"
+                },
+                "IdentityTwitter": {
+                    "description": "This method allows you to retrieve a KloutID for numeric twitter_id",
+                    "httpMethod": "GET",
+                    "name": "Identity (Twitter)",
+                    "parameters": {
+                        "twitter_id": {
+                            "default": "500042487",
+                            "description": "A twitter ID (e.g. 500042487)",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/identity.json/tw/{twitter_id}"
                 },
                 "IdentitykloutId": {
-                    "name": "Identity(kloutId)",
-                    "path": "/identity.json/klout/{klout_id}/tw",
-                    "httpMethod": "GET",
                     "description": "This method allows you to retrieve a TwitterId for a numeric KloutId",
+                    "httpMethod": "GET",
+                    "name": "Identity(kloutId)",
                     "parameters": {
                         "klout_id": {
-                            "type": "string",
-                            "required": true,
                             "default": "635263",
                             "description": "A KloutId (like 635263)",
-                            "location": "path"
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/identity.json/klout/{klout_id}/tw"
+                },
+                "Identitytwitter_screen_name": {
+                    "description": "This method allows you to retrieve a KloutID for a twitter screen_name",
+                    "httpMethod": "GET",
+                    "name": "Identity(twitter_screen_name)",
+                    "parameters": {
+                        "screenName": {
+                            "default": "jtimberlake",
+                            "description": "A twitter screen name (e.g. jtimberlake)",
+                            "location": "query",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/identity.json/twitter"
                 }
             }
         },
         "User Methods": {
             "methods": {
-                "ShowUser": {
-                    "name": "Show User",
-                    "path": "/user.json/{kloutId}",
+                "Influence": {
+                    "description": "This method allows you to retrieve a user's influencers and influencees.",
                     "httpMethod": "GET",
-                    "description": "This method allows you to retrieve a user.",
+                    "name": "Influence",
                     "parameters": {
                         "kloutId": {
-                            "type": "string",
-                            "required": true,
                             "default": "635263",
                             "description": "A kloutId (like 635263)",
-                            "location": "path"
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/user.json/{kloutId}/influence"
                 },
                 "Score": {
-                    "name": "Score",
-                    "path": "/user.json/{kloutId}/score",
-                    "httpMethod": "GET",
                     "description": "This method allows you to retrieve a user's Klout Score and deltas.",
+                    "httpMethod": "GET",
+                    "name": "Score",
                     "parameters": {
                         "kloutId": {
-                            "type": "string",
-                            "required": true,
                             "default": "635263",
                             "description": "A kloutId (like 635263)",
-                            "location": "path"
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/user.json/{kloutId}/score"
+                },
+                "ShowUser": {
+                    "description": "This method allows you to retrieve a user.",
+                    "httpMethod": "GET",
+                    "name": "Show User",
+                    "parameters": {
+                        "kloutId": {
+                            "default": "635263",
+                            "description": "A kloutId (like 635263)",
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/user.json/{kloutId}"
                 },
                 "Topics": {
-                    "name": "Topics",
-                    "path": "/user.json/{kloutId}/topics",
-                    "httpMethod": "GET",
                     "description": "This method allows you to retrieve a user's topics.",
-                    "parameters": {
-                        "kloutId": {
-                            "type": "string",
-                            "required": true,
-                            "default": "635263",
-                            "description": "A kloutId (like 635263)",
-                            "location": "path"
-                        }
-                    }
-                },
-                "Influence": {
-                    "name":"Influence",
-                    "path": "/user.json/{kloutId}/influence",
                     "httpMethod": "GET",
-                    "description": "This method allows you to retrieve a user's influencers and influencees.",
+                    "name": "Topics",
                     "parameters": {
                         "kloutId": {
-                            "type": "string",
-                            "required": true,
                             "default": "635263",
                             "description": "A kloutId (like 635263)",
-                            "location": "path"
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
                         }
-                    }
+                    },
+                    "path": "/user.json/{kloutId}/topics"
                 }
             }
         }

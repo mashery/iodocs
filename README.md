@@ -1,6 +1,6 @@
-I/O Docs - Open Source in Node.js
-=================================
-Copyright 2012-2014 Mashery, Inc.
+I/O Docs Community Edition in Node.js
+=====================================
+Copyright 2011-2014 Mashery, Inc.
 
 [http://www.mashery.com](http://www.mashery.com)
 
@@ -8,8 +8,7 @@ Copyright 2012-2014 Mashery, Inc.
 
 SYNOPSIS
 --------
-I/O Docs is a live interactive documentation system for RESTful web APIs. By defining APIs at the resource, method and parameter
-levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML). Basic HTML text tags are enabled in the JSON schema.
+I/O Docs is a live interactive documentation system for RESTful web APIs. By defining APIs at the resource, method and parameter levels in a JSON schema, I/O Docs will generate a JavaScript client interface. API calls can be executed from this interface, which are then proxied through the I/O Docs server with payload data cleanly formatted (pretty-printed if JSON or XML). Basic HTML text tags are enabled in the JSON schema.
 
 You can find the latest version here: [https://github.com/mashery/iodocs](https://github.com/mashery/iodocs)
 
@@ -340,9 +339,11 @@ Line:
             "type": "authorization-code",
             "base_uri": "https://foursquare.com/",
             "authorize_uri": "oauth2/authenticate",
-            "access_token_uri": "oauth2/access_token",
-            "tokenName": "oauth_token",
-            "location": "query"
+            "access_token_uri": "oauth2/access_token_uri,
+            "token": {
+                "param": "oauth_token",
+                "location": "query"
+            }
         }
     },
     ...
@@ -388,12 +389,14 @@ Line:
     retrieve the access (Bearer) token in any OAuth 2 flow.
     This is required in all OAuth 2 flows. 
 
-12. "tokenName" key value if the API does not use "access_token"
+12. "token" container instructs I/O Docs where to use the access/bearer token on requests. If the "location" is set 
     as the default token name when making calls with the 
     access token in the url query parameters. Not required if 
     "access_token" is used. 
+    
+13. "param" is the parameter name for access token. This is valid only if the location value is "query"
 
-13. "location" (optional) key value that sets where the bearer token will go. Defaults to "header".
+14. "location" (optional) key value that sets where the bearer token will go. Acceptable values are: "header" and "query". If set to header, I/O Docs will follow the "Authorization: Bearer XXX" pattern. If set to "query", the name of the key will be dictated by the "param" value on line 13.
 
 Additional Note: All redirect URIs for the Foursquare API & your 
 Foursqare app must be set through the Foursquare developer site. 
@@ -589,6 +592,20 @@ Line:
 
 26. "$ref" key value is the reference to the same string in "schemas"
 
+
+MAJOR CHANGE LOG
+================
+### 2014-07-22 - Summer Release Feature Enhancements
+* Numerous schema changes and improvements
+  * Support for references
+  * Base paths and authorization moved from apiConfig to api{name}.json files
+* POST/PUT request body capabilities added
+  * Array type and interface added for use in request body
+  * Size and order support
+  * Serialized JSON support
+* Parameter location enhancements
+  * Placement in the query string, path or header
+* Method form UI generation driven by Alpaca/jQuery 
 
 SUPPORT
 =======
