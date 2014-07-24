@@ -18,7 +18,14 @@
 		                "type":"string",
 		                "description":"An array in the body."
 		            }
-		        }
+		        },
+				"textareaEx": {
+					"title": "textareaEx",
+					"required": false,
+					"default": "A sample textarea.",
+					"type": "textarea",
+					"description": "A textarea that is located in the body."
+				}
 			}
 		}
 	},
@@ -46,7 +53,7 @@
 				            "type": "array",
 				            "items": {
 				                "title":"arrayExample",
-				                "required": true,
+				                "required": false,
 				                "default": "123",
 				                "type":"string",
 				                "description":"An array in the header.",
@@ -57,7 +64,7 @@
 							"type": "array",
 							"items": {
 								"title": "enumArray",
-								"required":true,
+								"required":false,
 								"type":"string",
 								"enum": ["abc", "123"],
 								"description": "An array that is an enum.",

@@ -473,9 +473,16 @@ You should look at the *./public/data/* directory for examples.
                             "title": "include_status",
                             "required": false,
                             "default": false,
-                            "type": boolean,
+                            "type": "boolean",
                             "description": "If true, status included."
                             "booleanValues": ["yes","no"]
+                        },
+                        "review": {
+                            "title": "review",
+                            "required": false,
+                            "default": "",
+                            "type": "textarea",
+                            "description": "The user's review to submit."
                         }
                     }
                 }
@@ -531,6 +538,8 @@ Line:
 24. "location" (optional) key value determines where the parameter will go. Can be "query" or "header". Default to "query".
 
 43. "booleanValues" is an array of [true, false] alternatives that will instead populate the drop down box.
+
+49. "type" key value is *textarea* that will render a textarea box, a multi-line text input control.
 
 
 ### Example #2 - Request Bodies & Arrays
