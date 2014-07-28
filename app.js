@@ -267,7 +267,7 @@ function oauth2(req, res, next){
             refererURL = url.parse(req.headers.referer),
             callbackURL = refererURL.protocol + '//' + refererURL.host + '/oauth2Success/' + apiName,
             key = req.sessionID + ':' + apiName,
-            oauth_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization-code",
+            oauth_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization_code",
             oa = new OAuth2(
                 apiKey,
                 apiSecret,
