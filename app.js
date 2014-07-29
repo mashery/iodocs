@@ -155,7 +155,7 @@ if(config.redis) {
     app.use(dynamicHelpers);
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    app.user('/data', express.static(config.apiConfigDir));
+    app.use('/data', express.static(config.apiConfigDir));
 });
 
 app.configure('development', function() {
