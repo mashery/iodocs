@@ -356,7 +356,7 @@ Line:
             "type": "authorization-code",
             "base_uri": "https://foursquare.com/",
             "authorize_uri": "oauth2/authenticate",
-            "access_token_uri": "oauth2/access_token_uri,
+            "access_token_uri": "oauth2/access_token_uri",
             "token": {
                 "param": "oauth_token",
                 "location": "query"
