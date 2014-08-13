@@ -639,7 +639,7 @@ Line:
 
 (7). The first request body parameter. The format is the same as in "resources"
 
-*14. An array parameter. An array parameter can add as many values to the parameter as necessary. The default location for an array will always be "body".
+14) An array parameter. An array parameter can add as many values to the parameter as necessary. The default location for an array will always be "body".
 
 15. "type" key value set to *array*. Necessary for the array functionality to work.
 
