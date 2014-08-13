@@ -62,10 +62,10 @@ These will be automatically installed when you use any of the above *npm* instal
 1. [express](http://expressjs.com/) - framework
 2. [oauth](https://github.com/ciaranj/node-oauth) - oauth library
 3. [redis](https://github.com/mranney/node_redis) - connector to Redis
-3. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
-4. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
-5. [jade](http://jade-lang.com/) - the view engine
-6. [supervisor](https://github.com/isaacs/node-supervisor) - restart node upon an error or changed javascript file
+4. [connect-redis](https://github.com/visionmedia/connect-redis) - Redis session store
+5. [querystring](https://github.com/visionmedia/node-querystring) - used to parse query string
+6. [jade](http://jade-lang.com/) - the view engine
+7. [supervisor](https://github.com/isaacs/node-supervisor) - restart node upon an error or changed javascript file
 
 Note: hashlib is no longer a required module -- we're using the internal crypto module for signatures and digests.
 
@@ -234,15 +234,15 @@ The high-level information about an API is set in the config JSON file.
 
 Line:
 
-1. "name" key value is a string that holds the name
+(1). "name" key value is a string that holds the name
     of the API that is used in the Jade template output. Also true in *apiconfig.json*.
 
-2. "protocol" key value is either *rest* or *soap*
+(2). "protocol" key value is either *rest* or *soap*
 
-3. "basePath" key value is the host path of
+(3). "basePath" key value is the host path of
     the API calls
 
-4. "publicPath" key value is the full path prefix prepended
+(4). "publicPath" key value is the full path prefix prepended
     to all method URIs. This value often includes the version
     in RESTful APIs.
 
@@ -251,20 +251,20 @@ Line:
     In the Example #3 below, there is also "privatePath"
     which is used for endpoints behind protected resources.
 
-5. "auth" container holds the authorization information. If absent, API requires no authorization.
+(5). "auth" container holds the authorization information. If absent, API requires no authorization.
 
-6. The key value that describes the auth method. Valid values can be:
+(6). The key value that describes the auth method. Valid values can be:
          "key" - simple API key in the URI
          "oauth" - OAuth 1.0/2.0
          "" - no authentication
 
-7. "param" key value is name of the parameter that
+(7). "param" key value is name of the parameter that
     is added to an API request when the "auth" key value from
     (6) is set to "key".
 
-8. "location" (optional) key value sets where the api key will go in the request. Defaults to "query".
+(8). "location" (optional) key value sets where the api key will go in the request. Defaults to "query".
 
-9. "headers" object contains key value pairs of HTTP headers
+(9). "headers" object contains key value pairs of HTTP headers
     that will be sent for each request for API. These are
     static key/value pairs.
 
@@ -294,15 +294,15 @@ Line:
 
 Line:
 
-1. "name" key value is a string that holds the name
+(1). "name" key value is a string that holds the name
     of the API that is used in the Jade template output. Also true in *apiconfig.json*.
 
-2. "protocol" key value is either *rest* or *soap*
+(2). "protocol" key value is either *rest* or *soap*
 
-3. "basePath" key value is the host path of
+(3). "basePath" key value is the host path of
     the API calls
 
-4. "publicPath" key value is the full path prefix prepended
+(4). "publicPath" key value is the full path prefix prepended
     to all method URIs. This value often includes the version
     in RESTful APIs.
 
@@ -311,32 +311,32 @@ Line:
     In the Example #3 below, there is also "privatePath"
     which is used for endpoints behind protected resources.
 
-5. "auth" container holds the authorization information. If absent, API requires no authorization.
+(5). "auth" container holds the authorization information. If absent, API requires no authorization.
 
-6. The key value that describes the auth method. Valid values can be:
+(6). The key value that describes the auth method. Valid values can be:
          "key" - simple API key in the URI
          "oauth" - OAuth 1.0/2.0
 
-7. "param" key value is name of the parameter that
+(7). "param" key value is name of the parameter that
     is added to an API request when the "auth" key value from
     (6) is set to "key".
 
-8. "signature" is a JSON object that contains the details about
+(8). "signature" is a JSON object that contains the details about
    the API call signing requirements. The signature routine coded
    in app.js is a hash of the string concatenation of API key, 
    API key secret and timestamp (epoch).
 
-9. "type" key value is either *signed_md5* or *signed_sha256*.
+(9). "type" key value is either *signed_md5* or *signed_sha256*.
    More signature methods are available with crypto.js, but have
    not been included in the code as options.
 
-10. "param" key value is the name of the parameter that
+(10). "param" key value is the name of the parameter that
     is added to an API request that holds the digital signature.
 
-11. "digest" key value is the digest algorithm that is used.
+(11). "digest" key value is the digest algorithm that is used.
     Values can be *hex*, *base64* or *binary*.
 
-12. "location" (optional) key value sets where the signature will go in the request. Defaults to "header".
+(12). "location" (optional) key value sets where the signature will go in the request. Defaults to "header".
 
 
 ---
@@ -493,53 +493,53 @@ You should look at the *./public/data/* directory for examples.
 
 Line:
 
-1. "name" key value is a string that holds the name
+(1). "name" key value is a string that holds the name
     of the API that is used in the Jade template output. Also true in *apiconfig.json*.
 
-2. "protocol" key value is either *rest* or *soap*
+(2). "protocol" key value is either *rest* or *soap*
 
-3. "basePath" key value is the host path of
+(3). "basePath" key value is the host path of
     the API calls
 
-4. "resources" JSON container. Methods are grouped into resources.
+(4). "resources" JSON container. Methods are grouped into resources.
 
-5. The first resource.
+(5). The first resource.
 
-6. "methods" key value is an array of JSON objects (each one being a method)
+(6). "methods" key value is an array of JSON objects (each one being a method)
 
-7. The first method.
+(7). The first method.
 
-8. "name" key value is a string that is displayed via the view template. The name of the method.
+(8). "name" key value is a string that is displayed via the view template. The name of the method.
 
-9. "description" key value is a short description of the method.
+(9). "description" key value is a short description of the method.
 
-10. "httpMethod" key value can be either GET, POST, DELETE or PUT (all caps)
+(10). "httpMethod" key value can be either GET, POST, DELETE or PUT (all caps)
 
-11. "path" key value is the path to the method that is appended to the *baseURL* and the public/private path.
+(11). "path" key value is the path to the method that is appended to the *baseURL* and the public/private path.
 
-12. "parameters" key value is a JSON objects containing the parameters
+(12). "parameters" key value is a JSON objects containing the parameters
 
-13. The first parameter.
+(13). The first parameter.
 
-14. "title" key value is a string that contains the name of the parameter.
+(14). "title" key value is a string that contains the name of the parameter.
 
-15. "required" key value is either true or false.
+(15). "required" key value is either true or false.
 
-16. "default" key value is a string, containing a default value that will be automatically populated onto the form.
+(16). "default" key value is a string, containing a default value that will be automatically populated onto the form.
 
-17. "type" key value can be an arbitrary string that describes the variable type; however, the value is *boolean* or *enumerated* a drop-down (select) box will appear.
+(17). "type" key value can be an arbitrary string that describes the variable type; however, the value is *boolean* or *enumerated* a drop-down (select) box will appear.
 
-18. "description" key value is a string, containing the description of the parameter.
+(18). "description" key value is a string, containing the description of the parameter.
 
-25. "enum" key value is an array of enumerated values that will render a drop-down (select box) on the form.
+(25). "enum" key value is an array of enumerated values that will render a drop-down (select box) on the form.
 
-32. "type" key value is *boolean* that will render a drop-down (select box) on the form for *true* and *false*.
+(32). "type" key value is *boolean* that will render a drop-down (select box) on the form for *true* and *false*.
 
-24. "location" (optional) key value determines where the parameter will go. Can be "query" or "header". Default to "query".
+(24). "location" (optional) key value determines where the parameter will go. Can be "query" or "header". Default to "query".
 
-43. "booleanValues" is an array of [true, false] alternatives that will instead populate the drop down box.
+(43). "booleanValues" is an array of [true, false] alternatives that will instead populate the drop down box.
 
-49. "type" key value is *textarea* that will render a textarea box, a multi-line text input control.
+(49). "type" key value is *textarea* that will render a textarea box, a multi-line text input control.
 
 
 ### Example #2 - Request Bodies, Arrays, & Objects
@@ -631,31 +631,31 @@ Line:
 
 Line:
 
-{4}. "schemas" JSON object. Contains the parameters that will go into the request body for all methods.
+(4). "schemas" JSON object. Contains the parameters that will go into the request body for all methods.
 
-"5". The first method to contain a request body.
+(5). The first method to contain a request body.
 
-[6]. "properties" JSON object containing the parameters that will go into the request body.
+(6). "properties" JSON object containing the parameters that will go into the request body.
 
 (7). The first request body parameter. The format is the same as in "resources"
 
-14) An array parameter. An array parameter can add as many values to the parameter as necessary. The default location for an array will always be "body".
+(14). An array parameter. An array parameter can add as many values to the parameter as necessary. The default location for an array will always be "body".
 
-15. "type" key value set to *array*. Necessary for the array functionality to work.
+(15). "type" key value set to *array*. Necessary for the array functionality to work.
 
-16. "items" JSON object that contains the parameter information. Format is consistent from resources parameters. 
+(16). "items" JSON object that contains the parameter information. Format is consistent from resources parameters. 
 
-24. A JSON object parameter.
+(24). A JSON object parameter.
 
-25. "type" key value set to *object*. Necessary for the object functionality to work.
+(25). "type" key value set to *object*. Necessary for the object functionality to work.
 
-26. "properties" JSON object containing the parameters that will go into the object.
+(26). "properties" JSON object containing the parameters that will go into the object.
 
-41. An object embedded within an object.
+(41). An object embedded within an object.
 
-66. "request" JSON object holds the reference to the request body parameters
+(66). "request" JSON object holds the reference to the request body parameters
 
-67. "$ref" key value is the reference to the same string in "schemas"
+(67). "$ref" key value is the reference to the same string in "schemas"
 
 
 SUPPORT
