@@ -542,7 +542,7 @@ Line:
 49. "type" key value is *textarea* that will render a textarea box, a multi-line text input control.
 
 
-### Example #2 - Request Bodies & Arrays
+### Example #2 - Request Bodies, Arrays, & Objects
 
 ```js
 {
@@ -567,6 +567,37 @@ Line:
                         "default": "foobar",
                         "type":"string",
                         "description":"An array in the body."
+                    }
+                },
+                "objectExample": {
+                    "type": "object",
+                    "properties": {
+                        "element1": {
+                            "title": "element1",
+                            "required":false,
+                            "type":"string",
+                            "description": "An element in a JSON object.",
+                            "default": "el1"
+                        },
+                        "element2": {
+                            "title": "element2",
+                            "required":false,
+                            "type":"string",
+                            "description": "Second element in a JSON object.",
+                            "default": "el2"
+                        },
+                        "subObjectEx": {
+                            "type": "object",
+                            "properties": {
+                                "element3": {
+                                    "title": "element3",
+                                    "required":false,
+                                    "type":"string",
+                                    "description": "An element within an object within an object.",
+                                    "default": "el3"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -600,13 +631,13 @@ Line:
 
 Line:
 
-4. "schemas" JSON object. Contains the parameters that will go into the request body for all methods.
+{4}. "schemas" JSON object. Contains the parameters that will go into the request body for all methods.
 
-5. The first method to contain a request body.
+"5". The first method to contain a request body.
 
-6. "properties" JSON object containing the parameters that will go into the request body.
+[6]. "properties" JSON object containing the parameters that will go into the request body.
 
-7. The first request body parameter. The format is the same as in "resources"
+(7). The first request body parameter. The format is the same as in "resources"
 
 14. An array parameter. An array parameter can add as many values to the parameter as necessary. The default location for an array will always be "body".
 
@@ -614,9 +645,17 @@ Line:
 
 16. "items" JSON object that contains the parameter information. Format is consistent from resources parameters. 
 
-25. "request" JSON object holds the reference to the request body parameters
+24. A JSON object parameter.
 
-26. "$ref" key value is the reference to the same string in "schemas"
+25. "type" key value set to *object*. Necessary for the object functionality to work.
+
+26. "properties" JSON object containing the parameters that will go into the object.
+
+41. An object embedded within an object.
+
+66. "request" JSON object holds the reference to the request body parameters
+
+67. "$ref" key value is the reference to the same string in "schemas"
 
 
 SUPPORT
