@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2011 Mashery, Inc.
+// Copyright (c) 2014 Mashery, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -259,15 +259,13 @@ function oauth2(req, res, next){
         oauth2_version = checkObjVal(apiConfig,"auth","oauth","version").value,
         oauth2_token_param = checkObjVal(apiConfig,"auth","oauth","token","param").value;
 
-    console.log(oauth2_version);
-
     if (oauth2_version == "2.0") {
         var apiKey = req.body.apiKey || req.body.key,
             apiSecret = req.body.apiSecret || req.body.secret,
             refererURL = url.parse(req.headers.referer),
             callbackURL = refererURL.protocol + '//' + refererURL.host + '/oauth2Success/' + apiName,
             key = req.sessionID + ':' + apiName,
-            oauth_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization-code",
+            oauth_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization_code",
             oa = new OAuth2(
                 apiKey,
                 apiSecret,
@@ -396,7 +394,7 @@ function oauth2Success(req, res, next) {
             key = req.sessionID + ':' + apiName,
             basePath;
 
-        var oauth2_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization-code",
+        var oauth2_type = checkObjVal(apiConfig,'auth','oauth','type').value || "authorization_code",
             oauth2_base_uri = checkObjVal(apiConfig,"auth","oauth","base_uri").value,
             oauth2_authorize_uri = checkObjVal(apiConfig,"auth","oauth","authorize_uri").value,
             oauth2_access_token_uri = checkObjVal(apiConfig,"auth","oauth","access_token_uri").value,
@@ -422,7 +420,6 @@ function oauth2Success(req, res, next) {
                 apiKey = result[0],
                 apiSecret = result[1],
                 callbackURL = result[2];
-
 
                 if (result[3] && oauth2_type == 'client_credentials') {
                     req.session[apiName] = {};
@@ -453,7 +450,8 @@ function oauth2Success(req, res, next) {
                     console.log(util.inspect(oa));
                 }
 
-                if (oauth2_type == 'authorization-code') {
+                if (oauth2_type == 'authorization_code') {
+                    console.log("in oauth2Success in authorization_code");
                     oa.getOAuthAccessToken(
                         req.query.code,
                         {
@@ -601,8 +599,7 @@ function processRequest(req, res, next) {
         customHeaders = {},
         bodyParams = {},
         params    = {},
-        keys      = reqQuery.keys || {},
-        values    = reqQuery.values || {},
+        json      = reqQuery.json || {},
         locations = reqQuery.locations || {},
         methodURL = reqQuery.methodUri,
         httpMethod = reqQuery.httpMethod,
@@ -613,21 +610,19 @@ function processRequest(req, res, next) {
         key = req.sessionID + ':' + apiName,
         implicitAccessToken = reqQuery.accessToken;
 
-    for (var i in values) {
-        var k = keys[i];
-        var v = values[i];
+    json = JSON.parse(json);
+    locations = JSON.parse(locations);
+    console.log("json: ", json);
+    console.log("locations: ", locations);
 
-        if (k.constructor == Array && locations[i].constructor == Array) {
-            keys[i] = k[0];
-            k = k[0];
-            locations[i] = locations[i][0];
-        }
+    for (var k in json) {
+        var v = json[k];
 
         if (v !== '') {
             // Set custom headers from the params
-            if (locations[i] == 'header' ) {
+            if (locations[k] == 'header' ) {
                 customHeaders[k] = v;
-            } else if (locations[i] == 'body') {
+            } else if (locations[k] == 'body') {
                 bodyParams[k] = v;
             } else {
                 // URL params are contained within "{param}"
@@ -673,9 +668,9 @@ function processRequest(req, res, next) {
 
     if (['POST','PUT'].indexOf(httpMethod) !== -1) {
         var requestBody;
-        requestBody = (
-            options.headers['Content-Type'] === 'application/json') ? JSON.stringify(bodyParams) :
-            query.stringify(bodyParams);
+        requestBody = (options.headers['Content-Type'] === 'application/json') 
+        ? JSON.stringify(bodyParams) 
+        : query.stringify(bodyParams);
     }
 
     if (checkObjVal(apiConfig,"auth","oauth","version").value == "1.0") {

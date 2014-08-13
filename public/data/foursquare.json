@@ -32,11 +32,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -55,11 +55,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -78,11 +78,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -101,11 +101,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -131,11 +131,11 @@
                             "title": "value",
                             "type": "boolean"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -172,11 +172,11 @@
                             "title": "offset",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -194,11 +194,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -230,11 +230,11 @@
                             "title": "offset",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -253,11 +253,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -311,11 +311,11 @@
                             "title": "sort",
                             "type": "string"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -354,11 +354,11 @@
                             "title": "categoryId",
                             "type": "string"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -415,11 +415,11 @@
                             "title": "twitterSource",
                             "type": "string"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -438,11 +438,11 @@
                             "title": "USER_ID",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -460,11 +460,11 @@
                             "title": "neighbors",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -570,11 +570,11 @@
                             "title": "name",
                             "type": "string"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         },
                         "zip": {
@@ -704,11 +704,11 @@
                             "title": "venuePhotos",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },
@@ -733,11 +733,11 @@
                             "title": "offset",
                             "type": "integer"
                         },
-                        "version": {
+                        "v": {
                             "default": "20140717",
                             "description": "version",
                             "required": true,
-                            "title": "v",
+                            "title": "version",
                             "type": "string"
                         }
                     },

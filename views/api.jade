@@ -99,6 +99,8 @@ block content
                               input(type='hidden', name='oauth', value=secure)
                               input(type='hidden', name='methodUri', value=method.path)
                               input(type='hidden', name='accessToken', id='accessToken')
+                              input(type='hidden', name='json', id=methodKey + 'json')
+                              input(type='hidden', name='locations', id=methodKey + 'locations')
 
                               span.description !{method.description}
                               br
@@ -112,4 +114,4 @@ block content
                                   .col-name.header Parameter
                               table(id=methodKey)
                               - if (!method['read-only'])
-                                  input(type='submit', id=method.name, value='Try it!')
+                                  input(type='submit', id=method.name, value='Try it!', class=methodKey)

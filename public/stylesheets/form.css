@@ -62,7 +62,8 @@
 }
 
 .ui-state-default {
-	float: left;
+	float: none;
+	text-align: left;
 }
 
 button.ui-button-icon-only {

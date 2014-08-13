@@ -8,23 +8,105 @@
 		"Content-Type": "application/json"
 	},
 	"schemas": {
-		"arrayExample2" : {
+		"simpleParam": {
+			"title":"simpleParam",
+			"type": "string",
+            "default": "abc",
+            "required": true,
+            "description": "A simple input parameter."
+		},
+		"referencedArray": {
+			"type": "array",
+			"items": {
+				"title":"refArray",
+                "default": "abc",
+                "type":"string",
+                "description":"An array directly referenced with location in the header.",
+                "location": "header",
+                "required": true
+			}
+		},
+		"referencedObject": {
+			"type": "object",
 			"properties": {
-				"arrayExample2": {
-		            "type": "array",
-		            "items": {
-		                "title":"arrayExample2",
-		                "default": "abc",
-		                "type":"string",
-		                "description":"An array in the body."
-		            }
-		        },
+				"outerEl1": {
+					"title": "outerEl1",
+					"required":false,
+					"type":"string",
+					"description": "An object element located in the body.",
+					"default": "el1"
+				},
+				"outerEl2": {
+					"title": "outerEl2",
+					"required":false,
+					"type":"string",
+					"description": "An object element located in the body.",
+					"default": "el2"
+				},
+				"subObjectEx": {
+					"type": "object",
+					"properties": {
+						"middleEl1": {
+							"title": "middleEl1",
+							"required":false,
+							"type":"string",
+							"description": "An object element located in the body.",
+							"default": "el3"
+						},
+						"middleEl2": {
+							"title": "middleEl2",
+							"required":false,
+							"type":"string",
+							"description": "An object element located in the body.",
+							"default": "el4"
+						},
+						"subSubObjectEx": {
+							"type": "object",
+							"properties": {
+								"innerEl1": {
+									"title": "innerEl1",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el5"
+								},
+								"innerEl2": {
+									"title": "innerEl2",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el6"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"bodyExample" : {
+			"type": "object",
+			"title": "bodyExample",
+			"properties": {
+				"arrayExample": {
+					"type": "array",
+					"items": {
+						"title": "arrayExample",
+						"default": "",
+						"type": "string",
+						"description": "An array in the body",
+						"required": true
+					}
+				},
 				"textareaEx": {
 					"title": "textareaEx",
 					"required": false,
 					"default": "A sample textarea.",
 					"type": "textarea",
-					"description": "A textarea that is located in the body."
+					"description": "A textarea that is located in the body.",
+					"location": "body"
+				},
+				"referencedObject": {
+					"$ref": "referencedObject"
 				}
 			}
 		}
@@ -32,43 +114,251 @@
 	"resources": {
 		"Requestb.in": {
 			"methods": {
-				"arrayExampleMethod": {
-					"name": "Method with array parameters",
-					"description": "An example of arrays.",
+				"bodyExampleMethod": {
+					"name": "Simple request body example",
+					"description": "An example of array, textarea, and object parameters in schemas referenced from request.",
 					"httpMethod": "POST",
 					"path": "{requestBin}",
 					"request": {
-						"$ref": "arrayExample2"
-					},
+						"$ref": "bodyExample"
+					}
+				},
+				"arrayExampleMethod": {
+					"name": "Method with array parameters",
+					"description": "An example of a basic array, a referenced array, and an enum array.",
+					"httpMethod": "POST",
+					"path": "{requestBin}",
 				    "parameters": {
 				        "requestBin": {
 				            "title":"requestBin", 
 				            "required": true,
-				            "default": "ojynm7oj",
+				            "default": "17mzgti1",
 				            "type":"string",
 				            "description":"",
 				            "location": "path"
 				        },
 						"arrayExample": {
 				            "type": "array",
+				            "location": "header",
 				            "items": {
 				                "title":"arrayExample",
 				                "required": false,
 				                "default": "123",
 				                "type":"string",
-				                "description":"An array in the header.",
-				                "location": "header"
+				                "description":"An array in the header."
 				            }
 				        },
+				        "referencedArray": {
+				    		"$ref": "referencedArray"
+			    		},
 						"enumArray": {
 							"type": "array",
+							"location": "header",
 							"items": {
 								"title": "enumArray",
 								"required":false,
 								"type":"string",
 								"enum": ["abc", "123"],
-								"description": "An array that is an enum.",
-								"location": "header"
+								"description": "An array that is an enum."
+							}
+						}
+					}
+				},
+				"objectExampleMethod": {
+					"name": "Method with object parameters",
+					"description": "An example of objects.",
+					"httpMethod": "POST",
+					"path": "{requestBin}",
+					"parameters": {
+						"requestBin": {
+				            "title":"requestBin", 
+				            "required": true,
+				            "default": "17mzgti1",
+				            "type":"string",
+				            "description":"",
+				            "location": "path"
+				        },
+				        "oneLvlObj": {
+							"type": "object",
+							"location": "body",
+							"properties": {
+								"outerEl1": {
+									"title": "outerEl1",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el1"
+								},
+								"outerEl2": {
+									"title": "outerEl2",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el2"
+								}
+							}
+						},
+						"twoLvlObj": {
+							"type": "object",
+							"properties": {
+								"outerEl1": {
+									"title": "outerEl1",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el1"
+								},
+								"outerEl2": {
+									"title": "outerEl2",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el2"
+								},
+								"subObjectEx": {
+									"type": "object",
+									"properties": {
+										"middleEl1": {
+											"title": "middleEl1",
+											"required":false,
+											"type":"string",
+											"description": "An object element located in the body.",
+											"default": "el3"
+										},
+										"middleEl2": {
+											"title": "middleEl2",
+											"required":false,
+											"type":"string",
+											"description": "An object element located in the body.",
+											"default": "el4"
+										}
+									}
+								}
+							}
+						},
+						"threeLvlObj": {
+							"type": "object",
+							"properties": {
+								"outerEl1": {
+									"title": "outerEl1",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el1"
+								},
+								"outerEl2": {
+									"title": "outerEl2",
+									"required":false,
+									"type":"string",
+									"description": "An object element located in the body.",
+									"default": "el2"
+								},
+								"subObjectEx": {
+									"type": "object",
+									"properties": {
+										"middleEl1": {
+											"title": "middleEl1",
+											"required":false,
+											"type":"string",
+											"description": "An object element located in the body.",
+											"default": "el3"
+										},
+										"middleEl2": {
+											"title": "middleEl2",
+											"required":false,
+											"type":"string",
+											"description": "An object element located in the body.",
+											"default": "el4"
+										},
+										"subSubObjectEx": {
+											"type": "object",
+											"properties": {
+												"innerEl1": {
+													"title": "innerEl1",
+													"required":false,
+													"type":"string",
+													"description": "An object element located in the body.",
+													"default": "el5"
+												},
+												"innerEl2": {
+													"title": "innerEl2",
+													"required":false,
+													"type":"string",
+													"description": "An object element located in the body.",
+													"default": "el6"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"reqRefExampleMethod": {
+					"name": "Additional request and reference example",
+					"description": "An example of alternative 'request' field inout & additional reference example.",
+					"httpMethod": "POST",
+					"path": "{requestBin}",
+					"request": {
+						"properties": {
+							"arrayRefExample": {
+								"$ref": "referencedArray"
+							},
+							"arrayExample": {
+					            "type": "array",
+					            "items": {
+					                "title":"arrayExample",
+					                "default": "abc",
+					                "type":"string",
+					                "description":"An array in the request body."
+					            }
+					        },
+							"textareaEx": {
+								"title": "textareaEx",
+								"required": false,
+								"default": "A sample textarea.",
+								"type": "textarea",
+								"description": "A textarea that is located in the request body."
+							},
+							"objectExample": {
+								"type": "object",
+								"properties": {
+									"elementEx": {
+										"title": "elementEx",
+										"required":false,
+										"type":"string",
+										"description": "",
+										"default": ""
+									},
+									"elementRefEx": {
+										"$ref": "simpleParam"
+									}
+								}
+							},
+							"referencedObject": {
+								"$ref": "referencedObject"
+							}
+						}
+					},
+				    "parameters": {
+				        "requestBin": {
+				            "title":"requestBin", 
+				            "required": true,
+				            "default": "17mzgti1",
+				            "type":"string",
+				            "description":"",
+				            "location": "path"
+				        },
+						"enumArray": {
+							"type": "array",
+							"location": "header",
+							"items": {
+								"title": "enumArray",
+								"required":false,
+								"type":"string",
+								"enum": ["abc", "123"],
+								"description": "An array that is an enum."
 							}
 						}
 					}
