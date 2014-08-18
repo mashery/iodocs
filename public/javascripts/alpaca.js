@@ -11616,7 +11616,7 @@ var equiv = function () {
             this.base();
             
             if (!this.options.size) {
-                this.options.size = 40;
+                this.options.size = 20;
             }
 
             this.controlFieldTemplateDescriptor = this.view.getTemplateDescriptor("controlFieldText");
@@ -12060,7 +12060,7 @@ var equiv = function () {
                         "title": "Field Size",
                         "description": "Field size.",
                         "type": "number",
-						"default":40
+						"default":20
                     },
                     "maskString": {
                         "title": "Mask Expression",
@@ -14837,6 +14837,8 @@ var equiv = function () {
             {
                 var referenceId = itemSchema["$ref"];
 
+                console.log("itemSchema");
+
                 var topField = this;
                 var fieldChain = [topField];
                 while (topField.parent)
@@ -15630,7 +15632,6 @@ var equiv = function () {
             if (propertySchema && propertySchema["$ref"])
             {
                 var referenceId = propertySchema["$ref"];
-
                 var topField = this;
                 var fieldChain = [topField];
                 while (topField.parent)
@@ -16963,7 +16964,7 @@ var equiv = function () {
         }//__END_OF_BUILDER_HELPERS
     });
 
-    Alpaca.registerTemplate("controlFieldAny", '<input type="text" id="${id}" size="40" {{if options.readonly}}readonly="readonly"{{/if}} {{if name}}name="${name}"{{/if}} {{each(i,v) options.data}}data-${i}="${v}"{{/each}}/>');
+    Alpaca.registerTemplate("controlFieldAny", '<input type="text" id="${id}" size="20" {{if options.readonly}}readonly="readonly"{{/if}} {{if name}}name="${name}"{{/if}} {{each(i,v) options.data}}data-${i}="${v}"{{/each}}/>');
     Alpaca.registerFieldClass("any", Alpaca.Fields.AnyField);
     Alpaca.registerDefaultSchemaFieldMapping("any", "any");
 })(jQuery);
@@ -17001,7 +17002,7 @@ var equiv = function () {
             this.base();
 
             if (!this.options.size) {
-                this.options.size = 40;
+                this.options.size = 20;
             }
 
             this.controlFieldTemplateDescriptor = this.view.getTemplateDescriptor("controlFieldHidden");
