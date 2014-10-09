@@ -1186,64 +1186,70 @@ if (!module.parent) {
     if (typeof config.socket != "undefined") {
         var args = [config.socket];
         console.log("Express server starting on UNIX socket %s", args[0]);
+        fs.unlink(config.socket, function () {
+          runServer(app, args);
+        });
     } else {
         var args = [process.env.PORT || config.port, config.address];
         console.log("Express server starting on %s:%d", args[1], args[0]);
+        runServer(app, args);
     }
 
-    //
-    // Determine if we should launch as http/s and get keys and certs if needed
-    //
-    var httpsOptions = {};
+    function runServer () {
+        //
+        // Determine if we should launch as http/s and get keys and certs if needed
+        //
+        var httpsOptions = {};
 
-    if (config && config.https && config.https.enabled && config.https.keyPath && config.https.certPath) {
-        if (config.debug) {
-            console.log("Starting secure server (https)");
-        }
-
-        // try reading the key file, die if that fails
-        try {
-            httpsOptions.key = fs.readFileSync(config.https.keyPath);
-        } catch (err) {
-            console.error("Failed to read https key: ", config.https.keyPath);
-            console.log(err);
-            process.exit(1);
-        }
-
-        // try reading the cert file, die if that fails
-        try {
-            httpsOptions.cert = fs.readFileSync(config.https.certPath);
-        } catch (err) {
-            console.error("Failed to read https cert: ", config.https.certPath);
-            console.log(err);
-            process.exit(1);
-        }
-
-        // try reading the ca cert file, die if that fails
-        if (config.https.caCertPath) {
-            try {
-                httpsOptions.ca = fs.readFileSync(config.https.caCertPath);
-            } catch (err) {
-                console.error("Failed to read https ca cert: ", config.https.caCertPath);
-                console.log(err);
+        if (config && config.https && config.https.enabled && config.https.keyPath && config.https.certPath) {
+            if (config.debug) {
+                console.log("Starting secure server (https)");
             }
-        }
 
-        if (config.https.requestCert) {
-            httpsOptions.requestCert = config.https.requestCert;
-        }
+            // try reading the key file, die if that fails
+            try {
+                httpsOptions.key = fs.readFileSync(config.https.keyPath);
+            } catch (err) {
+                console.error("Failed to read https key: ", config.https.keyPath);
+                console.log(err);
+                process.exit(1);
+            }
 
-        if (config.https.rejectUnauthorized) {
-            httpsOptions.rejectUnauthorized = config.https.rejectUnauthorized;
-        }
+            // try reading the cert file, die if that fails
+            try {
+                httpsOptions.cert = fs.readFileSync(config.https.certPath);
+            } catch (err) {
+                console.error("Failed to read https cert: ", config.https.certPath);
+                console.log(err);
+                process.exit(1);
+            }
 
-        server = https.createServer(httpsOptions, app);
-        server.listen.apply(server, args);
-    } else if (config.https && config.https.on) {
-        console.error("No key or certificate specified.");
-        process.exit(1);
-    } else {
-        server = http.createServer(app);
-        server.listen.apply(server, args);
+            // try reading the ca cert file, die if that fails
+            if (config.https.caCertPath) {
+                try {
+                    httpsOptions.ca = fs.readFileSync(config.https.caCertPath);
+                } catch (err) {
+                    console.error("Failed to read https ca cert: ", config.https.caCertPath);
+                    console.log(err);
+                }
+            }
+
+            if (config.https.requestCert) {
+                httpsOptions.requestCert = config.https.requestCert;
+            }
+
+            if (config.https.rejectUnauthorized) {
+                httpsOptions.rejectUnauthorized = config.https.rejectUnauthorized;
+            }
+
+            server = https.createServer(httpsOptions, app);
+            server.listen.apply(server, args);
+        } else if (config.https && config.https.on) {
+            console.error("No https key or certificate specified.");
+            process.exit(1);
+        } else {
+            server = http.createServer(app);
+            server.listen.apply(server, args);
+        }
     }
 }
