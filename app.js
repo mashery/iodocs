@@ -983,7 +983,7 @@ function processRequest(req, res, next) {
         }
         if (['POST','PUT'].indexOf(httpMethod) !== -1 && !options.headers['Content-Length']) {
             if (requestBody) {
-                options.headers['Content-Length'] = requestBody.length;
+                options.headers['Content-Length'] = Buffer.byteLength(requestBody);
             }
             else {
                 options.headers['Content-Length'] = 0;
