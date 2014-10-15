@@ -145,7 +145,7 @@ if(config.redis) {
     //
     // Global basic authentication on server (applied if configured)
     //
-    if (checkObjVal(config,'basicAuth').exists && checkObjVal(config,'password').exists) {
+    if (checkObjVal(config,'basicAuth').exists && checkObjVal(config, 'basicAuth', 'password').exists) {
         app.use(express.basicAuth(function(user, pass, callback) {
             var result = (user === config.basicAuth.username && pass === config.basicAuth.password);
             callback(null /* error */, result);
@@ -156,6 +156,7 @@ if(config.redis) {
     app.use(dynamicHelpers);
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
+    app.use('/data', express.static(config.apiConfigDir));
 });
 
 app.configure('development', function() {
@@ -947,6 +948,12 @@ function processRequest(req, res, next) {
             }
             console.log(apiConfig.auth.key.param);
             options.path += apiConfig.auth.key.param + '=' + apiKey;
+        }
+
+        // Basic Auth support
+        if (apiConfig.auth == 'basicAuth') {
+            options.headers['Authorization'] = 'Basic ' + new Buffer(reqQuery.apiUsername + ':' + reqQuery.apiPassword).toString('base64');
+            console.log(options.headers['Authorization'] );
         }
 
         //
