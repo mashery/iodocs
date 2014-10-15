@@ -949,6 +949,12 @@ function processRequest(req, res, next) {
             options.path += apiConfig.auth.key.param + '=' + apiKey;
         }
 
+        // Basic Auth support
+        if (apiConfig.auth == 'basicAuth') {
+            options.headers['Authorization'] = 'Basic ' + new Buffer(reqQuery.apiUsername + ':' + reqQuery.apiPassword).toString('base64');
+            console.log(options.headers['Authorization'] );
+        }
+
         //
         // Perform signature routine - force defaults on required configuration items.
         //
