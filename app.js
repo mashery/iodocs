@@ -144,7 +144,7 @@ if(config.redis) {
     //
     // Global basic authentication on server (applied if configured)
     //
-    if (checkObjVal(config,'basicAuth').exists && checkObjVal(config,'password').exists) {
+    if (checkObjVal(config,'basicAuth').exists && checkObjVal(config, 'basicAuth', 'password').exists) {
         app.use(express.basicAuth(function(user, pass, callback) {
             var result = (user === config.basicAuth.username && pass === config.basicAuth.password);
             callback(null /* error */, result);
