@@ -14,5 +14,13 @@
         "port" : 6379,
         "password" : "",
         "database" : "0"
+    },
+    "https" : {
+        "enabled": false,
+        "keyPath": "/Path/to/my.key.pem",
+        "certPath": "/Path/to/my.crt.pem",
+        "caCertPath": "/Path/to/my.ca.crt.pem",
+        "requestCert": true,
+        "rejectUnauthorized": false
     }
 }
