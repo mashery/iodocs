@@ -37,14 +37,22 @@ block content
                   - if (oAuthVersion)
                       label(for='key') Client ID
                       - var secure ='authrequired'
+                      input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
+                  - else if (apiInfo.auth == 'basicAuth')
+                    label(for='username') User name
+                    input(id='username', name='username', value=defaultKey, style='color=#EEEEEE')
                   - else
                     label(for='key') API Key
                     - var secure =''
-                  input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
+                    input(id='key', name='key', value=defaultKey, style='color=#EEEEEE')
               div
                   - if (oAuthVersion)
                       label(for='secret') Client Secret
                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
+                  - else if (apiInfo.auth == 'basicAuth')
+                      label(for='password') Password
+                      input(id='password', name='password', type='password', value=defaultKey, style='color=#EEEEEE')
+
                   - if (apiInfo.auth.signature)
                       label(for='secret') Shared Secret
                       input(id='secret', name='secret', value=defaultSecret, style='color=#EEEEEE')
