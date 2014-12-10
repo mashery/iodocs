@@ -263,6 +263,7 @@ Line:
     (6) is set to "key".
 
 (8). "location" (optional) key value sets where the api key will go in the request. Defaults to "query".
+    supported values: "query" and "header".
 
 (9). "headers" object contains key value pairs of HTTP headers
     that will be sent for each request for API. These are
