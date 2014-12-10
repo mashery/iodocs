@@ -940,14 +940,20 @@ function processRequest(req, res, next) {
 
         // Add API Key to params, if any.
         if (apiKey != '' && apiKey != 'undefined' && apiKey != undefined) {
-            if (options.path.indexOf('?') !== -1) {
-                options.path += '&';
+            if (apiConfig.auth.key.location === 'header') {
+                options.headers = (options.headers === void 0) ? {} : options.headers;
+                options.headers[apiConfig.auth.key.param] = apiKey;
             }
             else {
-                options.path += '?';
+                if (options.path.indexOf('?') !== -1) {
+                    options.path += '&';
+                }
+                else {
+                    options.path += '?';
+                }
+                console.log(apiConfig.auth.key.param);
+                options.path += apiConfig.auth.key.param + '=' + apiKey;
             }
-            console.log(apiConfig.auth.key.param);
-            options.path += apiConfig.auth.key.param + '=' + apiKey;
         }
 
         // Basic Auth support
